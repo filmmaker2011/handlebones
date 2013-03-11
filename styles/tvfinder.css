@@ -84,7 +84,7 @@ a:hover {
     text-indent: 20px;
     border-color: #ccc #ddd #ddd #ddd;
     border-width: 1px;
-    background: url(img/search-icon.png) 3px 4px no-repeat;
+    background: url(../img/search-icon.png) 3px 4px no-repeat;
     box-shadow: inset 0px 2px 3px #bbb;
 }
 ul.top-nav {
@@ -231,7 +231,7 @@ hr.filters:after {
     -webkit-appearance: button;
     -webkit-padding-start: 5px;
     -webkit-padding-end: 3.5em;
-    background: url(img/down-arrow.png) no-repeat 85% 7px, -webkit-linear-gradient(top, #FFFFFF, #FAFAFA, #EDEDED);
+    background: url(../img/down-arrow.png) no-repeat 85% 7px, -webkit-linear-gradient(top, #FFFFFF, #FAFAFA, #EDEDED);
     background-image: -moz-linear-gradient(top, #FFFFFF, #FAFAFA, #EDEDED);
     background-image: -ms-linear-gradient(top, #FFFFFF, #FAFAFA, #EDEDED);
     background-color: #FFF;
@@ -287,7 +287,7 @@ footer .mailing-list {
     height: 28px;
     margin: 0 auto 50px;
     padding-left: 120px;
-    background: url(img/logo-blue-on-white.png) top left no-repeat;
+    background: url(../img/logo-blue-on-white.png) top left no-repeat;
 }
 .mailing-list .email {
     width: 198px;
