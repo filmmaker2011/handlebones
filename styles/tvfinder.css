@@ -6,8 +6,8 @@ body {
     background-color: rgb(221, 221, 221);
 }
 .page {
-    width: 600px;
-    margin: 25px auto;
+    width: 700px;
+    margin: 0 auto;
     padding: 1px;
     border: 1px solid rgb(153, 153, 153);
     color: inherit;
@@ -207,19 +207,25 @@ hr.filters:after {
         -moz-linear-gradient(bottom, #EEE, #FFF) 1 100%;
 }
 .tv-finder-logo {
-    padding: 15px 10px 15px 7px;
+    padding: 15px 20px 15px 7px;
 }
 .size-slider {
-    margin-right: 10px;
-    padding: 0 10px 15px;
+    padding: 0 20px 15px;
+}
+.filters .options {
+    float: left;
+    padding: 0 20px;
 }
 .filters label {
     position: relative;
-    margin: 0 3px;
+    margin: 0 5px;
     padding-top: 15px;
     border-width: 0;
     font-size: 9px;
     font-weight: bold;
+}
+.filters label:first-child {
+    margin-left: 0;
 }
 .filters select {
     width: 100%;
@@ -252,7 +258,7 @@ hr.filters:after {
     color: #333;
 }
 .clear-filters {
-    margin-left:230px;
+    margin-left: 310px;
     padding: 3px 7px;
     font-size: 8px;
     font-weight: bold;
@@ -343,7 +349,7 @@ hr.footer:after {
 }
 footer .column {
     float: left;
-    padding-left: 20px;
+    padding-left: 40px;
 }
 footer .column:first-child {
     padding-left: 25px;
