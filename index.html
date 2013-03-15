@@ -11,27 +11,43 @@
     <script src="templates.js"></script>
     <script src="application.js"></script>
     <link rel="stylesheet" media="screen" href="styles/tvfinder.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $( "#size-slider" ).slider({
+                range: true,
+                min: 0,
+                max: 77,
+                values: [ 25, 50 ],
+                slide: function( event, ui ) {
+                    $( '#size' ).val( ui.values[ 0 ] + '" - ' + ui.values[ 1 ] + '"' );
+                }
+            });
+            $( '#size' ).val( $( '#size-slider' ).slider( 'values', 0 ) +
+                    '" - ' + $( '#size-slider' ).slider( 'values', 1 ) + '"' );
+        });
+    </script>
   </head>
   <body>
   <div class="page">
       <header class="clearfix">
-          <a class="top-nav" href="http://www.walmart.com">
-              <img class="wm-logo" src="img/walmart-logo.png" alt="Walmart Logo" width="109" height="29">
-          </a>
+          <a class="top-nav wm-logo" href="http://www.walmart.com">Walmart.com</a>
           <form class="top-nav" action="/">
               <input class='search-box' type="text" name="search" placeholder="Search" title="Search Walmart.com">
           </form>
 
           <ul class="top-nav">
-              <li><a href="" class="button">Create<b>a new wishlist</b></a></li>
-              <li><a href="" class="button">Sign In<b>to your account</b></a></li>
-              <li><a href="" class="button">0 Items<b>in your cart</b></a></li>
+              <li><a href="" class="button create">Create<span class="txt">a new wishlist</span></a></li>
+              <li><a href="" class="button signin">Sign In<span class="txt">to your account</span></a></li>
+              <li><a href="" class="button cart">0 Items<span class="txt">in your cart</span></a></li>
           </ul>
       </header>
 
       <nav class="bread-crumbs">
           <ul class="clearfix">
-              <li><a class="link" href=""><img src="img/home-icon.png" alt="HOME" width="10" height="10"></a></li>
+              <li><a class="link home" href="" title="Home">&nbsp;</a></li>
               <li><a class="link" href="">DEPARTMENTS</a></li>
               <li><a class="link" href="">ELECTRONICS</a></li>
               <li><a class="link" href="">TV'S</a></li>
@@ -43,15 +59,16 @@
               <h1>Get More, For Less</h1>
               <h2>Find the perfect Television with our new <a href="">TVFinder<sup>TM</sup></a></h2>
           </hgroup>
-
-          <img class="three-tvs" src="img/three-tvs.png" alt="sample TVs" width="458" height="126">
+          <img class="sample-products" src="img/three-tvs.jpg" alt="sample TVs">
 
           <form class="filters" action="/">
               <fieldset class="clearfix">
                   <legend>search filters</legend>
-                  <img class="tv-finder-logo" src="img/tv-finder-logo.png" alt="TV Finder logo" width="55" height="39">
+
                   <div class="size-slider">
-                      TV size slider
+                      <lable for='size'>Size</lable>
+                      <input type="text" id="size" style="border: 0; color: #f6931f; font-weight: bold;" />
+                      <div id="size-slider"></div>
                   </div>
 
                   <div class="options clearfix">
@@ -89,28 +106,35 @@
 
               <p class="result-msg">
                   <span class="matches">8 MATCHES</span>FOR TELEVISIONS FITTING THAT CRITERIA
-                  <button class="clear-filters" id="clear-filters" type="reset" name="reset">Clear Filters</button>
               </p>
+              <button class="clear-filters" id="clear-filters" type="reset" name="reset">Clear Filters</button>
           </form>
       </section>
 
       <section class="search-results clearfix">
           <article class="product">
-              <img class="image" src="http://i.walmartimages.com/i/p/00/79/23/43/23/0079234323252_180X180.jpg" alt="TV image" width="">
+              <img class="image" src="http://i.walmartimages.com/i/p/00/79/23/43/23/0079234323252_180X180.jpg" alt="TV image">
               <h3 class="name"><a class="url" href="http://www.walmart.com/ip/Sceptre-32-X322BV-HD/15739136">Sceptre 32" Class LCD 720p 60Hz HDTV, X322BV-HD</a></h3>
               <ul class="descrip"><li>31.5" screen measured diagonally from corner to corner <LI>HDMI inputs: 3<li>Wall-mountable, detachable base<li>High brightness of 420 cd/m2 with 6.5 ms response time</ul>
               <p class="price">199.98</p>
               <p class="rating">4.162</p>
           </article>
           <article class="product">
-              <img class="image" src="http://i.walmartimages.com/i/p/00/79/23/43/23/0079234323252_180X180.jpg" alt="TV image" width="">
+              <img class="image" src="http://i.walmartimages.com/i/p/00/79/23/43/23/0079234323252_180X180.jpg" alt="TV image">
               <h3 class="name"><a href="http://www.walmart.com/ip/Sceptre-32-X322BV-HD/15739136">Sceptre 32" Class LCD 720p 60Hz HDTV, X322BV-HD</a></h3>
               <ul class="descrip"><li>31.5" screen measured diagonally from corner to corner <LI>HDMI inputs: 3<li>Wall-mountable, detachable base<li>High brightness of 420 cd/m2 with 6.5 ms response time</ul>
               <p class="price">199.98</p>
               <p class="rating">4.162</p>
           </article>
           <article class="product">
-              <img class="image" src="http://i.walmartimages.com/i/p/00/79/23/43/23/0079234323252_180X180.jpg" alt="TV image" width="">
+              <img class="image" src="http://i.walmartimages.com/i/p/00/79/23/43/23/0079234323252_180X180.jpg" alt="TV image">
+              <h3 class="name"><a href="http://www.walmart.com/ip/Sceptre-32-X322BV-HD/15739136">Sceptre 32" Class LCD 720p 60Hz HDTV, X322BV-HD</a></h3>
+              <ul class="descrip"><li>31.5" screen measured diagonally from corner to corner <LI>HDMI inputs: 3<li>Wall-mountable, detachable base<li>High brightness of 420 cd/m2 with 6.5 ms response time</ul>
+              <p class="price">199.98</p>
+              <p class="rating">4.162</p>
+          </article>
+          <article class="product">
+              <img class="image" src="http://i.walmartimages.com/i/p/00/79/23/43/23/0079234323252_180X180.jpg" alt="TV image">
               <h3 class="name"><a href="http://www.walmart.com/ip/Sceptre-32-X322BV-HD/15739136">Sceptre 32" Class LCD 720p 60Hz HDTV, X322BV-HD</a></h3>
               <ul class="descrip"><li>31.5" screen measured diagonally from corner to corner <LI>HDMI inputs: 3<li>Wall-mountable, detachable base<li>High brightness of 420 cd/m2 with 6.5 ms response time</ul>
               <p class="price">199.98</p>
@@ -183,8 +207,8 @@
               </section>
 
               <aside>
-                  <h3>Walmart Money Centre</h3>
-                  <a class="" href=""><img src="img/money-centre.png" alt="Walmart Money Center" width="182" height="187"></a>
+                  <h3>Walmart Money Center</h3>
+                  <a href="http://www.walmart.com/cp/walmart-money-center/5433"><img src="img/money-center.jpg" alt="Walmart Money Center"></a>
               </aside>
           </div>
       </footer>
