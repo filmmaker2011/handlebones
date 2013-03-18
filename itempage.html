@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="lib/jquery.js"></script>
+    <script src="lib/underscore.js"></script>
+    <script src="lib/handlebars.js"></script>
+    <script src="lib/backbone.js"></script>
+    <script src="lib/bootstrap.js"></script>
+    <script src="templates.js"></script>
+    <script src="lib/itempage.js"></script>
+    <link rel="stylesheet" media="screen" href="styles/tvfinder.css">
+    <link rel="stylesheet" media="screen" href="styles/itemPage.css">
+
+</head>
+<body>
+    <section id="ratings-reviews" class="ratings-reviews">
+        <h2 class="rr-heading">Ratings &amp; Reviews <a id="total-reviews" href="#"></a></h2>
+        <button class="write-review" id="write-review" type="submit" name="write-review">Write a Review</button>
+        <form class="filters clearfix" action="/">
+                <label>
+                    <select id="taskSorting">
+                        <option value="0">Men &amp; Women</option>
+                        <option value="1">Men</option>
+                        <option value="2">Women</option>
+                    </select>
+                </label>
+
+                <label id="age-label">
+
+                </label>
+
+                <label>
+                    <select id="rating">
+                        <option>All Ratings</option>
+                        <option>Price</option>
+                        <option>Rating</option>
+                    </select>
+                </label>
+
+                <label>
+                    <select id="sort">
+                        <option>Sort by...</option>
+                        <option value="helpfulvotes">Most Helpful</option>
+                        <option value="date">Oldest to Newest</option>
+                        <option value="rating">Rating Low to High</option>
+                    </select>
+                </label>
+        </form>
+
+        <div class="carousel" id="carousel"></div>
+    </section>
+</body>
+</html>

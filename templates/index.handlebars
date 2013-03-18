@@ -1,7 +1,40 @@
-<article class="product">
-  <img class="image" src="{{image}}" alt="TV image">
-  <h3 class="name"><a class="url" href="{{url}}">{{name}}</a></h3>
-  <ul class="descrip"><li>31.5" screen measured diagonally from corner to corner <LI>HDMI inputs: 3<li>Wall-mountable, detachable base<li>High brightness of 420 cd/m2 with 6.5 ms response time</ul>
-  <p class="price">{{price}}</p>
-  <p class="rating">{{rating}}</p>
-</article>
+<header>
+    <h3 class="title">{{title}}</h3>
+    <p class="customer">by <a href="#">{{customer}}</a> on {{date}}</p>
+    <div class="avg-rating rating" title="{{rating}} stars"><div class="stars" style="width:{{aw}}px;">{{rating}}</div></div>
+</header>
+
+<p class="review-text">{{review}}</p>
+
+<footer>
+    <ul class="rating-data">
+        <li>
+            Value:
+            <div class="rating" title="{{value}} stars"><div class="stars" style="width:{{vw}}px;">{{value}}</div></div>
+        </li>
+        <li>
+            Meets Expectations:
+            <div class="rating" title="{{meetsexpectations}} stars"><div class="stars" style="width:{{mew}}px;">{{meetsexpectations}}</div></div>
+        </li>
+        <li>
+            Picture Quality:
+            <div class="rating" title="{{picturequality}} stars"><div class="stars" style="width:{{pqw}}px;">{{picturequality}}</div></div>
+        </li>
+        <li>
+            Sound Quality:
+            <div class="rating" title="{{soundquality}} stars"><div class="stars" style="width:{{sqw}}px;">{{soundquality}}</div></div>
+        </li>
+        <li>
+            Features:
+            <div class="rating" title="{{features}} stars"><div class="stars" style="width:{{fw}}px;" title="{{features}} stars">{{features}}</div></div>
+        </li>
+    </ul>
+    <ul class="customer-data">
+        <li>Age: <span>{{age}}</span></li>
+        <li>Gender: <span>{{gender}}</span></li>
+        <li>Ownership: <span>{{ownership}}</span></li>
+        <li>Usage: <span>{{usage}}</span></li>
+        <li>City: <span>{{city}}</span></li>
+    </ul>
+</footer>
+
