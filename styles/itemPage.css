@@ -7,12 +7,12 @@
     }
 
 /*** Global Styles ***/
-    @font-face { font-family: 'CartoGothicStdBook'; src(url'fonts/CartoGothicStd-Book.otf.otf'); }
-    @font-face { font-family: 'CartoGothicStdBold'; src(url'fonts/CartoGothicStd-Bold.otf'); }
+    @font-face { font-family: 'CartoGothic Std Book'; src(url'fonts/CartoGothicStd-Book.otf.otf'); }
+    @font-face { font-family: 'CartoGothic Std Book'; src(url'fonts/CartoGothicStd-Bold.otf'); }
     body {
-        font: 12px/1.5em 'CartoGothicStdBook', 'Lucida Grande',​Verdana, sans-serif;
+        font: 12px/1.5em 'CartoGothic Std Book', 'Lucida Grande',​Verdana, sans-serif;
         color: #333;
-        background-color: #fff;
+        background-color: #BBB;
     }
     .clearfix:after {
         visibility: hidden;
@@ -35,6 +35,33 @@
         text-decoration: none;
         color: rgb(46, 151, 195);
     }
+
+/*** Walmart Logo ***/
+.wm-logo {
+    display: block;
+    width: 138px;
+    height: 56px;
+    margin-top: 5px;
+    padding: 0 45px 13px 0;
+    font: bold 34px/1.5em 'CartoGothic Std Book', 'Lucida Grande',​Verdana, sans-serif;
+    letter-spacing: -2px;
+    color: rgb(38, 114, 193);
+    background: url(../img/wm-spark.png) top right no-repeat;
+}
+.wm-logo:hover {
+    color: rgb(38, 114, 193);
+}
+/* Walmart Logo in Footer */
+.page-footer .mailing-list {
+    background: none;
+    width: 607px;
+    padding-left: 0;
+}
+.page-footer .wm-logo {
+    display: inline-block;
+    color: #FFF;
+}
+
 
 /*** Ratings and Reviews ***/
     .rr-heading {

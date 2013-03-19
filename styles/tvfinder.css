@@ -12,7 +12,7 @@
         color: inherit;
         background-color: #FFF;
     }
-    .page header {
+    .page-header {
         margin-bottom: 20px;
         padding:10px 0 5px;
         border-bottom: 2px solid rgb(234, 234, 234);
@@ -404,7 +404,7 @@
         content: '$';
     }
 /*** Footer ***/
-    footer .mailing-list {
+    .page-footer .mailing-list {
         width: 420px;
         height: 56px;
         margin: 60px auto;
@@ -479,6 +479,7 @@
         display: block;
         margin-bottom: 9px;
         font-size: 11px;
+        line-height: 1.3em;
         color: rgb(118,183,227);
     }
     footer .link:hover {
