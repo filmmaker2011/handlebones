@@ -10,8 +10,8 @@
     @font-face { font-family: 'CartoGothic Std Book'; src(url'fonts/CartoGothicStd-Book.otf.otf'); }
     @font-face { font-family: 'CartoGothic Std Book'; src(url'fonts/CartoGothicStd-Bold.otf'); }
     body {
-        font: 12px/1.5em 'CartoGothic Std Book', 'Lucida Grande',​Verdana, sans-serif;
-        color: #333;
+        font: 14px/1.5em 'CartoGothic Std Book', 'Lucida Grande',​Verdana, sans-serif;
+        color: #888;
         background-color: #BBB;
     }
     .clearfix:after {
@@ -62,6 +62,37 @@
     color: #FFF;
 }
 
+/*** Product Styles ***/
+    .product-wrapper {
+        margin: 0 40px;
+    }
+    .item-rating, .item-review-links {
+        margin: 10px 0;
+        display: inline-block;
+    }
+    .item-review-links {
+        vertical-align: middle;
+        font-weight: bold;
+    }
+    .item-price {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+    }
+    .item-price:before {
+        content: "$"
+    }
+    .item-image {
+        width: 400px;
+    }
+    .short-desc {
+        width: 450px;
+        height: 200px;
+        margin: 15px 0 40px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
 
 /*** Ratings and Reviews ***/
     .rr-heading {
@@ -122,7 +153,7 @@
     }
     /* Reviews */
     .review {
-        width: 600px;
+        width: 640px;
         margin: 15px auto;
         padding: 20px 0 0 0;
         border: 1px solid #d3d3d3;
@@ -131,6 +162,9 @@
     .review header {
         padding: 0 30px;
         color: #bbb;
+    }
+    .review footer {
+        border-top: 1px solid #d3d3d3;
     }
     .review .title {
         margin-bottom: 3px;
@@ -143,7 +177,6 @@
     .customer-data {
         display: inline-block;
         padding: 30px 30px 25px 30px;
-        border-top: 1px solid #d3d3d3;
         font-size: 14px;
         font-weight: bold;
         list-style-type: none;
@@ -153,7 +186,7 @@
         border-right: 1px solid #d3d3d3;
     }
     .customer-data {
-        width: 220px;
+        width: 255px;
     }
     .rating-data li {
         clear: right;
@@ -165,6 +198,8 @@
     .customer-data span {
         font-weight: normal;
     }
+    .product .rating,
+    .product .stars,
     .review .rating,
     .review .stars{
         position: relative;
@@ -172,9 +207,11 @@
         height: 24px;
         background: url(../img/sprite-icons.png) repeat-x;
     }
+    .product .rating,
     .review .rating {
         background-position: 0 -525px;
     }
+    .product .stars,
     .review .stars {
         z-index: 2;
         background-position: 0 -471px;

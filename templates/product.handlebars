@@ -1,7 +1,9 @@
-<article class="product">
-  <img class="image" src="{{image}}" alt="TV image">
-  <h3 class="name"><a class="url" href="{{url}}">{{name}}</a></h3>
-  <ul class="descrip"><li>31.5" screen measured diagonally from corner to corner <LI>HDMI inputs: 3<li>Wall-mountable, detachable base<li>High brightness of 420 cd/m2 with 6.5 ms response time</ul>
-  <p class="price">{{price}}</p>
-  <p class="rating">{{rating}}</p>
-</article>
+<h1>{{genericContent.itemName}}</h1>
+<div class="item-rating rating" title="{{genericContent.rating}} stars"><div class="stars" style="width:{{pw}}px;">{{genericContent.rating}}</div></div>
+<p class="item-review-links"><a href="#rr-section">25 Reviews</a> | <a href="#">Write a Review</a> | <a href="#">Ask a Question</a></p>
+<p class="item-price">{{sellers.0.currentItemPrice}}</p>
+
+<img class="item-image" src="{{imageSource}}" alt="product image">
+
+<h2>About</h2>
+<div class="short-desc">{{genericContent.shortDescription}}</div>

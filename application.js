@@ -21,7 +21,7 @@ var Product = Backbone.Model.extend({
 //        template: Handlebars.templates['index']
         render: function(){
             var html = '<p>{{name}}</p> <p>{{image}}</p> <p>{{price}}</p>';
-            this.$el.html(html;)
+            this.$el.html(html)
         }
     });
 
