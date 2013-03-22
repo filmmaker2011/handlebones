@@ -7,10 +7,8 @@
     }
 
 /*** Global Styles ***/
-    @font-face { font-family: 'CartoGothic Std Book'; src(url'fonts/CartoGothicStd-Book.otf.otf'); }
-    @font-face { font-family: 'CartoGothic Std Book'; src(url'fonts/CartoGothicStd-Bold.otf'); }
     body {
-        font: 14px/1.5em 'CartoGothic Std Book', 'Lucida Grande',​Verdana, sans-serif;
+        font: 14px/1.5em 'cartogothic_stdregular', Helvetica, sans-serif;
         color: #888;
         background-color: #BBB;
     }
@@ -43,7 +41,7 @@
     height: 56px;
     margin-top: 5px;
     padding: 0 45px 13px 0;
-    font: bold 34px/1.5em 'CartoGothic Std Book', 'Lucida Grande',​Verdana, sans-serif;
+    font: bold 34px/1.5em 'cartogothic_stdbold', Helvetica, sans-serif;
     letter-spacing: -2px;
     color: rgb(38, 114, 193);
     background: url(../img/wm-spark.png) top right no-repeat;
@@ -67,11 +65,11 @@
         margin: 0 40px;
     }
     .item-rating, .item-review-links {
+        float: left;
         margin: 10px 0;
-        display: inline-block;
     }
     .item-review-links {
-        vertical-align: middle;
+        margin: 13px 0 6px 8px;
         font-weight: bold;
     }
     .item-price {
@@ -83,15 +81,11 @@
         content: "$"
     }
     .item-image {
-        width: 400px;
+
     }
     .short-desc {
         width: 450px;
-        height: 200px;
         margin: 15px 0 40px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        overflow: hidden;
     }
     /* carousel */
     #slider-code { height: 125px; overflow:hidden; }
