@@ -371,21 +371,20 @@
     }
     .search-results .product{
         float: left;
-        width: 180px;
-        margin: 0 25px 50px;
+        width: 190px;
+        margin: 0 25px 40px;
     }
     .product .name {
-        width: 160px;
+        width: 190px;
         height: 1.3em;
         margin: 5px 0;
         overflow: hidden;
-        font-size: 16px;
+        font-size: 15px;
         font-weight: normal;
     }
-    .product .descrip,
-    .product .descrip li {
+    .product .descrip {
         margin: 0;
-        width: 160px;
+        width: 190px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -403,6 +402,23 @@
     .product .price:before {
         content: '$';
     }
+
+/*** Product Rating Stars ***/
+.product .rating,
+.product .stars{
+    position: relative;
+    width: 100px;
+    height: 24px;
+    background: url(../img/sprite-icons.png) repeat-x;
+}
+.product .rating {
+    background-position: 0 -525px;
+}
+.product .stars{
+    z-index: 2;
+    background-position: 0 -471px;
+    text-indent: -9999px;
+}
 /*** Footer ***/
     .page-footer .mailing-list {
         width: 420px;

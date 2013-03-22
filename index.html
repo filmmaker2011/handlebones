@@ -9,6 +9,7 @@
     <script src="lib/backbone.js"></script>
     <script src="lib/bootstrap.js"></script>
     <script src="templates.js"></script>
+    <script src="application.js"></script>
     <link rel="stylesheet" media="screen" href="styles/tvfinder.css">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
@@ -104,41 +105,14 @@
               <hr class="filters">
 
               <p class="result-msg">
-                  <span class="matches">8 MATCHES</span>FOR TELEVISIONS FITTING THAT CRITERIA
+                  <span class="matches" id="matches">8 MATCHES</span>FOR TELEVISIONS FITTING THAT CRITERIA
               </p>
               <button class="clear-filters" id="clear-filters" type="reset" name="reset">Clear Filters</button>
           </form>
       </section>
 
-      <section class="search-results clearfix">
-          <article class="product">
-              <img class="image" src="http://i.walmartimages.com/i/p/00/79/23/43/23/0079234323252_180X180.jpg" alt="TV image">
-              <h3 class="name"><a class="url" href="http://www.walmart.com/ip/Sceptre-32-X322BV-HD/15739136">Sceptre 32" Class LCD 720p 60Hz HDTV, X322BV-HD</a></h3>
-              <ul class="descrip"><li>31.5" screen measured diagonally from corner to corner <LI>HDMI inputs: 3<li>Wall-mountable, detachable base<li>High brightness of 420 cd/m2 with 6.5 ms response time</ul>
-              <p class="price">199.98</p>
-              <p class="rating">4.162</p>
-          </article>
-          <article class="product">
-              <img class="image" src="http://i.walmartimages.com/i/p/00/79/23/43/23/0079234323252_180X180.jpg" alt="TV image">
-              <h3 class="name"><a href="http://www.walmart.com/ip/Sceptre-32-X322BV-HD/15739136">Sceptre 32" Class LCD 720p 60Hz HDTV, X322BV-HD</a></h3>
-              <ul class="descrip"><li>31.5" screen measured diagonally from corner to corner <LI>HDMI inputs: 3<li>Wall-mountable, detachable base<li>High brightness of 420 cd/m2 with 6.5 ms response time</ul>
-              <p class="price">199.98</p>
-              <p class="rating">4.162</p>
-          </article>
-          <article class="product">
-              <img class="image" src="http://i.walmartimages.com/i/p/00/79/23/43/23/0079234323252_180X180.jpg" alt="TV image">
-              <h3 class="name"><a href="http://www.walmart.com/ip/Sceptre-32-X322BV-HD/15739136">Sceptre 32" Class LCD 720p 60Hz HDTV, X322BV-HD</a></h3>
-              <ul class="descrip"><li>31.5" screen measured diagonally from corner to corner <LI>HDMI inputs: 3<li>Wall-mountable, detachable base<li>High brightness of 420 cd/m2 with 6.5 ms response time</ul>
-              <p class="price">199.98</p>
-              <p class="rating">4.162</p>
-          </article>
-          <article class="product">
-              <img class="image" src="http://i.walmartimages.com/i/p/00/79/23/43/23/0079234323252_180X180.jpg" alt="TV image">
-              <h3 class="name"><a href="http://www.walmart.com/ip/Sceptre-32-X322BV-HD/15739136">Sceptre 32" Class LCD 720p 60Hz HDTV, X322BV-HD</a></h3>
-              <ul class="descrip"><li>31.5" screen measured diagonally from corner to corner <LI>HDMI inputs: 3<li>Wall-mountable, detachable base<li>High brightness of 420 cd/m2 with 6.5 ms response time</ul>
-              <p class="price">199.98</p>
-              <p class="rating">4.162</p>
-          </article>
+      <section class="search-results clearfix" id="search-results">
+
       </section>
 
       <footer class="page-footer">
