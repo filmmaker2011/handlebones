@@ -13,12 +13,12 @@ Assignment 2 - Product Page:
     - Reviews: filter by age, sort (ascending & descending).
 
 2. Not done:
-
     - Overlay and integration with Assignment 1.
     - Views for 'People who viewed this also viewed'.
     - Web storage
 
 Assignment 1 - TV Finder:
+
 1. What's done:
     - Layout was widened to proper width.
     - It now displays all 100 products.
