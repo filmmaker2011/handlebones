@@ -14,10 +14,7 @@
         {{/each}}
         </div>
         <ol class="carousel-indicators clearfix" style="width:{{indicatorWidth}}px">
-            <li data-target="#prod-carousel" data-slide-to="0"></li>
-            <li data-target="#prod-carousel" data-slide-to="1"></li>
-            <li data-target="#prod-carousel" data-slide-to="2"></li>
-            <li data-target="#prod-carousel" data-slide-to="3"></li>
+            {{#make_indicators alternateImageData}}{{/make_indicators}}
         </ol>
         <!-- Carousel nav -->
         <a class="carousel-control left" href="#prod-carousel" data-slide="prev"></a>
@@ -26,7 +23,7 @@
 
     <h2>About</h2>
     <div class="clearfix">
-        <p class="short-desc">{{genericContent.shortDescription}}</p>
+        <p class="short-desc">{{cleanup genericContent.shortDescription}}</p>
         <div class="buying-options">
             <form class="clearfix" action="/">
                 <label>

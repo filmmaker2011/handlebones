@@ -76,7 +76,6 @@ window.Application = {};
                 tagName: 'article',
                 className: 'item review'
             });
-            console.log('Reviewer: ', modelView.model.get('customer'));
             this.$el.append(modelView.render().el);
             return this;
         },
@@ -195,7 +194,7 @@ $(function() {
 
         tvIntroView,
         tvDetailsView,
-        tv = new Application.Product( {id: '15105450'} ),
+        tv = new Application.Product( {id: '15739136'} ),   // 4 images: 15739136, 6 images: 15992428
         loadTV = tv.fetch();
 
     loadTV.done(function(){

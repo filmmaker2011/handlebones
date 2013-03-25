@@ -84,7 +84,7 @@
         font-weight: bold;
     }
     .item-price {
-        font: 24px 'cartogothic_stdbold', Helvetica, sans-serif;;
+        font: 26px 'cartogothic_stdbold', Helvetica, sans-serif;;
         color: #333;
     }
     .item-price:before {
