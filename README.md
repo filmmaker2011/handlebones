@@ -2,6 +2,7 @@ Release Notes
 Last Updated: 3/25/2013
 
 Assignment 2 - Product Page:
+
 1. What's done:
     - Models and views for product data and review data.
     - Product data is fetched for one, hardcoded item id.
@@ -12,6 +13,7 @@ Assignment 2 - Product Page:
     - Reviews: filter by age, sort (ascending & descending).
 
 2. Not done:
+
     - Overlay and integration with Assignment 1.
     - Views for 'People who viewed this also viewed'.
     - Web storage
