@@ -157,7 +157,6 @@
     .buying-options .qty,
     .buying-options .add-to-cart {
         float: left;
-        height: 56px;
     }
     .buying-options label {
         margin-bottom:2px;
@@ -165,11 +164,13 @@
     .buying-options select {
         width: 90px;
         margin-right: 15px;
+        padding: 5px 0 7px 15px;
         font-size: 22px;
         letter-spacing: 1px;
+        line-height: 1.95em;
         color: #7e7e7e;
         -webkit-padding-end: 0;
-        background: url(../img/s02-arrow-down-gray.png) no-repeat 85% 55%, -webkit-linear-gradient(top, #FFFFFF, #FAFAFA, #EDEDED);
+        background: url(../img/s02-arrow-down-gray.png) no-repeat 85% 50%, -webkit-linear-gradient(top, #FFFFFF, #FAFAFA, #EDEDED);
         background-image: -moz-linear-gradient(top, #FFFFFF, #FAFAFA, #EDEDED);
         background-image: -ms-linear-gradient(top, #FFFFFF, #FAFAFA, #EDEDED);
     }
