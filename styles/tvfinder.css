@@ -43,15 +43,17 @@
     img {
         border: none;
     }
-    /* Override Bootstrap styles: margin-bottom, border-radius, height, font-family */
+    /* Override Bootstrap styles: margin-bottom, border-radius, font-family, height */
     input[type='text'],
     input[type='email'] {
         margin-bottom: 0;
         border-radius: 7px;
     }
-    input, button, select, textarea {
-        height: inherit;
+    input, button, select {
         font-family: "Lucida Grande",​Verdana,sans-serif;
+    }
+    select, button {
+        height: inherit;
     }
     /* Style the input placeholder text */
     input::-webkit-input-placeholder {
@@ -314,7 +316,7 @@
         height: 59px;
         padding: 0 30px 25px;
     }
-    .filters label
+    .filters label,
     .buying-options label {
         position: relative;
         margin: 0 .5em;
