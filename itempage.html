@@ -10,9 +10,10 @@
     <script src="lib/bootstrap.js"></script>
     <script src="templates.js"></script>
     <script src="lib/itempage.js"></script>
+    <link rel="stylesheet" media="screen" href="styles/bootstrap.css" />
     <link rel="stylesheet" href="styles/webfonts.css" type="text/css" charset="utf-8" />
-    <link rel="stylesheet" media="screen" href="styles/tvfinder.css">
-    <link rel="stylesheet" media="screen" href="styles/itemPage.css">
+    <link rel="stylesheet" media="screen" href="styles/tvfinder.css" />
+    <link rel="stylesheet" media="screen" href="styles/itemPage.css" />
 
 </head>
 <body>
@@ -30,47 +31,66 @@
         </ul>
     </header>
 
-    <section class="product-wrapper" id="product-wrapper"></section>
+    <section class="prod-intro" id="prod-intro"></section>
+
+    <section class="prod-similar" id="prod-similar">
+        <header class="clearfix">
+            <h2>People Who Viewed This Item Also Viewed</h2>
+            <button class="see-more">See More</button>
+        </header>
+    </section>
+
+    <section class="prod-details" id="prod-details"></section>
 
     <section id="ratings-reviews" class="ratings-reviews">
-        <a name="rr-section"></a>
-        <h2 class="rr-heading">Ratings &amp; Reviews <a id="total-reviews" href="#"></a></h2>
-        <button class="write-review" id="write-review" type="submit" name="write-review">Write a Review</button>
-        <form class="filters clearfix" action="/">
-                <label>
-                    <select id="taskSorting">
-                        <option value="0">Men &amp; Women</option>
-                        <option value="1">Men</option>
-                        <option value="2">Women</option>
-                    </select>
-                </label>
+        <div class="controls">
+            <header class="clearfix">
+                <h2 class="rr-heading">Ratings &amp; Reviews <a id="total-reviews" href="#"></a></h2>
+                <button class="write-review" id="write-review" type="submit" name="write-review">Write a Review</button>
+            </header>
+            <form class="filters clearfix" action="/">
+                    <label>
+                        <select id="gender">
+                            <option value="0">Men &amp; Women</option>
+                            <option value="1">Men</option>
+                            <option value="2">Women</option>
+                        </select>
+                    </label>
 
-                <label id="age-label">
+                    <label id="age-label">
 
-                </label>
+                    </label>
 
-                <label>
-                    <select id="rating">
-                        <option>All Ratings</option>
-                        <option>5 star</option>
-                        <option>4 star</option>
-                        <option>3 star</option>
-                        <option>2 star</option>
-                        <option>1 star</option>
-                    </select>
-                </label>
+                    <label>
+                        <select id="rating">
+                            <option>All Ratings</option>
+                            <option>5 star</option>
+                            <option>4 star</option>
+                            <option>3 star</option>
+                            <option>2 star</option>
+                            <option>1 star</option>
+                        </select>
+                    </label>
 
-                <label>
-                    <select id="sort">
-                        <option>Sort by...</option>
-                        <option value="helpful">Most Helpful</option>
-                        <option value="newest">Newest to Oldest</option>
-                        <option value="oldest">Oldest to Newest</option>
-                        <option value="high">Rating High to Low</option>
-                        <option value="low">Rating Low to High</option>
-                    </select>
-                </label>
-        </form>
+                    <label>
+                        <select id="sort">
+                            <option>Sort by...</option>
+                            <option value="helpful">Most Helpful</option>
+                            <option value="newest">Newest to Oldest</option>
+                            <option value="oldest">Oldest to Newest</option>
+                            <option value="high">Rating High to Low</option>
+                            <option value="low">Rating Low to High</option>
+                        </select>
+                    </label>
+            </form>
+        </div>
+
+        <div id="review-carousel" class="review-carousel carousel slide">
+            <hr class="filters">
+            <!-- Carousel nav -->
+            <a class="carousel-control left" href="#review-carousel" data-slide="prev"></a>
+            <a class="carousel-control right" href="#review-carousel" data-slide="next"></a>
+        </div>
     </section>
 
     <footer class="page-footer">

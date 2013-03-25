@@ -43,8 +43,15 @@
     img {
         border: none;
     }
-    input {
+    /* Override Bootstrap styles: margin-bottom, border-radius, height, font-family */
+    input[type='text'],
+    input[type='email'] {
+        margin-bottom: 0;
         border-radius: 7px;
+    }
+    input, button, select, textarea {
+        height: inherit;
+        font-family: "Lucida Grande",​Verdana,sans-serif;
     }
     /* Style the input placeholder text */
     input::-webkit-input-placeholder {
@@ -252,7 +259,8 @@
         left: -9999px;
     }
     .size-slider,
-    .filters label {
+    .filters label,
+    .buying-optios label {
         float: left;
         text-indent: 2px;
     }
@@ -306,7 +314,8 @@
         height: 59px;
         padding: 0 30px 25px;
     }
-    .filters label {
+    .filters label
+    .buying-options label {
         position: relative;
         margin: 0 .5em;
         border-width: 0;
@@ -316,7 +325,8 @@
     .filters label:first-child {
         margin-left: 0;
     }
-    .filters select {
+    .filters select,
+    .buying-options select {
         width: 100%;
         margin-top: 3px;
         padding-left: 2px;
@@ -350,8 +360,8 @@
         color: #333;
     }
     .clear-filters {
-        display: inline-block;
-        margin-left: 40%;
+        float:right;
+        margin: 20px 40px 0;
         padding: 6px 18px;
         font-size: 15px;
         letter-spacing: 0;
@@ -423,13 +433,15 @@
     .page-footer .mailing-list {
         width: 420px;
         height: 56px;
-        margin: 60px auto;
+        margin: 50px auto 60px;
         padding-left: 200px;
         background: url(../img/wmlogo-blue-bkg.png) top left no-repeat;
     }
+    /* Override Bootstrap styles: margin-bottom */
     .mailing-list .email {
         width: 315px;
         height: 35px;
+        margin-bottom: 0;
         padding: 3px 0 3px 10px;
         font-size: 14px;
         border: 1px solid #666;

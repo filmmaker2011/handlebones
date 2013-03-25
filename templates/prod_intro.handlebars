@@ -1,0 +1,52 @@
+    <h1>{{genericContent.itemName}}</h1>
+    <div class="clearfix">
+        <div class="item-rating rating" title="{{genericContent.rating}} stars"><div class="stars" style="width:{{pw}}px;">{{genericContent.rating}}</div></div>
+        <p class="item-review-links"><a href="#rr-section">25 Reviews</a> | <a href="#">Write a Review</a> | <a href="#">Ask a Question</a></p>
+    </div>
+    <p class="item-price">{{sellers.0.currentItemPrice}}</p>
+
+    <div id="prod-carousel" class="carousel slide">
+
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+        {{#each alternateImageData}}
+            <div class="item"><img class="item-image" src="{{this.lgImageSrc}}" alt="product image"></div>
+        {{/each}}
+        </div>
+        <ol class="carousel-indicators clearfix" style="width:{{indicatorWidth}}px">
+            <li data-target="#prod-carousel" data-slide-to="0"></li>
+            <li data-target="#prod-carousel" data-slide-to="1"></li>
+            <li data-target="#prod-carousel" data-slide-to="2"></li>
+            <li data-target="#prod-carousel" data-slide-to="3"></li>
+        </ol>
+        <!-- Carousel nav -->
+        <a class="carousel-control left" href="#prod-carousel" data-slide="prev"></a>
+        <a class="carousel-control right" href="#prod-carousel" data-slide="next"></a>
+    </div>
+
+    <h2>About</h2>
+    <div class="clearfix">
+        <p class="short-desc">{{genericContent.shortDescription}}</p>
+        <div class="buying-options">
+            <form class="clearfix" action="/">
+                <label>
+                    <select class="qty" id="qty">
+                        <option>Qty</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </label>
+                <button class="add-to-cart" id="add-to-cart">Add to Cart</button>
+            </form>
+
+            <ul>
+                <li class="links find-link"><a href="#">Find This Product Locally</a></li>
+                <li class="links arrival-link"><a href="#">Calculate Arrival Date</a></li>
+                <li class="links share-link"><a href="#">Share With a Friend</a></li>
+            </ul>
+        </div>
+    </div>
+

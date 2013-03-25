@@ -49,7 +49,7 @@ helpers = helpers || Handlebars.helpers; data = data || {};
     + "</div></div>";
   return buffer;
   });
-templates['product'] = template(function (Handlebars,depth0,helpers,partials,data) {
+templates['prod_details'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [2,'>= 1.0.0-rc.3'];
 helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this;
@@ -57,26 +57,47 @@ helpers = helpers || Handlebars.helpers; data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n    <li><img class=\"item-image\" src="
-    + escapeExpression(((stack1 = depth0.lgImageSrc),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + " alt=\"product image\"></li>\n";
+  buffer += "\n                            <tr>\n                                <td>"
+    + escapeExpression(((stack1 = depth0.attributeName),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</td>\n                                <td>"
+    + escapeExpression(((stack1 = depth0.attributeValue),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</td>\n                            </tr>\n                        ";
   return buffer;
   }
 
-function program3(depth0,data) {
+  buffer += "    <header class=\"clearfix\">\n        <h2>Product Details</h2>\n        <button class=\"have-question\">Have a Question?</button>\n    </header>\n\n        <div class=\"tabbable tabs-left\">\n            <ul class=\"nav nav-tabs\">\n                <li class=\"active\"><a href=\"#tab1\" data-toggle=\"tab\">Full Description</a></li>\n                <li><a href=\"#tab2\" data-toggle=\"tab\">Specifications</a></li>\n                <li><a href=\"#tab3\" data-toggle=\"tab\">Warranty</a></li>\n                <li><a href=\"#tab4\" data-toggle=\"tab\">Financing</a></li>\n                <li><a href=\"#tab5\" data-toggle=\"tab\">Gifting</a></li>\n            </ul>\n\n            <div class=\"tab-content\">\n                <section class=\"tab-pane active short-desc\" id=\"tab1\">\n                    "
+    + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.shortDescription)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\n                </section>\n\n                <section class=\"tab-pane\" id=\"tab2\">\n                    <table class=\"table table-striped table-condensed\">\n                        ";
+  stack2 = helpers.each.call(depth0, depth0.itemAttributes, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "\n\n                    </table>\n                </section>\n\n                <section class=\"tab-pane\" id=\"tab3\">\n                    <h4>Product Warranty:</h4>\n                    <div class=\"warranty-details\">\n                        <h4>"
+    + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.itemName)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</h4>\n                        <p>\n                            <strong>Assembled Country of Origin:</strong> "
+    + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.assembledCountryOfOrigin)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "<br/>\n                            <strong>Components Country of Origin:</strong> "
+    + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.componentsCountryOfOrigin)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "<br/>\n                            <strong>Supplier Warranty:</strong> "
+    + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.supplierWarranty)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\n                        </p>\n                    </div>\n\n                    <aside class=\"care-plan\">\n                        <h4>Walmart Product Care Plans</h4>\n                        <p>A limited product warranty is included free for most items. With an optional Walmart Care Plan you can extend coverage up to 3 additional years. Walmart Care Plan Extended Warranties cover 100% of the cost for repair or replacement, including shipping charges for the exchange. <a href=\"#\">See Details</a></p>\n                        <p>We'll show you extended warranty options and pricing at checkout if applicable.</p>\n                    </aside>\n\n                    <p>If you made your purchase in a Walmart store and would like to purchase a warranty,\n                        <a href=\"http://see.walmart.com/walmart/protection-plans/\" title=\"Warranty &amp; Installation Plans\">Click Here</a>\n                    </p>\n                </section>\n\n                <section class=\"tab-pane\" id=\"tab4\">\n                    <h4>Enjoy Great Financing!</h4>\n                    <p>Make the most of your shopping experience with the Walmart Discover&reg; or Walmart Credit Card.</p>\n                    <p>Open a Walmart Credit Card, Spend $100 Today and Get $20 Back*</p>\n                    <p>*Offer subject to credit approval</p>\n                    <p><a href=\"#\">Learn More</a> or <a href=\"#\">Apply Now</a></p>\n                    <p><strong>No Payments + No Interest</strong> if Paid in Full in 6 Months!</p>\n\n                    <h4>BillMeLater</h4>\n                    <p>Enjoy no payments for 6 months. You'll have 6 months with no payments, and no interest if paid in full within 6 months on orders over $250. Otherwise, interest will be charged from the original date of purchase. Bill Me Later is the quick, easy, secure way to buy online without using your credit card. Simply select Bill Me Later at checkout. Subject to credit approval.</p>\n                    <p><a href=\"#\">See Terms</a></p>\n                </section>\n\n                <section class=\"tab-pane\" id=\"tab5\">\n                    <h4>Gifting Options:</h4>\n                    <p>Gift options are not available for this item.</p>\n                </section>\n            </div>\n        </div>";
+  return buffer;
+  });
+templates['prod_intro'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+helpers = helpers || Handlebars.helpers; data = data || {};
+  var buffer = "", stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                    <tr>\n                        <td>"
-    + escapeExpression(((stack1 = depth0.attributeName),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</td>\n                        <td>"
-    + escapeExpression(((stack1 = depth0.attributeValue),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</td>\n                    </tr>\n                ";
+  buffer += "\n            <div class=\"item\"><img class=\"item-image\" src=\""
+    + escapeExpression(((stack1 = depth0.lgImageSrc),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\" alt=\"product image\"></div>\n        ";
   return buffer;
   }
 
-  buffer += "<h1>"
+  buffer += "    <h1>"
     + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.itemName)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</h1>\n<div class=\"clearfix\">\n    <div class=\"item-rating rating\" title=\""
+    + "</h1>\n    <div class=\"clearfix\">\n        <div class=\"item-rating rating\" title=\""
     + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.rating)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + " stars\"><div class=\"stars\" style=\"width:";
   if (stack2 = helpers.pw) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
@@ -84,60 +105,27 @@ function program3(depth0,data) {
   buffer += escapeExpression(stack2)
     + "px;\">"
     + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.rating)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div></div>\n    <p class=\"item-review-links\"><a href=\"#rr-section\">25 Reviews</a> | <a href=\"#\">Write a Review</a> | <a href=\"#\">Ask a Question</a></p>\n</div>\n<p class=\"item-price\">"
+    + "</div></div>\n        <p class=\"item-review-links\"><a href=\"#rr-section\">25 Reviews</a> | <a href=\"#\">Write a Review</a> | <a href=\"#\">Ask a Question</a></p>\n    </div>\n    <p class=\"item-price\">"
     + escapeExpression(((stack1 = ((stack1 = ((stack1 = depth0.sellers),stack1 == null || stack1 === false ? stack1 : stack1[0])),stack1 == null || stack1 === false ? stack1 : stack1.currentItemPrice)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</p>\n\n<ul class=\"carousel\">\n";
+    + "</p>\n\n    <div id=\"prod-carousel\" class=\"carousel slide\">\n\n        <!-- Carousel items -->\n        <div class=\"carousel-inner\">\n        ";
   stack2 = helpers.each.call(depth0, depth0.alternateImageData, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n</ul>\n\n\n<h2>About</h2>\n<div class=\"short-desc\">"
+  buffer += "\n        </div>\n        <ol class=\"carousel-indicators clearfix\" style=\"width:";
+  if (stack2 = helpers.indicatorWidth) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
+  else { stack2 = depth0.indicatorWidth; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  buffer += escapeExpression(stack2)
+    + "px\">\n            <li data-target=\"#prod-carousel\" data-slide-to=\"0\"></li>\n            <li data-target=\"#prod-carousel\" data-slide-to=\"1\"></li>\n            <li data-target=\"#prod-carousel\" data-slide-to=\"2\"></li>\n            <li data-target=\"#prod-carousel\" data-slide-to=\"3\"></li>\n        </ol>\n        <!-- Carousel nav -->\n        <a class=\"carousel-control left\" href=\"#prod-carousel\" data-slide=\"prev\"></a>\n        <a class=\"carousel-control right\" href=\"#prod-carousel\" data-slide=\"next\"></a>\n    </div>\n\n    <h2>About</h2>\n    <div class=\"clearfix\">\n        <p class=\"short-desc\">"
     + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.shortDescription)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n\n\n<section class=\"prod-details\">\n    <header>\n        <h2>Product Details</h2>\n        <button>Have a Question?</button>\n    </header>\n\n    <ul>\n        <li><a href=\"#\">Full Description</a></li>\n        <li><a href=\"#\">Specifications</a></li>\n        <li><a href=\"#\">Warranty</a></li>\n        <li><a href=\"#\">Financing</a></li>\n        <li><a href=\"#\">Gifting</a></li>\n    </ul>\n\n    <div>\n        <section class=\"full_desc\">\n            "
-    + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.shortDescription)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\n        </section>\n\n        <section class=\"specs\">\n            <table>\n                ";
-  stack2 = helpers.each.call(depth0, depth0.itemAttributes, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
-  if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n\n            </table>\n        </section>\n\n        <section class=\"warranty\">\n            <h3>Product warranty: <a href=\"#\">See details</a></h3>\n            <div class=\"warranty-details\">\n                <h3>"
-    + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.itemName)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</h3>\n                <p><strong>Assembled Country of Origin:</strong> "
-    + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.assembledCountryOfOrigin)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</p>\n                <p><strong>Components Country of Origin:</strong> "
-    + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.componentsCountryOfOrigin)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</p>\n                <p><strong>Supplier Warranty:</strong> "
-    + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.supplierWarranty)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</p>\n            </div>\n\n            <aside>\n                <h3>Walmart Product Care Plans</h3>\n                <p>A limited product warranty is included free for most items. With an optional Walmart Care Plan you can extend coverage up to 3 additional years. Walmart Care Plan Extended Warranties cover 100% of the cost for repair or replacement, including shipping charges for the exchange. <a href=\"#\">See Details</a></p>\n                <p>We'll show you extended warranty options and pricing at checkout if applicable.</p>\n            </aside>\n\n            <p>If you made your purchase in a Walmart store and would like to purchase a warranty.\n                <a href=\"http://see.walmart.com/walmart/protection-plans/\" title=\"Warranty &amp; Installation Plans\">Click Here</a>\n            </p>\n        </section>\n\n        <section class=\"financing\">\n            <h3>Enjoy Great Financing!</h3>\n            <p>Make the most of your shopping experience with the Walmart Discover&reg; or Walmart Credit Card.</p>\n            <p>Open a Walmart Credit Card, Spend $100 Today and Get $20 Back*</p>\n            <p>*Offer subject to credit approval</p>\n            <p><a href=\"#\">Learn More</a> or <a href=\"#\">Apply Now</a></p>\n            <p><strong>No Payments + No Interest</strong> if Paid in Full in 6 Months!</p>\n            <p>Enjoy no payments for 6 months. You'll have 6 months with no payments, and no interest if paid in full within 6 months on orders over $250. Otherwise, interest will be charged from the original date of purchase. Bill Me Later is the quick, easy, secure way to buy online without using your credit card. Simply select Bill Me Later at checkout. Subject to credit approval.</p>\n            <p><a href=\"#\">See Terms</a></p>\n        </section>\n\n        <section class=\"gifting\">\n            <p>Gift options are not available for this item.</p>\n        </section>\n    </div>\n</section>";
+    + "</p>\n        <div class=\"buying-options\">\n            <form class=\"clearfix\" action=\"/\">\n                <label>\n                    <select class=\"qty\" id=\"qty\">\n                        <option>Qty</option>\n                        <option>1</option>\n                        <option>2</option>\n                        <option>3</option>\n                        <option>4</option>\n                        <option>5</option>\n                    </select>\n                </label>\n                <button class=\"add-to-cart\" id=\"add-to-cart\">Add to Cart</button>\n            </form>\n\n            <ul>\n                <li class=\"links find-link\"><a href=\"#\">Find This Product Locally</a></li>\n                <li class=\"links arrival-link\"><a href=\"#\">Calculate Arrival Date</a></li>\n                <li class=\"links share-link\"><a href=\"#\">Share With a Friend</a></li>\n            </ul>\n        </div>\n    </div>\n\n";
   return buffer;
   });
-templates['product_details'] = template(function (Handlebars,depth0,helpers,partials,data) {
+templates['prod_similar'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [2,'>= 1.0.0-rc.3'];
 helpers = helpers || Handlebars.helpers; data = data || {};
-  var buffer = "", stack1, stack2, functionType="function", escapeExpression=this.escapeExpression, self=this;
-
-function program1(depth0,data) {
   
-  var buffer = "", stack1;
-  buffer += "\n                    <tr>\n                        <td>"
-    + escapeExpression(((stack1 = depth0.attributeName),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</td>\n                        <td>"
-    + escapeExpression(((stack1 = depth0.attributeValue),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</td>\n                    </tr>\n                ";
-  return buffer;
-  }
 
-  buffer += "<section>\n    <header>\n        <h2>Product Details</h2>\n        <button>Have a Question?</button>\n    </header>\n\n    <ul>\n        <li><a href=\"#\">Full Description</a></li>\n        <li><a href=\"#\">Specifications</a></li>\n        <li><a href=\"#\">Warranty</a></li>\n        <li><a href=\"#\">Financing</a></li>\n        <li><a href=\"#\">Gifting</a></li>\n    </ul>\n\n    <div>\n        <section class=\"full_desc\">\n            "
-    + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.shortDescription)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\n        </section>\n\n        <section class=\"specs\">\n            <table>\n                ";
-  stack2 = helpers.each.call(depth0, depth0.itemAttributes, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n\n            </table>\n        </section>\n\n        <section class=\"warranty\">\n            <h3>Product warranty: <a href=\"#\">See details</a></h3>\n            <div class=\"warranty-details\">\n                <h3>"
-    + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.itemName)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</h3>\n                <p><strong>Assembled Country of Origin:</strong> "
-    + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.assembledCountryOfOrigin)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</p>\n                <p><strong>Components Country of Origin:</strong> "
-    + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.componentsCountryOfOrigin)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</p>\n                <p><strong>Supplier Warranty:</strong> "
-    + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.supplierWarranty)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</p>\n            </div>\n\n            <aside>\n                <h3>Walmart Product Care Plans</h3>\n                <p>A limited product warranty is included free for most items. With an optional Walmart Care Plan you can extend coverage up to 3 additional years. Walmart Care Plan Extended Warranties cover 100% of the cost for repair or replacement, including shipping charges for the exchange. <a href=\"#\">See Details</a></p>\n                <p>We'll show you extended warranty options and pricing at checkout if applicable.</p>\n            </aside>\n\n            <p>If you made your purchase in a Walmart store and would like to purchase a warranty.\n                <a href=\"http://see.walmart.com/walmart/protection-plans/\" title=\"Warranty &amp; Installation Plans\">Click Here</a>\n            </p>\n        </section>\n\n        <section class=\"financing\">\n            <h3>Enjoy Great Financing!</h3>\n            <p>Make the most of your shopping experience with the Walmart Discover&reg; or Walmart Credit Card.</p>\n            <p>Open a Walmart Credit Card, Spend $100 Today and Get $20 Back*</p>\n            <p>*Offer subject to credit approval</p>\n            <p><a href=\"#\">Learn More</a> or <a href=\"#\">Apply Now</a></p>\n            <p><strong>No Payments + No Interest</strong> if Paid in Full in 6 Months!</p>\n            <p>Enjoy no payments for 6 months. You'll have 6 months with no payments, and no interest if paid in full within 6 months on orders over $250. Otherwise, interest will be charged from the original date of purchase. Bill Me Later is the quick, easy, secure way to buy online without using your credit card. Simply select Bill Me Later at checkout. Subject to credit approval.</p>\n            <p><a href=\"#\">See Terms</a></p>\n        </section>\n\n        <section class=\"gifting\">\n            <p>Gift options are not available for this item.</p>\n        </section>\n    </div>\n</section>";
-  return buffer;
+
+  return "<header class=\"clearfix\">\n    <h2>People Who Viewed This Item Also Viewed</h2>\n    <button class=\"see-more\">See More</button>\n</header>";
   });
 templates['reviews'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [2,'>= 1.0.0-rc.3'];
@@ -145,11 +133,11 @@ helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<header>\n    <h3 class=\"title\">";
+  buffer += "<div class=\"content\">\n    <header>\n        <h3 class=\"title\">";
   if (stack1 = helpers.title) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</h3>\n    <p class=\"customer\">by <a href=\"#\">";
+    + "</h3>\n        <p class=\"customer\">by <a href=\"#\">";
   if (stack1 = helpers.customer) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.customer; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -157,7 +145,7 @@ helpers = helpers || Handlebars.helpers; data = data || {};
   if (stack1 = helpers.date) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</p>\n    <div class=\"avg-rating rating\" title=\"";
+    + "</p>\n        <div class=\"avg-rating rating\" title=\"";
   if (stack1 = helpers.rating) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.rating; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -169,11 +157,11 @@ helpers = helpers || Handlebars.helpers; data = data || {};
   if (stack1 = helpers.rating) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.rating; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</div></div>\n</header>\n\n<p class=\"review-text\">";
+    + "</div></div>\n    </header>\n\n    <p class=\"review-text\">";
   if (stack1 = helpers.review) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.review; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</p>\n\n<footer>\n    <ul class=\"rating-data\">\n        <li>\n            Value:\n            <div class=\"rating\" title=\"";
+    + "</p>\n</div>\n\n<footer>\n    <ul class=\"rating-data\">\n        <li>\n            Value:\n            <div class=\"rating\" title=\"";
   if (stack1 = helpers.value) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.value; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
