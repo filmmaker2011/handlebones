@@ -10,8 +10,7 @@ Last Updated: 3/26/2013
 
 ##Assignment 2 - Product Page:
 
-_URL_:
-[http://localhost:8000/itempage.html](http://localhost:8000/itempage.html)
+_URL: [http://localhost:8000/itempage.html](http://localhost:8000/itempage.html)_
 
 _What's done:_
 - Models and views for product data and review data.
@@ -32,8 +31,7 @@ _Not done:_
 
 ##Assignment 1 - TV Finder:
 
-_URL_
-> [http://localhost:8000/](http://localhost:8000/)
+_URL: [http://localhost:8000/](http://localhost:8000/)_
 
 _What's done:_
 - Layout was widened to proper width.
