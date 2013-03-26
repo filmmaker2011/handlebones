@@ -20,8 +20,6 @@ window.Application = {};
             prodResponse.customerRatingUrl = response[0].customerRatingUrl;
             prodResponse.itemAttributes = response[0].itemAttributes;
             prodResponse.sellers = response[0].sellers;
-            /* calculate width of carousel indicator div */
-            prodResponse.indicatorWidth = prodResponse.alternateImageData.length * 24;
             return prodResponse;
         }
     });
@@ -166,16 +164,6 @@ window.Application = {};
             /* Create new attribute 'reviewDate' to sort by review date */
             var reviewDateObj = new Date(this.model.get('date'));
             this.model.set('reviewDate', reviewDateObj.getTime());      // date in milliseconds
-
-            // Create new attributes for rating star widths (used in the ratings template)
-            this.model.set({
-                'aw': Math.round(this.model.attributes['rating'] * 20),
-                'vw': Math.round(this.model.attributes['value'] * 20),
-                'mew': Math.round(this.model.attributes['meetsexpectations'] * 20),
-                'pqw': Math.round(this.model.attributes['picturequality'] * 20),
-                'sqw': Math.round(this.model.attributes['soundquality'] * 20),
-                'fw': Math.round(this.model.attributes['features'] * 20)
-            });
         },
 
         render: function() {
@@ -194,7 +182,7 @@ $(function() {
 
         tvIntroView,
         tvDetailsView,
-        tv = new Application.Product( {id: '15739136'} ),   // 4 images: 15739136, 6 images: 15992428
+        tv = new Application.Product( {id: '15105450'} ),   // 4 images: 15105450, 6 images: 15992329
         loadTV = tv.fetch();
 
     loadTV.done(function(){

@@ -1,6 +1,8 @@
     <h1>{{genericContent.itemName}}</h1>
     <div class="clearfix">
-        <div class="item-rating rating" title="{{genericContent.rating}} stars"><div class="stars" style="width:{{pw}}px;">{{genericContent.rating}}</div></div>
+        {{#genericContent}}
+            <div class="item-rating rating" title="{{rating}} stars"><div class="stars" style="width:{{getStarsWidth rating}}px;">{{rating}}</div></div>
+        {{/genericContent}}
         <p class="item-review-links"><a href="#rr-section">25 Reviews</a> | <a href="#">Write a Review</a> | <a href="#">Ask a Question</a></p>
     </div>
     <p class="item-price">{{sellers.0.currentItemPrice}}</p>
@@ -13,8 +15,10 @@
             <div class="item"><img class="item-image" src="{{this.lgImageSrc}}" alt="product image"></div>
         {{/each}}
         </div>
-        <ol class="carousel-indicators clearfix" style="width:{{indicatorWidth}}px">
-            {{#make_indicators alternateImageData}}{{/make_indicators}}
+        <ol class="carousel-indicators clearfix" style="width:{{getIndicatorWidth alternateImageData}}px">
+            {{#each alternateImageData}}
+                <li data-target="#prod-carousel" data-slide-to="{{@index}}"></li>
+            {{/each}}
         </ol>
         <!-- Carousel nav -->
         <a class="carousel-control left" href="#prod-carousel" data-slide="prev"></a>

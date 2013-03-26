@@ -45,6 +45,7 @@
     background: url(../img/wm-spark.png) top right no-repeat;
 }
 .wm-logo:hover {
+    text-decoration: none;
     color: rgb(38, 114, 193);
 }
 /* Walmart Logo in Footer */

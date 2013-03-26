@@ -2,7 +2,7 @@
     <header>
         <h3 class="title">{{title}}</h3>
         <p class="customer">by <a href="#">{{customer}}</a> on {{date}}</p>
-        <div class="avg-rating rating" title="{{rating}} stars"><div class="stars" style="width:{{aw}}px;">{{rating}}</div></div>
+        <div class="avg-rating rating" title="{{rating}} stars"><div class="stars" style="width:{{getStarsWidth rating}}px;">{{rating}}</div></div>
     </header>
 
     <p class="review-text">{{review}}</p>
@@ -12,23 +12,23 @@
     <ul class="rating-data">
         <li>
             Value:
-            <div class="rating" title="{{value}} stars"><div class="stars" style="width:{{vw}}px;">{{value}}</div></div>
+            <div class="rating" title="{{value}} stars"><div class="stars" style="width:{{getStarsWidth value}}px;">{{value}}</div></div>
         </li>
         <li>
             Meets Expectations:
-            <div class="rating" title="{{meetsexpectations}} stars"><div class="stars" style="width:{{mew}}px;">{{meetsexpectations}}</div></div>
+            <div class="rating" title="{{meetsexpectations}} stars"><div class="stars" style="width:{{getStarsWidth meetsexpectations}}px;">{{meetsexpectations}}</div></div>
         </li>
         <li>
             Picture Quality:
-            <div class="rating" title="{{picturequality}} stars"><div class="stars" style="width:{{pqw}}px;">{{picturequality}}</div></div>
+            <div class="rating" title="{{picturequality}} stars"><div class="stars" style="width:{{getStarsWidth picturequality}}px;">{{picturequality}}</div></div>
         </li>
         <li>
             Sound Quality:
-            <div class="rating" title="{{soundquality}} stars"><div class="stars" style="width:{{sqw}}px;">{{soundquality}}</div></div>
+            <div class="rating" title="{{soundquality}} stars"><div class="stars" style="width:{{getStarsWidth soundquality}}px;">{{soundquality}}</div></div>
         </li>
         <li>
             Features:
-            <div class="rating" title="{{features}} stars"><div class="stars" style="width:{{fw}}px;" title="{{features}} stars">{{features}}</div></div>
+            <div class="rating" title="{{features}} stars"><div class="stars" style="width:{{getStarsWidth features}}px;" title="{{features}} stars">{{features}}</div></div>
         </li>
     </ul>
     <ul class="customer-data">
@@ -39,4 +39,3 @@
         <li>City: <span>{{city}}</span></li>
     </ul>
 </footer>
-

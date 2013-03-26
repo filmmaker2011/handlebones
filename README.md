@@ -7,15 +7,19 @@ Assignment 2 - Product Page:
     - Models and views for product data and review data.
     - Product data is fetched for one, hardcoded item id.
     - Image carousel and reviews carousel (based on Bootstrap.js code).
-    - Image carousel: a helper generates position indicators based on number of images.
+    - Image carousel: Handlebars helpers generate position indicator dots and calculate with of indicator widget (for CSS centering).
     - Product Details tabs (based on Bootstrap.js code).
-    - Product description: a helper removes the HTML tags from the text.
+    - Product description: a Handlebars helper (cleanup) removes the HTML tags from the text.
     - Reviews: filter by age, sort (ascending & descending).
+    - Reviews: a Handlebars helper calculates the width of rating stars widgets */
+    - Web fonts used. Logos use actual text.
+
 
 2. Not done:
     - Overlay and integration with Assignment 1.
     - Views for 'People who viewed this also viewed'.
-    - Web storage
+    - Web storage.
+    - Reviews: gender and ratings filters.
 
 Assignment 1 - TV Finder:
 
@@ -25,3 +29,7 @@ Assignment 1 - TV Finder:
 
 2. Not done:
     - Filtering of product results.
+
+
+Notes:
+    - I used Mac's SimpleHTTPServer.

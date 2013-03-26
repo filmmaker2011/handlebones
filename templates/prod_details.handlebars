@@ -13,10 +13,13 @@
             </ul>
 
             <div class="tab-content">
+
+                {{! Full Description tab }}
                 <section class="tab-pane active short-desc" id="tab1">
                     {{cleanup genericContent.shortDescription}}
                 </section>
 
+                {{! Specifications tab }}
                 <section class="tab-pane" id="tab2">
                     <table class="table table-striped table-condensed">
                         {{#each itemAttributes}}
@@ -25,19 +28,21 @@
                                 <td>{{this.attributeValue}}</td>
                             </tr>
                         {{/each}}
-
                     </table>
                 </section>
 
+                {{! Warranty tab }}
                 <section class="tab-pane" id="tab3">
                     <h4>Product Warranty:</h4>
                     <div class="warranty-details">
-                        <h4>{{genericContent.itemName}}</h4>
-                        <p>
-                            <strong>Assembled Country of Origin:</strong> {{genericContent.assembledCountryOfOrigin}}<br/>
-                            <strong>Components Country of Origin:</strong> {{genericContent.componentsCountryOfOrigin}}<br/>
-                            <strong>Supplier Warranty:</strong> {{genericContent.supplierWarranty}}
-                        </p>
+                        {{#genericContent}}
+                            <h4>{{itemName}}</h4>
+                            <p>
+                                <strong>Assembled Country of Origin:</strong> {{assembledCountryOfOrigin}}<br/>
+                                <strong>Components Country of Origin:</strong> {{componentsCountryOfOrigin}}<br/>
+                                <strong>Supplier Warranty:</strong> {{supplierWarranty}}
+                            </p>
+                        {{/genericContent}}
                     </div>
 
                     <aside class="care-plan">
@@ -51,6 +56,7 @@
                     </p>
                 </section>
 
+                {{! Financing tab }}
                 <section class="tab-pane" id="tab4">
                     <h4>Enjoy Great Financing!</h4>
                     <p>Make the most of your shopping experience with the Walmart Discover&reg; or Walmart Credit Card.</p>
@@ -64,6 +70,7 @@
                     <p><a href="#">See Terms</a></p>
                 </section>
 
+                {{! Gifting tab }}
                 <section class="tab-pane" id="tab5">
                     <h4>Gifting Options:</h4>
                     <p>Gift options are not available for this item.</p>
