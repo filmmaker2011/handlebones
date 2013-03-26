@@ -29,5 +29,8 @@ _What's done:_
 _Not done:_
 - Filtering of product results.
 
-##Notes:
-- I used Mac's SimpleHTTPServer.
+##To Use on a Mac:
+1. git clone
+2. cd handlebones
+3. python -m SimpleHTTPServer
+4. http://localhost:8000/itempage.html
