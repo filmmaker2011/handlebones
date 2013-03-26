@@ -30,7 +30,7 @@ _Not done:_
 - Filtering of product results.
 
 ##To Use on a Mac:
-1. git clone
+1. git clone https://github.com/filmmaker2011/handlebones.git
 2. cd handlebones
 3. python -m SimpleHTTPServer
 4. http://localhost:8000/itempage.html
