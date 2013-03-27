@@ -10,7 +10,8 @@ Last Updated: 3/27/2013
 
 ##Assignment 2 - Product Page:
 
-_URL: [http://localhost:8000/itempage.html](http://localhost:8000/itempage.html)_
+_Full Product Page URL: [http://localhost:8000/itempage.html](http://localhost:8000/itempage.html)_
+_TV Finder with Panel: [http://localhost:8000/index_p.html](http://localhost:8000/index_p.html)_
 
 _What's done:_
 - Models and views for product data and review data.
