@@ -14,7 +14,7 @@ _URL: [http://localhost:8000/itempage.html](http://localhost:8000/itempage.html)
 
 _What's done:_
 - Models and views for product data and review data.
-- Product data is fetched for one, hardcoded item id.
+- Overlay and integration with Assignment 1.
 - Image carousel and reviews carousel (based on Bootstrap.js code).
 - Image carousel: Handlebars helpers generate position indicator dots and calculate with of indicator widget (for CSS centering).
 - Product Details tabs (based on Bootstrap.js code).
@@ -24,7 +24,6 @@ _What's done:_
 - Web fonts are used. Logos use actual text.
 
 _Not done:_
-- Overlay and integration with Assignment 1.
 - Views for 'People who viewed this also viewed'.
 - Web storage.
 - Reviews: gender and ratings filters.

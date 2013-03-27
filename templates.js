@@ -6,7 +6,7 @@ helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<a href=\"";
+  buffer += "<a class=\"url\" href=\"";
   if (stack1 = helpers.url) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.url; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -103,7 +103,7 @@ function program3(depth0,data) {
   else { stack2 = depth0.genericContent; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   if (!helpers.genericContent) { stack2 = blockHelperMissing.call(depth0, stack2, options); }
   if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n                    </div>\n\n                    <aside class=\"care-plan\">\n                        <h4>Walmart Product Care Plans</h4>\n                        <p>A limited product warranty is included free for most items. With an optional Walmart Care Plan you can extend coverage up to 3 additional years. Walmart Care Plan Extended Warranties cover 100% of the cost for repair or replacement, including shipping charges for the exchange. <a href=\"#\">See Details</a></p>\n                        <p>We'll show you extended warranty options and pricing at checkout if applicable.</p>\n                    </aside>\n\n                    <p>If you made your purchase in a Walmart store and would like to purchase a warranty,\n                        <a href=\"http://see.walmart.com/walmart/protection-plans/\" title=\"Warranty &amp; Installation Plans\">Click Here</a>\n                    </p>\n                </section>\n\n                "
+  buffer += "\n                    </div>\n\n                    <aside class=\"care-plan clearfix\">\n                        <img class=\"protected-logo\" src=\"img/care-plan.jpg\" alt=\"protection logo\">\n                        <div class=\"details\">\n                            <h4>Walmart Product Care Plans</h4>\n                            <p>A limited product warranty is included free for most items. With an optional Walmart Care Plan you can extend coverage up to 3 additional years. Walmart Care Plan Extended Warranties cover 100% of the cost for repair or replacement, including shipping charges for the exchange. <a href=\"#\">See Details</a></p>\n                            <p>We'll show you extended warranty options and pricing at checkout if applicable.</p>\n                        </div>\n                    </aside>\n\n                    <p>If you made your purchase in a Walmart store and would like to purchase a warranty,\n                        <a href=\"http://see.walmart.com/walmart/protection-plans/\" title=\"Warranty &amp; Installation Plans\">Click Here</a>\n                    </p>\n                </section>\n\n                "
     + "\n                <section class=\"tab-pane\" id=\"tab4\">\n                    <h4>Enjoy Great Financing!</h4>\n                    <p>Make the most of your shopping experience with the Walmart Discover&reg; or Walmart Credit Card.</p>\n                    <p>Open a Walmart Credit Card, Spend $100 Today and Get $20 Back*</p>\n                    <p>*Offer subject to credit approval</p>\n                    <p><a href=\"#\">Learn More</a> or <a href=\"#\">Apply Now</a></p>\n                    <p><strong>No Payments + No Interest</strong> if Paid in Full in 6 Months!</p>\n\n                    <h4>BillMeLater</h4>\n                    <p>Enjoy no payments for 6 months. You'll have 6 months with no payments, and no interest if paid in full within 6 months on orders over $250. Otherwise, interest will be charged from the original date of purchase. Bill Me Later is the quick, easy, secure way to buy online without using your credit card. Simply select Bill Me Later at checkout. Subject to credit approval.</p>\n                    <p><a href=\"#\">See Terms</a></p>\n                </section>\n\n                "
     + "\n                <section class=\"tab-pane\" id=\"tab5\">\n                    <h4>Gifting Options:</h4>\n                    <p>Gift options are not available for this item.</p>\n                </section>\n            </div>\n        </div>";
   return buffer;
@@ -296,5 +296,13 @@ helpers = helpers || Handlebars.helpers; data = data || {};
   buffer += escapeExpression(stack2)
     + "</span></li>\n    </ul>\n</footer>\n";
   return buffer;
+  });
+templates['reviews_controls'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+helpers = helpers || Handlebars.helpers; data = data || {};
+  
+
+
+  return "<header class=\"clearfix\">\n    <h2 class=\"rr-heading\">Ratings &amp; Reviews <a id=\"total-reviews\" href=\"#\"></a></h2>\n    <button class=\"write-review\" id=\"write-review\" type=\"submit\" name=\"write-review\">Write a Review</button>\n</header>\n<form class=\"filters clearfix\" action=\"/\">\n    <label>\n        <select id=\"gender\">\n            <option value=\"0\">Men &amp; Women</option>\n            <option value=\"1\">Men</option>\n            <option value=\"2\">Women</option>\n        </select>\n    </label>\n\n    <label id=\"age-label\">\n\n    </label>\n\n    <label>\n        <select id=\"rating\">\n            <option>All Ratings</option>\n            <option>5 star</option>\n            <option>4 star</option>\n            <option>3 star</option>\n            <option>2 star</option>\n            <option>1 star</option>\n        </select>\n    </label>\n\n    <label>\n        <select id=\"sort\">\n            <option>Sort by...</option>\n            <option value=\"helpful\">Most Helpful</option>\n            <option value=\"newest\">Newest to Oldest</option>\n            <option value=\"oldest\">Oldest to Newest</option>\n            <option value=\"high\">Rating High to Low</option>\n            <option value=\"low\">Rating Low to High</option>\n        </select>\n    </label>\n</form>\n";
   });
 })();

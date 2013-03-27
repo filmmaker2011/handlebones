@@ -59,15 +59,6 @@ $(function() {
     loadFinderResults.done(function(){
         finderResultsView = new Application.FinderResultsView({ collection: finderResults});
         $('#search-results').append(finderResultsView.el);
-      /*  $('#age-label select').on('change', function(e){
-            finderResultsView.setFilter(e);
-        });
-        */
     });
-
-    /*$('#sort').on('change', function(){
-        finderResultsView.reSort($('#sort').val());
-    });
-    */
 })
 
