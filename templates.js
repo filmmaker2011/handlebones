@@ -88,7 +88,7 @@ function program3(depth0,data) {
   return buffer;
   }
 
-  buffer += "    <header class=\"clearfix\">\n        <h2>Product Details</h2>\n        <button class=\"have-question\">Have a Question?</button>\n    </header>\n\n        <div class=\"tabbable tabs-left\">\n            <ul class=\"nav nav-tabs\">\n                <li class=\"active\"><a href=\"#tab1\" data-toggle=\"tab\">Full Description</a></li>\n                <li><a href=\"#tab2\" data-toggle=\"tab\">Specifications</a></li>\n                <li><a href=\"#tab3\" data-toggle=\"tab\">Warranty</a></li>\n                <li><a href=\"#tab4\" data-toggle=\"tab\">Financing</a></li>\n                <li><a href=\"#tab5\" data-toggle=\"tab\">Gifting</a></li>\n            </ul>\n\n            <div class=\"tab-content\">\n\n                "
+  buffer += "    <header class=\"clearfix\">\n        <h2>Product Details</h2>\n        <button class=\"have-question chevron\">Have a Question? </button>\n    </header>\n\n        <div class=\"tabbable tabs-left\">\n            <ul class=\"nav nav-tabs\">\n                <li class=\"active\"><a href=\"#tab1\" data-toggle=\"tab\">Full Description</a></li>\n                <li><a href=\"#tab2\" data-toggle=\"tab\">Specifications</a></li>\n                <li><a href=\"#tab3\" data-toggle=\"tab\">Warranty</a></li>\n                <li><a href=\"#tab4\" data-toggle=\"tab\">Financing</a></li>\n                <li><a href=\"#tab5\" data-toggle=\"tab\">Gifting</a></li>\n            </ul>\n\n            <div class=\"tab-content\">\n\n                "
     + "\n                <section class=\"tab-pane active short-desc\" id=\"tab1\">\n                    ";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.cleanup),stack1 ? stack1.call(depth0, ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.shortDescription), options) : helperMissing.call(depth0, "cleanup", ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.shortDescription), options)))
@@ -296,13 +296,5 @@ helpers = helpers || Handlebars.helpers; data = data || {};
   buffer += escapeExpression(stack2)
     + "</span></li>\n    </ul>\n</footer>\n";
   return buffer;
-  });
-templates['reviews_controls'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
-helpers = helpers || Handlebars.helpers; data = data || {};
-  
-
-
-  return "<header class=\"clearfix\">\n    <h2 class=\"rr-heading\">Ratings &amp; Reviews <a id=\"total-reviews\" href=\"#\"></a></h2>\n    <button class=\"write-review\" id=\"write-review\" type=\"submit\" name=\"write-review\">Write a Review</button>\n</header>\n<form class=\"filters clearfix\" action=\"/\">\n    <label>\n        <select id=\"gender\">\n            <option value=\"0\">Men &amp; Women</option>\n            <option value=\"1\">Men</option>\n            <option value=\"2\">Women</option>\n        </select>\n    </label>\n\n    <label id=\"age-label\">\n\n    </label>\n\n    <label>\n        <select id=\"rating\">\n            <option>All Ratings</option>\n            <option>5 star</option>\n            <option>4 star</option>\n            <option>3 star</option>\n            <option>2 star</option>\n            <option>1 star</option>\n        </select>\n    </label>\n\n    <label>\n        <select id=\"sort\">\n            <option>Sort by...</option>\n            <option value=\"helpful\">Most Helpful</option>\n            <option value=\"newest\">Newest to Oldest</option>\n            <option value=\"oldest\">Oldest to Newest</option>\n            <option value=\"high\">Rating High to Low</option>\n            <option value=\"low\">Rating Low to High</option>\n        </select>\n    </label>\n</form>\n";
   });
 })();

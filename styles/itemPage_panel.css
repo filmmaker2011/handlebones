@@ -15,6 +15,28 @@
     .page {
         width: 1024px;
     }
+    .chevron:after {
+        content: "\203A";
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        margin-left: 3px;
+        font-size: 20px;
+        line-height: 15px;
+        border-radius: 9px;
+        color: #FFF;
+        background-color: #D6D6D6;
+        text-shadow: 0 2px 3px rgba(128, 128, 128, 0.5);
+        -moz-box-shadow:
+            0px 0px 0px rgba(000,000,000,0),
+            inset 0px 1px 3px rgba(128,128,128,0.4);
+        -webkit-box-shadow:
+            0px 0px 0px rgba(000,000,000,0),
+            inset 0px 1px 3px rgba(128,128,128,0.4);
+        box-shadow:
+            0px 0px 0px rgba(000,000,000,0),
+            inset 0px 1px 3px rgba(128,128,128,0.4);
+    }
     /* Product Panel start */
     .panel,
     .panel-backdrop {
@@ -70,11 +92,11 @@
         width: 138px;
         height: 56px;
         margin-top: 5px;
-        padding: 0 5% 8px 0;
+        padding: 0 4% 8px 0;
         font: 34px/1.5em 'cartogothic_stdbold', Helvetica, sans-serif;
         letter-spacing: -1px;
         color: rgb(38, 114, 193);
-        background: url(../img/wm-spark.png) top right no-repeat;
+        background: url(../img/sprite-logos.png) top right no-repeat;
     }
     .wm-logo:hover {
         text-decoration: none;
@@ -83,13 +105,26 @@
     /* Walmart Logo in Footer */
     .page-footer .mailing-list {
         background: none;
-        width: 607px;
+        width: 615px;
         padding-left: 0;
     }
     .page-footer .wm-logo {
+        position: relative;
+        top: 34px;
         display: inline-block;
+        padding-right: 60px;
         color: #FFF;
-        background: url(../img/wm-spark-blue-bkg.png) top right no-repeat;
+        background: none;
+        overflow: hidden;
+    }
+    .page-footer .wm-logo:after {
+        content: url(../img/sprite-logos.png);
+        display: inline-block;
+        position: relative;
+        top: -113px;
+        left: 135px;
+        width: 46px;
+        height: 56px;
     }
 
 /*** Product Styles ***/
@@ -149,15 +184,13 @@
         border-style: none;
         border-radius:0;
         opacity: 1;
-/*        background: url(../img/sprite-buttons.png) no-repeat; */
+        background: url(../img/sprite-buttons.png) no-repeat;
     }
     .carousel-control.left {
-        background: url(../img/arrow-left2.png) no-repeat;
-/*        background-position: 0 -55px; */
+        background-position: 0 -55px;
     }
     .carousel-control.right {
-        background: url(../img/arrow-right2.png) no-repeat;
-/*        background-position: 0 -165px; */
+        background-position: 0 -165px;
     }
     .carousel-indicators {
         position: static;
@@ -342,7 +375,7 @@
     .write-review {
         float:right;
         margin-top: 20px;
-        padding: 6px 2%;
+        padding: 6px 1% 6px 2%;
         font-size: 15px;
         letter-spacing: 0;
         cursor: pointer;
@@ -354,6 +387,10 @@
         background-image: -moz-linear-gradient(top, #FFFFFF, #FAFAFA, #EDEDED);
         background-image: -ms-linear-gradient(top, #FFFFFF, #EDEDED);
     }
+    .clear-filters{
+        padding: 6px 2%;
+    }
+
     /* Ratings Filters (from TV Finder styles) */
     .ratings-reviews .controls .filters {
         padding: 50px 0 1.5% 0;

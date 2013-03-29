@@ -14,7 +14,6 @@
     <script src="js/application_panel.js"></script>
     <script src="js/handlebars_helpers.js"></script>
     <link rel="stylesheet" media="screen" href="styles/bootstrap.css" />
-    <link rel="stylesheet" href="styles/webfonts.css" type="text/css" charset="utf-8" />
     <link rel="stylesheet" media="screen" href="styles/tvfinder_panel.css" />
     <link rel="stylesheet" media="screen" href="styles/itemPage_panel.css" />
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
@@ -29,9 +28,9 @@
           </form>
 
           <ul class="top-nav">
-              <li><a href="" class="button create">Create<span class="txt">a new wishlist</span></a></li>
-              <li><a href="" class="button signin">Sign In<span class="txt">to your account</span></a></li>
-              <li><a href="" class="button cart">0 Items<span class="txt">in your cart</span></a></li>
+              <li><a href="" class="button"><span class="create">Create</span><span class="txt">a new wishlist</span></a></li>
+              <li><a href="" class="button"><span class="signin">Sign In</span><span class="txt">to your account</span></a></li>
+              <li><a href="" class="button"><span class="cart">0 Items</span><span class="txt">in your cart</span></a></li>
           </ul>
       </header>
 
@@ -54,7 +53,7 @@
 
               <form class="filters" action="/">
                   <fieldset class="clearfix">
-                      <legend>search filters</legend>
+                      <legend><b class="bold">TV</b>Finder</legend>
 
                       <div class="size-slider">
                           <lable for='size'>Size</lable>
@@ -114,7 +113,7 @@
               <section class="prod-similar" id="prod-similar">
                   <header class="clearfix">
                       <h2>People Who Viewed This Item Also Viewed</h2>
-                      <button class="see-more">See More</button>
+                      <button class="see-more chevron">See More </button>
                   </header>
               </section>
 
@@ -124,7 +123,7 @@
                   <div class="controls">
                       <header class="clearfix">
                           <h2 class="rr-heading">Ratings &amp; Reviews <a id="total-reviews" href="#"></a></h2>
-                          <button class="write-review" id="write-review" type="submit" name="write-review">Write a Review</button>
+                          <button class="write-review chevron" id="write-review" type="submit" name="write-review">Write a Review </button>
                       </header>
                       <form class="filters clearfix" action="/">
                           <label>
