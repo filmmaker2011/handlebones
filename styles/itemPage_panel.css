@@ -96,7 +96,7 @@
         font: 34px/1.5em 'cartogothic_stdbold', Helvetica, sans-serif;
         letter-spacing: -1px;
         color: rgb(38, 114, 193);
-        background: url(../img/sprite-logos.png) top right no-repeat;
+        background: url(../img/sprite-logos.png) no-repeat right top;
     }
     .wm-logo:hover {
         text-decoration: none;
@@ -109,22 +109,13 @@
         padding-left: 0;
     }
     .page-footer .wm-logo {
-        position: relative;
-        top: 34px;
         display: inline-block;
-        padding-right: 60px;
+        position: relative;
+        top: 5px;
+        margin-right: 10px;
+        padding-right: 40px;
         color: #FFF;
-        background: none;
-        overflow: hidden;
-    }
-    .page-footer .wm-logo:after {
-        content: url(../img/sprite-logos.png);
-        display: inline-block;
-        position: relative;
-        top: -113px;
-        left: 135px;
-        width: 46px;
-        height: 56px;
+        background-position: right -61px;
     }
 
 /*** Product Styles ***/

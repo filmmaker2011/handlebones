@@ -1,10 +1,13 @@
 window.Application = {};
 
 /*** TV Finder Classes ***/
+
+    /* TV Finder Collection */
     Application.FinderResults = Backbone.Collection.extend({
         url: 'data/televisions.json'
     });
 
+    /* TV Finder Collection View */
     Application.FinderResultsView = Backbone.View.extend({
         initialize: function() {
             this.collection.originalModels = _.clone(this.collection.models);
@@ -35,12 +38,6 @@ window.Application = {};
 
     /* TV Finder Model View */
     Application.FinderModelView = Backbone.View.extend({
-        initialize: function(){
-            // Create new attributes for rating star widths (used in the ratings template)
-            this.model.set({
-                'aw': Math.round(this.model.attributes['rating'] * 20)
-            });
-        },
 
         render: function() {
             var context = this.model ? this.model.attributes : {},
@@ -51,6 +48,8 @@ window.Application = {};
     });
 
 /*** Product Classes ***/
+
+    /* Product Model */
     Application.Product = Backbone.Model.extend({
         urlRoot: '/data/product-detail',
 
@@ -66,12 +65,12 @@ window.Application = {};
         }
     });
 
+    /* Product Model Views */
     Application.ProdIntroView = Backbone.View.extend({
         className: 'product',
 
         initialize: function(){
             this.model.on('reset', this.render, this);              // fetch() triggers a reset
-            this.model.set({'pw': Math.round(this.model.attributes.genericContent.rating * 20) });
         },
         render: function() {
             var context = this.model ? this.model.attributes : {},
@@ -80,7 +79,6 @@ window.Application = {};
             return this;
         }
     });
-
     Application.ProdDetailsView = Backbone.View.extend({
         className: 'details',
 
@@ -96,10 +94,13 @@ window.Application = {};
     });
 
 /*** Review Classes ***/
+
+    /* Reviews Collection */
     Application.Reviews = Backbone.Collection.extend({
         url: 'data/ratingsReviews.json'
     });
 
+    /* Reviews Collection View */
     Application.ReviewsView = Backbone.View.extend({
         initialize: function() {
             this.collection.originalModels = _.clone(this.collection.models);
@@ -202,7 +203,7 @@ window.Application = {};
         }
     });
 
-    /* Model View for a Review */
+    /* Review Model View */
     Application.ModelView = Backbone.View.extend({
         initialize: function(){
             /* Create new attribute 'reviewDate' to sort by review date */
@@ -218,20 +219,8 @@ window.Application = {};
         }
     });
 
-    /* Model & Model View for Review Controls */
-    Application.ReviewsControlsModel = [];
-    Application.ReviewsControlslView = Backbone.View.extend({
-        initialize: function(){
-            this.render();
-        },
+/*** Cart Classes ***/
 
-        render: function() {
-            var context = this.model ? this.model.attributes : {},
-                output = this.options.template(reviews_controls);
-            this.$el.html(output);
-            return this;
-        }
-    });
 
 /*** Code to run at "DOM ready" ***/
 $(function() {
@@ -269,6 +258,7 @@ $(function() {
         tv,
         loadTV,
         product,
+        productRating,
 
         backdrop = '<div class="panel-backdrop"></div>';
 
@@ -276,10 +266,12 @@ $(function() {
     $('#search-results').on('click', '.url', function(e){
         e.preventDefault();
         product = $(e.currentTarget).attr('href');      // URL of the product link
+        productRating = finderResults.findWhere({url: product}).get('rating');  // Get rating from TV Finder (to put on Product Panel) *
         product = product.match(/\d{8}$/);              // ID of the product
         tv = new Application.Product( {id: product} );
         loadTV = tv.fetch();
         loadTV.done(function(){
+            tv.set({rating: productRating});                                    // * Set rating for Product Panel
             tvIntroView = new Application.ProdIntroView({
                 model: tv,
                 template: Handlebars.templates['prod_intro']
@@ -313,7 +305,6 @@ $(function() {
     $('.close-panel').click(function(){
         $("#age-selector").remove();
         $('.panel-backdrop, .panel').fadeOut('slow', function(){
-
             $('.panel-backdrop').detach();
         });
         tvIntroView.remove();

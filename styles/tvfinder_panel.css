@@ -305,6 +305,7 @@
         margin: 0;
         padding: 35px 20px 0 0;
         border-style: none;
+        font-size: 22px;
         line-height: 1em;
         color: #0D77BD;
     }
@@ -494,7 +495,7 @@
     .page-footer .mailing-list {
         width: 420px;
         height: 56px;
-        margin: -20px auto 100px;
+        margin: 0 auto 80px;
         padding-left: 200px;
     }
     /* Override Bootstrap styles: margin-bottom */

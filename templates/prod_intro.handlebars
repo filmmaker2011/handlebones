@@ -1,8 +1,6 @@
     <h1>{{genericContent.itemName}}</h1>
     <div class="clearfix">
-        {{#genericContent}}
-            <div class="item-rating rating" title="{{rating}} stars"><div class="stars" style="width:{{getStarsWidth rating}}px;">{{rating}}</div></div>
-        {{/genericContent}}
+        <div class="item-rating rating" title="{{rating}} stars"><div class="stars" style="width:{{getStarsWidth rating}}px;">{{rating}}</div></div>
         <p class="item-review-links"><a href="#rr-section">25 Reviews</a> | <a href="#">Write a Review</a> | <a href="#">Ask a Question</a></p>
     </div>
     <p class="item-price">{{sellers.0.currentItemPrice}}</p>
