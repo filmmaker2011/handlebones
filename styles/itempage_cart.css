@@ -1,0 +1,634 @@
+/*** Style Rests ***/
+    body, h1, h2, h3, h4,
+    ul, ol, li, table,
+    form, select, option, input {
+        margin: 0;
+        padding: 0;
+    }
+
+/*** Global Styles ***/
+    body {
+        font: 15px/1.5em 'cartogothic_stdregular', Helvetica, sans-serif;
+        color: #888;
+        background-color: #BBB;
+    }
+    .page {
+        width: 1024px;
+    }
+    .chevron:after {
+        content: "\203A";
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        margin-left: 3px;
+        font-size: 20px;
+        line-height: 15px;
+        border-radius: 9px;
+        color: #FFF;
+        background-color: #D6D6D6;
+        text-shadow: 0 2px 3px rgba(128, 128, 128, 0.5);
+        -moz-box-shadow:
+            0px 0px 0px rgba(000,000,000,0),
+            inset 0px 1px 3px rgba(128,128,128,0.4);
+        -webkit-box-shadow:
+            0px 0px 0px rgba(000,000,000,0),
+            inset 0px 1px 3px rgba(128,128,128,0.4);
+        box-shadow:
+            0px 0px 0px rgba(000,000,000,0),
+            inset 0px 1px 3px rgba(128,128,128,0.4);
+    }
+
+
+    header, footer, section, article, aside {
+        display: block;
+    }
+    h1, h2, h3, h4 {
+        font-weight: normal;
+        line-height: 20px;
+        color: #444;
+    }
+    h1, h2 { font-size: 26px; }
+    h3 { font-size: 22px; }
+    h4 { font: 16px/1.5em 'cartogothic_stdbold', Helvetica, sans-serif; }
+    p {margin: 0 0 15px;}
+    a {
+        text-decoration: none;
+        color: rgb(13, 119, 189);
+    }
+    input, button, select, textarea {
+        font-family: 'cartogothic_stdregular', Helvetica, sans-serif;
+    }
+
+/*** Walmart Logo ***/
+    .wm-logo {
+        display: block;
+        width: 138px;
+        height: 56px;
+        margin-top: 5px;
+        padding: 0 4% 8px 0;
+        font: 34px/1.5em 'cartogothic_stdbold', Helvetica, sans-serif;
+        letter-spacing: -1px;
+        color: rgb(38, 114, 193);
+        background: url(../img/sprite-logos.png) no-repeat right top;
+    }
+    .wm-logo:hover {
+        text-decoration: none;
+        color: rgb(38, 114, 193);
+    }
+    /* Walmart Logo in Footer */
+    .page-footer .mailing-list {
+        background: none;
+        width: 615px;
+        padding-left: 0;
+    }
+    .page-footer .wm-logo {
+        display: inline-block;
+        position: relative;
+        top: 5px;
+        margin-right: 10px;
+        padding-right: 40px;
+        color: #FFF;
+        background-position: right -61px;
+    }
+
+/*** Product Styles ***/
+    .prod-intro {
+        padding: 30px 4% 0;
+    }
+    .prod-similar {
+        padding: 0 4% 30px;
+    }
+    .prod-similar,
+    .prod-details,
+    .ratings-reviews {
+        border-top: 1px solid rgb(208, 208, 208);
+    }
+    .product h2 {
+        margin-bottom: 20px;
+    }
+    .prod-details {
+        padding-right: 4%;
+}
+    .item-rating, .item-review-links {
+        float: left;
+        margin: 10px 0;
+    }
+    .item-review-links {
+        margin: 13px 0 6px 8px;
+        font-weight: bold;
+    }
+    .item-price {
+        font: 26px 'cartogothic_stdbold', Helvetica, sans-serif;;
+        color: #333;
+    }
+    .item-price:before {
+        content: "$"
+    }
+
+    /* Carousel */
+    .carousel {
+        padding-bottom: 30px;
+    }
+    .prod-intro .carousel {
+        width: 75%;
+        margin: 0 auto 40px;
+    }
+    .ratings-reviews .carousel {
+        width: auto;
+        margin: 0;
+    }
+    .item-image {
+        width: 71.42%;
+        margin: 0 auto;
+    }
+    .carousel-control {
+        width: 28px;
+        height: 50px;
+        margin-top: 0;
+        border-style: none;
+        border-radius:0;
+        opacity: 1;
+        background: url(../img/sprite-buttons.png) no-repeat;
+    }
+    .carousel-control.left {
+        background-position: 0 -55px;
+    }
+    .carousel-control.right {
+        background-position: 0 -165px;
+    }
+    .carousel-indicators {
+        position: static;
+        padding-right: 1.5%;
+        margin: 18px auto 0;
+    }
+    .carousel-indicators li {
+        width: 12px;
+        height: 12px;
+        margin-left: 12px;
+        border-radius: 9px;
+        background-color: rgb(176, 176, 176);
+    }
+    .carousel-indicators .active {
+        background-color: rgb(14, 128, 194);
+    }
+    .short-desc {
+        float: left;
+        width: 50%;
+        margin: 0 5% 4% 0;
+    }
+    .tab-content .short-desc {
+        float: none;
+        width: 90%;
+    }
+    .buying-options {
+        float:left;
+        width: 45%;
+    }
+    .buying-options form {
+        margin-bottom: 30px;
+        height: 56px;
+    }
+    .buying-options .qty,
+    .buying-options .add-to-cart {
+        float: left;
+    }
+    .buying-options label {
+        margin-bottom:2px;
+    }
+    .buying-options select {
+        width: 90px;
+        margin-right: 15px;
+        padding: 5px 0 7px 15px;
+        font-size: 22px;
+        letter-spacing: 1px;
+        line-height: 1.95em;
+        color: #7e7e7e;
+        -webkit-padding-end: 0;
+        background: url(../img/s02-arrow-down-gray.png) no-repeat 85% 50%, -webkit-linear-gradient(top, #FFFFFF, #FAFAFA, #EDEDED);
+        background-image: -moz-linear-gradient(top, #FFFFFF, #FAFAFA, #EDEDED);
+        background-image: -ms-linear-gradient(top, #FFFFFF, #FAFAFA, #EDEDED);
+    }
+    .buying-options .add-to-cart {
+        width: 185px;
+        font-size: 22px;
+        color: #ffffff;
+        padding: 15px 3%;
+        background: -moz-linear-gradient(
+            top,
+            #fcb543 0%,
+            #ea9000);
+        background: -webkit-gradient(
+            linear, left top, left bottom,
+            from(#fcb543),
+            to(#ea9000));
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        border: 1px solid #f09630;
+        -moz-box-shadow:
+            0px 0px 0px rgba(000,000,000,0),
+            inset 0px 1px 0px rgba(253,208,141,1);
+        -webkit-box-shadow:
+            0px 0px 0px rgba(000,000,000,0),
+            inset 0px 1px 0px rgba(253,208,141,1);
+        box-shadow:
+            0px 0px 0px rgba(000,000,000,0),
+            inset 0px 1px 0px rgba(253,208,141,1);
+        text-shadow:
+            0px -1px 0px rgba(194,118,4,1),
+            0px 1px 0px rgba(255,255,255,0.2);
+    }
+    .buying-options .find-link,
+    .buying-options .share-link{
+        margin-left: 4px;
+        padding: 0  0 8px 36px;
+        background: url(../img/sprite-icons.png) no-repeat;
+    }
+    .buying-options .find-link {
+        background-position: 0 -303px;
+    }
+    .buying-options .share-link {
+        background-position: 0 -357px;
+    }
+    .buying-options .arrival-link {
+        padding: 0 0 10px 40px;
+        background: url(../img/sprite-buttons.png) 0 -253px no-repeat;
+    }
+
+    /*** Product Details ***/
+    .tabbable {
+        margin-top: 50px;
+    }
+    .nav {
+        margin-bottom: 0;
+    }
+    .tabs-left > .nav-tabs {
+        height: 499px;
+        margin-right: 3%;
+        border-top: 1px solid rgb(208, 208, 208);
+        background-color: rgb(250, 250, 250);
+    }
+    .nav-tabs li {
+        margin-bottom: -4px;
+    }
+    .tabs-left > .nav-tabs > li > a {
+        padding: 25px 70px 25px 40px;
+        border-color-left: transparent;
+        border-radius: 0;
+        font-size: 22px;
+        outline: none;
+    }
+    .tabs-left > .nav-tabs a,
+    .tabs-left > .nav-tabs a:hover,
+    .tabs-left > .nav-tabs a:focus {
+        border-bottom-color: rgb(208, 208, 208);
+    }
+    .tabs-left > .nav-tabs .active a,
+    .tabs-left > .nav-tabs .active a:hover,
+    .tabs-left > .nav-tabs .active a:focus {
+        border-top-color: rgb(168, 168, 168);
+        border-bottom-color: rgb(168, 168, 168);
+    }
+    .tab-content {
+        width: 60%;
+    }
+    .short-desc strong {
+        color: #444;
+        display: inline-block;
+        padding-top: 15px;
+    }
+    .prod-similar h2,
+    .prod-details h2,
+    .rr-heading {
+        float: left;
+        margin-top: 30px;
+    }
+    .prod-details h2 {
+        margin-left: 4%;
+    }
+    .warranty-details {
+        font-size: 14px;
+    }
+    .care-plan {
+        margin-bottom: 15px;
+        border: 1px solid #DADADA;
+        border-radius: 9px;
+        font-size: 13px;
+        line-height: 1.3em;
+    }
+    .care-plan .details {
+        padding: 3% 3% 0 3%;
+    }
+    .protected-logo {
+        float: left;
+        width: 20%;
+        padding: 3% 3% 24%;
+    }
+/*** Ratings and Reviews ***/
+    .ratings-reviews {
+        background-color: rgb(238, 238, 238);
+    }
+    .ratings-reviews .controls {
+        margin: 0;
+        padding: 25px 4% 0;
+        background-color: #FFF;
+    }
+    .clear-filters,
+    .see-more,
+    .have-question,
+    .write-review {
+        float:right;
+        margin-top: 20px;
+        padding: 6px 1% 6px 2%;
+        font-size: 15px;
+        letter-spacing: 0;
+        cursor: pointer;
+        border: 1px solid #ddd;
+        border-radius: 17px;
+        color: #777;
+        background-color: #FFF;
+        background-image: -webkit-linear-gradient(top, #FFFFFF, #EDEDED);
+        background-image: -moz-linear-gradient(top, #FFFFFF, #FAFAFA, #EDEDED);
+        background-image: -ms-linear-gradient(top, #FFFFFF, #EDEDED);
+    }
+    .clear-filters{
+        padding: 6px 2%;
+    }
+
+    /* Ratings Filters (from TV Finder styles) */
+    .ratings-reviews .controls .filters {
+        padding: 50px 0 1.5% 0;
+    }
+    .filters label {
+        float: left;
+        text-indent: 2px;
+    }
+    .filters label {
+        position: relative;
+        margin: 0 .5em;
+        border-width: 0;
+        font-size: 15px;
+        font-weight: bold;
+    }
+    .filters label:first-child {
+        margin-left: 0;
+    }
+    .filters select {
+        width: 100%;
+        margin-top: 3px;
+        padding-left: 2px;
+        border: 1px solid #D2D2D2;
+        border-radius: 5px;
+        outline: none;
+        font-size: 17px;
+        line-height: 2em;
+        -webkit-appearance: button;
+        -webkit-padding-start: .6em;
+        -webkit-padding-end: 2.5em;
+        background: url(../img/arrow-down-black.png) no-repeat 90% 60%, -webkit-linear-gradient(top, #FFFFFF, #FAFAFA, #EDEDED);
+        background-image: -moz-linear-gradient(top, #FFFFFF, #FAFAFA, #EDEDED);
+        background-image: -ms-linear-gradient(top, #FFFFFF, #FAFAFA, #EDEDED);
+        background-color: #FFF;
+        color: #666;
+    }
+    .panel .filters select {
+        font-size: 16px;
+    }
+    /* Reviews */
+    .ratings-reviews hr.filters {
+        background-color: rgb(238, 238, 238);
+        background-image: -webkit-linear-gradient(top, #CDCDCD, rgb(238, 238, 238));
+        background-image: -moz-linear-gradient(top, #CDCDCD, rgb(238, 238, 238));
+        background-image: -ms-linear-gradient(top, #CDCDCD, rgb(238, 238, 238));
+    }
+    .ratings-reviews hr.filters:before {
+             background: -webkit-linear-gradient(left, rgba(238, 238, 238,1) 0%,rgba(238, 238, 238,0) 100%); /* Chrome10+,Safari5.1+ */
+             background: -moz-linear-gradient(left, rgba(238, 238, 238,1) 0%, rgba(238, 238, 238,0) 100%); /* FF3.6+ */
+             background: -ms-linear-gradient(left, rgba(238, 238, 238,1) 0%,rgba(238, 238, 238,0) 100%); /* IE10+ */
+             background: linear-gradient(to right, rgba(238, 238, 238,1) 0%,rgba(238, 238, 238,0) 100%); /* W3C */
+    }
+    .ratings-reviews hr.filters:after {
+        background: -webkit-linear-gradient(left, rgba(238, 238, 238,0) 0%,rgba(238, 238, 238,1) 100%); /* Chrome10+,Safari5.1+ */
+        background: -moz-linear-gradient(left, rgba(238, 238, 238,0) 0%, rgba(238, 238, 238,1) 100%); /* FF3.6+ */
+        background: -ms-linear-gradient(left, rgba(238, 238, 238,0) 0%,rgba(238, 238, 238,1) 100%); /* IE10+ */
+        background: linear-gradient(to right, rgba(238, 238, 238,0) 0%,rgba(238, 238, 238,1) 100%); /* W3C */
+    }
+    .review-carousel .carousel-inner{
+        width: 640px;
+        margin: 0 auto;
+        box-shadow:  0 1px 5px 1px #CCC;
+        border-radius: 3px;
+    }
+    .review-carousel .carousel-control.left{
+        margin-left: 1%;
+    }
+    .review-carousel .carousel-control.right{
+        margin-right: 1%;
+    }
+    .review {
+        width: 100%;
+        padding: 20px 0 0 0;
+        color: #888;
+        background-color: #FFF;
+    }
+    .review .content {
+        height: 250px;
+    }
+    .review header {
+        padding: 0 5%;
+        color: #bbb;
+    }
+    .review footer {
+        height: 220px;
+        border-top: 1px solid #d3d3d3;
+    }
+    .review .title,
+    .review .customer,
+    .review .review-text {
+        width: 90%;
+    }
+    .review .title {
+        margin-bottom: 3px;
+    }
+    .review-text {
+        margin: 20px 0 0;
+        padding: 0 5%;
+    }
+    .rating-data,
+    .customer-data {
+        display: inline-block;
+        padding: 30px 5% 52px;
+        font-size: 14px;
+        font-weight: bold;
+        list-style-type: none;
+    }
+    .rating-data {
+        width: 42%;
+        border-right: 1px solid #d3d3d3;
+    }
+    .customer-data {
+        width: 35%;
+    }
+    .rating-data li {
+        clear: right;
+        line-height: 28px;
+    }
+    .customer-data li {
+        line-height: 28px;
+    }
+    .customer-data span {
+        font-weight: normal;
+    }
+    .product .rating,
+    .product .stars,
+    .review .rating,
+    .review .stars{
+        position: relative;
+        width: 100px;
+        height: 24px;
+        background: url(../img/sprite-icons.png) repeat-x;
+    }
+    .product .rating,
+    .review .rating {
+        background-position: 0 -525px;
+    }
+    .product .stars,
+    .review .stars {
+        z-index: 2;
+        background-position: 0 -471px;
+        text-indent: -9999px;
+    }
+    .rating-data .rating {
+        float: right;
+    }
+
+/* Product Panel start */
+.cart-panel,
+.panel,
+.panel-backdrop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+}
+.panel-backdrop {
+    z-index: 100;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    opacity: 0.25;
+}
+.panel {
+    z-index: 200;
+    width: 750px;
+}
+.close-cart,
+.close-panel {
+    float:right;
+    width: 28px;
+    height: 28px;
+    margin: 25px 4% 0 0;
+    cursor: pointer;
+    background: url(../img/sprite-buttons.png) 0 -220px no-repeat;
+}
+/* Product Panel end */
+
+/* Cart */
+.cart-panel {
+    z-index: 300;
+    width: 670px;
+    padding: 30px 40px 30px 40px;
+}
+.cart-panel h2 {
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    font-size: 28px;
+    line-height: 32px;
+}
+.sort-cart {
+    display: inline-block;
+    width: 112px;
+    height: 38px;
+    margin-left: 20px;
+    font-size: 19px;
+}
+.cart-item .image,
+.cart-item .name {
+    float: left;
+}
+.cart-item .name {
+    width: 280px;
+    margin: 5px 0 0;
+    font-size: 18px;
+}
+.cart-item .status {
+    width: 90px;
+    margin: 0;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+}
+.status .in-stock {
+    color: rgb(101, 183, 72);
+}
+.status .out-stock {
+    color: red;
+}
+.cart-item .name,
+.cart-item .item-action {
+    padding-left: 45px;
+}
+.item-action {
+    position: relative;
+    top: -38px;
+    left: 90px;
+}
+.item-action,
+.item-action .save-item,
+.item-action .remove-item,
+.qty-price,
+.qty-price .pick-qty,
+.qty-price .price-block{
+    display: inline-block;
+}
+/* Spacing inside buttons and select */
+.item-action .save-item,
+.item-action .remove-item {
+    font-size: 16px;
+    padding: 6px 15px;
+}
+.item-action .save-item {
+    margin-right: 10px;
+    padding: 6px 25px;
+}
+.qty-price {
+    float: right;
+    position: relative;
+    top: -62px;
+}
+.qty-price .pick-qty {
+    position: relative;
+    top: -7px;
+    font-size: 11px;
+    color: #AAA;
+}
+.qty-price .item-qty {
+    width: 25px;
+    padding: 4px 5px;
+    font-size: 20px;
+    text-align: center;
+}
+.price-block {
+    padding-left: 30px;
+}
+.price-block .list-price {
+    font-size: 13px;
+    text-decoration: line-through;
+    color: #666;
+}
+.price-block .price {
+    margin: 0;
+    font: 42px/34px 'cartogothic_stdbold', Helvetica, sans-serif;
+    color: #333;
+}

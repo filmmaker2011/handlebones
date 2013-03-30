@@ -26,7 +26,7 @@
     body {
         margin:0;
         font-size: 9px;
-        font-family: cartogothic_stdregular', Helvetica, sans-serif;
+        font-family: 'cartogothic_stdregular', Helvetica, sans-serif;
         color: #333;
         background-color: #BBB;
     }
@@ -135,9 +135,12 @@
         padding: 2px 0;
         font-size: 16px;
         text-indent: 40px;
+        background: url(../img/icon-search.png) 10px 10px no-repeat;
+    }
+    .top-nav .search-box,
+    .qty-price .item-qty {
         border-color: #CCC #CCC #CCC #EEE;
         border-width: 1px;
-        background: url(../img/icon-search.png) 10px 10px no-repeat;
         box-shadow: inset 0 1px 3px 1px #BBB;
     }
     ul.top-nav {
@@ -166,19 +169,19 @@
     }
     .top-nav .create,
     .top-nav .signin,
-    .top-nav .open-cart {
+    .top-nav .cart {
         display: inline-block;
         font-size: 15px;
         color: #666;
     }
     .top-nav .button:hover .create,
     .top-nav .button:hover .signin,
-    .top-nav .button:hover .open-cart {
+    .top-nav .button:hover .cart {
         color: #f6772d;
     }
     .top-nav .create:before,
     .top-nav .signin:before,
-    .top-nav .open-cart:before {
+    .top-nav .cart:before {
         display: inline-block;
         content: "";
         width: 18px;
@@ -188,7 +191,7 @@
     .top-nav .signin:before {
         background: url(../img/sprite-icons.png) 0 -164px no-repeat;
     }
-    .top-nav .open-cart:before {
+    .top-nav .cart:before {
         background: url(../img/sprite-icons.png) 0 -121px no-repeat;
     }
     .top-nav .txt {
@@ -390,7 +393,8 @@
         margin-left: 0;
     }
     .filters select,
-    .buying-options select {
+    .buying-options select,
+    .sort-cart select {
         width: 100%;
         margin-top: 3px;
         padding-left: 2px;
