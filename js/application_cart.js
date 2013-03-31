@@ -260,7 +260,8 @@ $(function() {
         product,
         productRating,
 
-        backdrop = '<div class="panel-backdrop"></div>';
+        backdrop = '<div class="panel-backdrop"></div>',
+        cartBackdrop = '<div class="cart-backdrop"></div>';
 
     /* Click on product link: show panel and panel backdrop */
     $('#search-results').on('click', '.url', function(e){
@@ -303,26 +304,26 @@ $(function() {
     });
     /* Click close button:  panel and backdrop disappear */
     $('.close-panel').click(function(){
-        $("#age-selector").remove();
         $('.panel-backdrop, .panel').fadeOut('slow', function(){
             $('.panel-backdrop').detach();
+            $("#age-selector").remove();
+            tvIntroView.remove();
+            tvDetailsView.remove();
+            reviewsView.remove();
         });
-        tvIntroView.remove();
-        tvDetailsView.remove();
-        reviewsView.remove();
     });
 
     /* Click on top-nav cart link: backdrop and cart opens */
     $('#nav-buttons').on('click', '.open-cart', function(e){
         e.preventDefault();
-        $('.page-content').prepend(backdrop);
-        $('.panel-backdrop, .cart-panel').fadeIn('slow');
+        $('.page-content').prepend(cartBackdrop);
+        $('.cart-backdrop, .cart-panel').fadeIn('slow');
     });
 
-    /* Click close-cart button:  cart and backdrop disappear */
+    /* Click close-cart button: cart and backdrop disappear */
     $('.close-cart').click(function(){
-        $('.panel-backdrop, .cart-panel').fadeOut('slow', function(){
-            $('.panel-backdrop').detach();
+        $('.cart-backdrop, .cart-panel').fadeOut('slow', function(){
+            $('.cart-backdrop').detach();
         });
         /* Remove cart views */
     });

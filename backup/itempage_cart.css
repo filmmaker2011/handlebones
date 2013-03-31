@@ -18,24 +18,24 @@
     .chevron:after {
         content: "\203A";
         display: inline-block;
-        width: 0.85em;
-        height: 0.85em;
-        margin-left: 0.2em;
-        font-size: 1.24em;
-        line-height: 0.75em;
+        width: 0.75em;
+        height: 0.75em;
+        margin-left: 0.5em;
+        font-size: 1.2em;
+        line-height: 0.65em;
         border-radius: 0.6em;
         color: #FFF;
         background-color: rgba(0, 0, 0, 0.1);
         text-shadow: 0 0.2em 0.2em rgba(64, 64, 64, 0.5);
         -moz-box-shadow:
             0px 0px 0px rgba(000,000,000,0),
-            inset 0px 0.1em 0.2em rgba(0, 0, 0, 0.3);
+            inset 0px 0.1em 0.2em rgba(0, 0, 0, 0.4);
         -webkit-box-shadow:
             0px 0px 0px rgba(000,000,000,0),
-            inset 0px 0.1em 0.2em rgba(0, 0, 0, 0.3);
+            inset 0px 0.1em 0.2em rgba(0, 0, 0, 0.4);
         box-shadow:
             0px 0px 0px rgba(000,000,000,0),
-            inset 0px 0.1em 0.2em rgba(0, 0, 0, 0.3);
+            inset 0px 0.1em 0.2em rgba(0, 0, 0, 0.4);
     }
 /*    .chevron:after {
         content: "\203A";
@@ -525,17 +525,15 @@
     }
 
 /*** Product Panel ***/
-    .panel,
-    .panel-backdrop,
     .cart-panel,
-    .cart-backdrop {
+    .panel,
+    .panel-backdrop {
         position: absolute;
         top: 0;
         right: 0;
         display: none;
     }
-    .panel-backdrop,
-    .cart-backdrop {
+    .panel-backdrop {
         z-index: 100;
         bottom: 0;
         left: 0;
@@ -546,25 +544,23 @@
         z-index: 200;
         width: 750px;
     }
-    .cart-backdrop{
-        z-index: 300;
-    }
-    .cart-panel {
-        z-index: 400;
-        width: 750px;
-    }
     .close-cart,
     .close-panel {
         float:right;
         width: 28px;
         height: 28px;
+        margin: 25px 4% 0 0;
         cursor: pointer;
         background: url(../img/sprite-buttons.png) 0 -220px no-repeat;
     }
 
 /*** Cart Panel ***/
+    .cart-panel {
+        z-index: 300;
+        width: 750px;
+    }
     .cart-panel header {
-        padding: 30px 30px 40px;
+        padding: 30px 10px 40px 30px;
     }
     .cart-panel h2 {
         display: inline-block;
@@ -576,9 +572,9 @@
     .sort-cart {
         display: inline-block;
         width: 112px;
+        height: 38px;
         margin-left: 20px;
         font-size: 19px;
-        line-height: 24px;
     }
     /* Cart items */
     .item-group h3 {
