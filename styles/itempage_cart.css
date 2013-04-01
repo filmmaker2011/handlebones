@@ -80,6 +80,9 @@
     input, button, select, textarea {
         font-family: 'cartogothic_stdregular', Helvetica, sans-serif;
     }
+    button {
+        cursor: pointer;
+    }
 
 /*** Walmart Logo ***/
     .wm-logo {
@@ -188,6 +191,7 @@
         height: 12px;
         margin-left: 12px;
         border-radius: 9px;
+        cursor: pointer;
         background-color: rgb(176, 176, 176);
     }
     .carousel-indicators .active {
@@ -364,7 +368,6 @@
         padding: 6px 1% 6px 2%;
         font-size: 15px;
         letter-spacing: 0;
-        cursor: pointer;
         border: 1px solid #ddd;
         border-radius: 17px;
         color: #777;
@@ -532,30 +535,25 @@
         position: absolute;
         top: 0;
         right: 0;
-        display: none;
     }
     .panel-backdrop,
     .cart-backdrop {
+        display: none;
         z-index: 100;
         bottom: 0;
         left: 0;
-        background-color: #000;
-        opacity: 0.25;
-    }
-    .panel {
-        z-index: 200;
-        width: 750px;
+        background-color: rgba(0, 0, 0, 0.25);
     }
     .cart-backdrop{
-        z-index: 300;
+        z-index: 200;
     }
+    .panel,
     .cart-panel {
-        z-index: 400;
         width: 750px;
     }
     .close-cart,
     .close-panel {
-        float:right;
+        float: right;
         width: 28px;
         height: 28px;
         cursor: pointer;
@@ -607,6 +605,8 @@
     }
     .cart-item .name {
         width: 280px;
+        height: 45px;
+        overflow: hidden;
         margin: 5px 0 0;
         font-size: 18px;
     }
@@ -634,6 +634,7 @@
     }
     .item-action,
     .item-action .save-item,
+    .item-action .move-item,
     .item-action .remove-item,
     .qty-price,
     .qty-price .pick-qty,
@@ -642,11 +643,13 @@
     }
     /* Spacing inside buttons and select */
     .item-action .save-item,
+    .item-action .move-item,
     .item-action .remove-item {
         font-size: 16px;
         padding: 6px 15px;
     }
-    .item-action .save-item {
+    .item-action .save-item,
+    .item-action .move-item {
         margin-right: 10px;
         padding: 6px 25px;
     }

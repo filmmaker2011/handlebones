@@ -24,7 +24,7 @@
       <header class="page-header clearfix">
           <a class="top-nav wm-logo" href="http://www.walmart.com">Walmart</a>
           <form class="top-nav" action="/">
-              <input class='search-box' type="text" name="search" placeholder="Search" title="Search Walmart.com">
+              <input type="text" class='search-box' name="search" placeholder="Search" title="Search Walmart.com">
           </form>
 
           <ul class="top-nav" id="nav-buttons">
@@ -34,7 +34,7 @@
           </ul>
       </header>
 
-      <div class="page-content">
+      <div class="page-content" id="page-content">
           <nav class="bread-crumbs">
               <ul class="clearfix">
                   <li><a class="link home" href="" title="Home">&nbsp;</a></li>
@@ -97,7 +97,7 @@
                   <p class="result-msg">
                       <span class="matches" id="matches">8 MATCHES</span>FOR TELEVISIONS FITTING THAT CRITERIA
                   </p>
-                  <button class="clear-filters" id="clear-filters" type="reset" name="reset">Clear Filters</button>
+                  <button type="reset" class="clear-filters" id="clear-filters" name="reset">Clear Filters</button>
               </form>
           </section>
 
@@ -105,197 +105,105 @@
           </section>
 
           <!-- Item Page Panel -->
-          <div class="page panel">
-              <section class="prod-intro" id="prod-intro">
-                  <a class="close-panel" href="#"></a>
+          <div class="panel-backdrop">
+              <div class="page panel">
+                  <section class="prod-intro" id="prod-intro">
+                      <a class="close-panel" href="#"></a>
 
-              </section>
+                  </section>
 
-              <section class="prod-similar" id="prod-similar">
-                  <header class="clearfix">
-                      <h2>People Who Viewed This Item Also Viewed</h2>
-                      <button class="see-more chevron">See More </button>
-                  </header>
-              </section>
-
-              <section class="prod-details" id="prod-details"></section>
-
-              <section id="ratings-reviews" class="ratings-reviews">
-                  <div class="controls">
+                  <section class="prod-similar" id="prod-similar">
                       <header class="clearfix">
-                          <h2 class="rr-heading">Ratings &amp; Reviews <a id="total-reviews" href="#"></a></h2>
-                          <button class="write-review chevron" id="write-review" type="submit" name="write-review">Write a Review </button>
+                          <h2>People Who Viewed This Item Also Viewed</h2>
+                          <button type="button" class="see-more chevron">See More </button>
                       </header>
-                      <form class="filters clearfix" action="/">
-                          <label>
-                              <select id="gender">
-                                  <option value="0">Men &amp; Women</option>
-                                  <option value="1">Men</option>
-                                  <option value="2">Women</option>
-                              </select>
-                          </label>
+                  </section>
 
-                          <label id="age-label"></label>
+                  <section class="prod-details" id="prod-details"></section>
 
-                          <label>
-                              <select id="rating">
-                                  <option>All Ratings</option>
-                                  <option>5 star</option>
-                                  <option>4 star</option>
-                                  <option>3 star</option>
-                                  <option>2 star</option>
-                                  <option>1 star</option>
-                              </select>
-                          </label>
+                  <section id="ratings-reviews" class="ratings-reviews">
+                      <div class="controls">
+                          <header class="clearfix">
+                              <h2 class="rr-heading">Ratings &amp; Reviews <a id="total-reviews" href="#"></a></h2>
+                              <button type="button" class="write-review chevron" id="write-review" name="write-review">Write a Review </button>
+                          </header>
+                          <form class="filters clearfix" action="/">
+                              <label>
+                                  <select id="gender">
+                                      <option value="0">Men &amp; Women</option>
+                                      <option value="1">Men</option>
+                                      <option value="2">Women</option>
+                                  </select>
+                              </label>
 
-                          <label>
-                              <select id="sort">
-                                  <option>Sort by...</option>
-                                  <option value="helpful">Most Helpful</option>
-                                  <option value="newest">Newest to Oldest</option>
-                                  <option value="oldest">Oldest to Newest</option>
-                                  <option value="high">Rating High to Low</option>
-                                  <option value="low">Rating Low to High</option>
-                              </select>
-                          </label>
-                      </form>
-                  </div>
+                              <label id="age-label"></label>
 
-                  <div id="review-carousel" class="review-carousel carousel slide">
-                      <hr class="filters">
-                      <!-- Carousel nav -->
-                      <a class="carousel-control left" href="#review-carousel" data-slide="prev"></a>
-                      <a class="carousel-control right" href="#review-carousel" data-slide="next"></a>
-                  </div>
-              </section>
+                              <label>
+                                  <select id="rating">
+                                      <option>All Ratings</option>
+                                      <option>5 star</option>
+                                      <option>4 star</option>
+                                      <option>3 star</option>
+                                      <option>2 star</option>
+                                      <option>1 star</option>
+                                  </select>
+                              </label>
+
+                              <label>
+                                  <select id="sort">
+                                      <option>Sort by...</option>
+                                      <option value="helpful">Most Helpful</option>
+                                      <option value="newest">Newest to Oldest</option>
+                                      <option value="oldest">Oldest to Newest</option>
+                                      <option value="high">Rating High to Low</option>
+                                      <option value="low">Rating Low to High</option>
+                                  </select>
+                              </label>
+                          </form>
+                      </div>
+
+                      <div id="review-carousel" class="review-carousel carousel slide">
+                          <hr class="filters">
+                          <!-- Carousel nav -->
+                          <a class="carousel-control left" href="#review-carousel" data-slide="prev"></a>
+                          <a class="carousel-control right" href="#review-carousel" data-slide="next"></a>
+                      </div>
+                  </section>
+              </div>
           </div>
 
           <!-- Cart Panel -->
-          <div class="cart-panel page">
-              <header>
-                  <a class="close-cart" href="#"></a>
-                  <h2><span>2</span> Items in Your Cart</h2>
-                  <form class="sort-cart" action="/">
-                      <select>
-                          <option>Sort</option>
-                          <option value="name">Name</option>
-                          <option value="price">Price</option>
-                      </select>
-                  </form>
-              </header>
+          <div class="cart-backdrop">
+              <div class="cart-panel page">
+                  <header>
+                      <a class="close-cart" href="#"></a>
+                      <h2><span>?</span> Items in Your Cart</h2>
+                      <form class="sort-cart" action="/">
+                          <select>
+                              <option>Sort</option>
+                              <option value="name">Name</option>
+                              <option value="price">Price</option>
+                          </select>
+                      </form>
+                  </header>
 
-              <section class="item-group">
-                <h3><img class="triangle" src="" alt=""><a href="/"><span class="pointer"></span><span id="order-count">1 Item</span> for Purchase</a></h3>
-                <div id="order-items">
+                  <section id="order" class="item-group">
+                    <h3><img class="triangle" src="" alt=""><a href="/"><span class="item-count">0 Items</span> for Purchase</a></h3>
 
-                    <article class="cart-item">
-                        <div class="clearfix">
-                            <img class="image" src="http://i.walmartimages.com/i/p/00/85/57/88/00/0085578800222_150X150.jpg" width="90">
-                            <p class="name"><a href="#">Element 19" Class LCD 720p 60Hz HDTV, ELCFT194, Refurbished&nbsp;&nbsp;</a></p>
-                            <p class="status"><span class="in-stock">IN STOCK</span></p>
-                        </div>
+                  </section>
 
-                        <div class="clearfix">
-                            <form class="item-action" action="/">
-                                <button class="save-item btn btn-primary">Save for Later</button>
-                                <button class="remove-item btn">Remove</button>
-                            </form>
+                  <section id="saved" class="item-group">
+                    <h3><img class="triangle" src="" alt=""><a href="/"><span class="item-count">0 Saved Items</span></a></h3>
 
-                            <div class="qty-price">
-                                <label class="pick-qty">Quantity<br>
-                                    <input class="item-qty" name="item-qty" type="text" value="1">
-                                </label>
-                                <div class="price-block">
-                                    <span class="list-price">List Price $499.98</span>
-                                    <p class="price">239.98</p>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
+                  </section>
 
-                    <article class="cart-item">
-                        <div class="clearfix">
-                            <img class="image" src="http://i.walmartimages.com/i/p/00/85/57/88/00/0085578800222_150X150.jpg" width="90">
-                            <p class="name"><a href="#">Element 19" Class LCD 720p 60Hz HDTV, ELCFT194, Refurbished&nbsp;&nbsp;</a></p>
-                            <p class="status"><span class="out-stock">OUT OF STOCK</span></p>
-                        </div>
-
-                        <div class="clearfix">
-                            <form class="item-action" action="/">
-                           <!--     <button class="save-item btn btn-primary">Save for Later</button>   -->
-                                <button class="remove-item btn">Remove</button>
-                            </form>
-
-                            <div class="qty-price">
-                                <label class="pick-qty">Quantity<br>
-                                    <input class="item-qty" name="item-qty" type="text" value="1">
-                                </label>
-                                <div class="price-block">
-                                    <span class="list-price">List Price $499.98</span>
-                                    <p class="price">239.98</p>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-              </section>
-
-              <section class="item-group">
-                <h3><img class="triangle" src="" alt=""><a href="/"><span class="pointer"></span><span id="saved-count">1 Saved Item</span></a></h3>
-                <div id="saved-items">
-
-                    <article class="cart-item">
-                        <div class="clearfix">
-                            <img class="image" src="http://i.walmartimages.com/i/p/00/85/57/88/00/0085578800222_150X150.jpg" width="90">
-                            <p class="name"><a href="#">Element 19" Class LCD 720p 60Hz HDTV, ELCFT194, Refurbished&nbsp;&nbsp;</a></p>
-                            <p class="status"><span class="in-stock">IN STOCK</span></p>
-                        </div>
-
-                        <div class="clearfix">
-                            <form class="item-action" action="/">
-                                <button class="save-item btn btn-primary">Move to Cart</button>
-                                <button class="remove-item btn">Remove</button>
-                            </form>
-
-                            <div class="qty-price">
-                                <div class="price-block">
-                                    <span class="list-price">List Price $499.98</span>
-                                    <p class="price">239.98</p>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="cart-item">
-                        <div class="clearfix">
-                            <img class="image" src="http://i.walmartimages.com/i/p/00/85/57/88/00/0085578800222_150X150.jpg" width="90">
-                            <p class="name"><a href="#">Element 19" Class LCD 720p 60Hz HDTV, ELCFT194, Refurbished&nbsp;&nbsp;</a></p>
-                            <p class="status"><span class="out-stock">OUT OF STOCK</span></p>
-                        </div>
-
-                        <div class="clearfix">
-                            <form class="item-action" action="/">
-                            <!--    <button class="save-item btn btn-primary">Move to Cart</button> -->
-                                <button class="remove-item btn">Remove</button>
-                            </form>
-
-                            <div class="qty-price">
-                                <div class="price-block">
-                                    <span class="list-price">List Price $499.98</span>
-                                    <p class="price">239.98</p>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-              </section>
-
-              <footer class="clearfix">
-                  <div class="total-action">
-                      <p class="sub-total">Subtotal <b class="bold">$239.98</b></p>
-                      <button id="checkout-btn" class="btn btn-warning checkout-btn chevron">Checkout</button>
-                  </div>
-              </footer>
+                  <footer class="clearfix">
+                      <div class="total-action">
+                          <p class="sub-total">Subtotal <b class="bold">$239.98</b></p>
+                          <button type="button"  id="checkout-btn" class="btn btn-warning checkout-btn chevron">Checkout</button>
+                      </div>
+                  </footer>
+              </div>
           </div>
       </div>
 
@@ -303,8 +211,8 @@
           <hr class="footer">
           <form class="mailing-list" action="/">
               <span class="wm-logo">Walmart</span>
-              <input class="email" type="email" name="email" placeholder="Sign up for our Mailing List" title="Sign up for our Mailing List">
-              <button class="sign-up" id="sign-up" type="submit" name="sign-up">Sign Up</button>
+              <input type="email" class="email" name="email" placeholder="Sign up for our Mailing List" title="Sign up for our Mailing List">
+              <button type="button" class="sign-up" id="sign-up" name="sign-up">Sign Up</button>
           </form>
 
           <div class="clearfix">

@@ -12,8 +12,6 @@ window.Application = {};
         initialize: function() {
             this.collection.originalModels = _.clone(this.collection.models);
             this.render();
-           // $("#age-label").append(this.createSelect());
-           // this.on("change:filterAge", this.filterByAge, this);
             this.collection.on('reset', this.render, this);
         },
 
@@ -61,6 +59,7 @@ window.Application = {};
             prodResponse.customerRatingUrl = response[0].customerRatingUrl;
             prodResponse.itemAttributes = response[0].itemAttributes;
             prodResponse.sellers = response[0].sellers;
+            prodResponse.imagePostCardURL = response[0].imagePostCardURL;
             return prodResponse;
         }
     });
@@ -220,6 +219,48 @@ window.Application = {};
     });
 
 /*** Cart Classes ***/
+    Application.CartItemModel = Application.Product.extend();
+
+    /* Cart Item Collection */
+    Application.CartItems = Backbone.Collection.extend({
+        model: Application.CartItemModel
+    });
+
+    Application.CartItemModelView = Backbone.View.extend({
+        render: function() {
+            var context = this.model ? this.model.attributes : {},
+                output = this.options.template(context);
+            this.$el.html(output);
+            return this;
+        }
+    });
+
+    /* Cart Item Collection view */
+    Application.CartItemsView = Backbone.View.extend({
+        initialize: function() {
+            this.render();
+            this.collection.on('reset', this.render, this);
+            this.collection.on('add', this.render, this);
+        },
+
+        addView: function(model) {
+            var modelView = new Application.CartItemModelView({
+                model: model,
+                template: Handlebars.templates['cart_item'],
+                tagName: 'article',
+                className: 'cart-item'
+            });
+            this.$el.append(modelView.render().el);
+            return this;
+        },
+
+        render: function(){
+            this.$el.html('');
+            this.collection.each(this.addView, this);
+    //TBD        this.$el.find('item-count').text(this.collection.length);
+            return this;
+        }
+    });
 
 
 /*** Code to run at "DOM ready" ***/
@@ -248,22 +289,26 @@ $(function() {
     });
 
     /*** Product Panel ***/
-    var reviewsControlsView,
-        reviewsView,
-        reviews = new Application.Reviews(),
-        loadReviews = reviews.fetch(),
-
+    var tv,
         tvIntroView,
         tvDetailsView,
-        tv,
         loadTV,
         product,
         productRating,
 
-        backdrop = '<div class="panel-backdrop"></div>',
-        cartBackdrop = '<div class="cart-backdrop"></div>';
+        reviewsView,
+        reviews,
+        loadReviews;
 
-    /* Click on product link: show panel and panel backdrop */
+    /*** Cart ***/
+    var addedItem,
+        cartItems  = new Application.CartItems(),
+        savedItems = new Application.CartItems(),
+        cartItemsView,
+        savedItemsView;
+
+
+    /* On TVFinder page, click on a product link: show product panel and panel backdrop */
     $('#search-results').on('click', '.url', function(e){
         e.preventDefault();
         product = $(e.currentTarget).attr('href');      // URL of the product link
@@ -286,6 +331,8 @@ $(function() {
             $('#prod-carousel').carousel({ interval: false });
             $('#prod-carousel .item:first-child, #prod-carousel .carousel-indicators li:first-child').addClass('active');
 
+            reviews = new Application.Reviews();
+            loadReviews = reviews.fetch();
             loadReviews.done(function(){
                 reviewsView = new Application.ReviewsView({ collection: reviews, className: 'carousel-inner' });
                 $('#review-carousel').append(reviewsView.el);
@@ -297,15 +344,29 @@ $(function() {
                     $('#review-carousel .item:first-child').addClass('active');
                 });
             });
-            $('.page-content').prepend(backdrop);
-            $('.panel-backdrop, .panel').fadeIn('slow');
+            $('.panel-backdrop').fadeIn('slow');
         });
-
     });
-    /* Click close button:  panel and backdrop disappear */
-    $('.close-panel').click(function(){
-        $('.panel-backdrop, .panel').fadeOut('slow', function(){
-            $('.panel-backdrop').detach();
+
+    /* On Product Panel, click 'Add to Cart': add this product to cart */
+    $('#page-content').on('click', '#add-to-cart', function(){
+        console.log('# cartItems before adding: ', cartItems.length);
+        addedItem = tv.clone();
+        cartItems.add(addedItem);
+        console.log('# cartItems after adding: ', cartItems.length);
+        console.log('cartItemsView lives?', cartItemsView);
+        if (!cartItemsView) {
+            cartItemsView = new Application.CartItemsView({ collection: cartItems, className: 'order-items' });
+            //savedItemsView = new Application.CartItemsView({ collection: savedItems, className: 'saved-items' });
+            $('#order').append(cartItemsView.el);
+            //$('#saved').append(savedItemsView.el);
+        }
+    });
+
+    /* On Product Panel, click close link: panel and backdrop disappear */
+    $('.close-panel').click(function(e){
+        e.preventDefault();
+        $('.panel-backdrop').fadeOut('slow', function(){
             $("#age-selector").remove();
             tvIntroView.remove();
             tvDetailsView.remove();
@@ -313,19 +374,25 @@ $(function() {
         });
     });
 
-    /* Click on top-nav cart link: backdrop and cart opens */
+    /* On Top Nav, click cart link: backdrop and cart opens */
     $('#nav-buttons').on('click', '.open-cart', function(e){
         e.preventDefault();
-        $('.page-content').prepend(cartBackdrop);
-        $('.cart-backdrop, .cart-panel').fadeIn('slow');
+        $('.cart-backdrop').fadeIn('slow');
     });
 
-    /* Click close-cart button: cart and backdrop disappear */
-    $('.close-cart').click(function(){
-        $('.cart-backdrop, .cart-panel').fadeOut('slow', function(){
-            $('.cart-backdrop').detach();
+    /* On Cart, click close-cart link: cart and backdrop disappear */
+    $('.close-cart').click(function(e){
+        e.preventDefault();
+        $('.cart-backdrop').fadeOut('slow', function(){
+            if (cartItemsView){
+                //cartItemsView.remove();
+                //savedItemsView.remove();
+                console.log('You have items...Yay!')
+            }
+            else {
+                console.log('No items on cart yet');
+            }
         });
-        /* Remove cart views */
     });
 
     $('#sort').on('change', function(){

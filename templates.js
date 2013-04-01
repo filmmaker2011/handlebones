@@ -1,5 +1,36 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+templates['cart-empty'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+helpers = helpers || Handlebars.helpers; data = data || {};
+  
+
+
+  return "<p class=\"cart-empty\">Your cart is empty.</p>";
+  });
+templates['cart_item'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+helpers = helpers || Handlebars.helpers; data = data || {};
+  var buffer = "", stack1, stack2, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"clearfix\">\n    <img class=\"image\" src=\"";
+  if (stack1 = helpers.imagePostCardURL) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.imagePostCardURL; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" width=\"90\">\n    <p class=\"name\"><a href=\"#\">"
+    + escapeExpression(((stack1 = ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.itemName)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</a></p>\n    <p class=\"status\"><span class=\"in-stock\">IN STOCK</span></p>\n</div>\n\n<div class=\"clearfix\">\n    <form class=\"item-action\" action=\"/\">\n        <button type=\"button\" class=\"save-item btn btn-primary\">Save for Later</button>\n        <button type=\"button\" class=\"remove-item btn\">Remove</button>\n    </form>\n\n    <div class=\"qty-price\">\n        <label class=\"pick-qty\">Quantity<br>\n            <input class=\"item-qty\" name=\"item-qty\" type=\"text\" value=\"";
+  if (stack2 = helpers.itemQty) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
+  else { stack2 = depth0.itemQty; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  buffer += escapeExpression(stack2)
+    + "\">\n        </label>\n        <div class=\"price-block\">\n            <span class=\"list-price\">List Price "
+    + escapeExpression(((stack1 = ((stack1 = ((stack1 = depth0.sellers),stack1 == null || stack1 === false ? stack1 : stack1[0])),stack1 == null || stack1 === false ? stack1 : stack1.baseSuggPrice)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</span>\n            <p class=\"price\">"
+    + escapeExpression(((stack1 = ((stack1 = ((stack1 = depth0.sellers),stack1 == null || stack1 === false ? stack1 : stack1[0])),stack1 == null || stack1 === false ? stack1 : stack1.currentItemPrice)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</p>\n        </div>\n    </div>\n</div>";
+  return buffer;
+  });
 templates['index'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [2,'>= 1.0.0-rc.3'];
 helpers = helpers || Handlebars.helpers; data = data || {};
@@ -87,7 +118,7 @@ function program3(depth0,data) {
   return buffer;
   }
 
-  buffer += "    <header class=\"clearfix\">\n        <h2>Product Details</h2>\n        <button class=\"have-question chevron\">Have a Question? </button>\n    </header>\n\n        <div class=\"tabbable tabs-left\">\n            <ul class=\"nav nav-tabs\">\n                <li class=\"active\"><a href=\"#tab1\" data-toggle=\"tab\">Full Description</a></li>\n                <li><a href=\"#tab2\" data-toggle=\"tab\">Specifications</a></li>\n                <li><a href=\"#tab3\" data-toggle=\"tab\">Warranty</a></li>\n                <li><a href=\"#tab4\" data-toggle=\"tab\">Financing</a></li>\n                <li><a href=\"#tab5\" data-toggle=\"tab\">Gifting</a></li>\n            </ul>\n\n            <div class=\"tab-content\">\n\n                "
+  buffer += "    <header class=\"clearfix\">\n        <h2>Product Details</h2>\n        <button type=\"button\" class=\"have-question chevron\">Have a Question? </button>\n    </header>\n\n        <div class=\"tabbable tabs-left\">\n            <ul class=\"nav nav-tabs\">\n                <li class=\"active\"><a href=\"#tab1\" data-toggle=\"tab\">Full Description</a></li>\n                <li><a href=\"#tab2\" data-toggle=\"tab\">Specifications</a></li>\n                <li><a href=\"#tab3\" data-toggle=\"tab\">Warranty</a></li>\n                <li><a href=\"#tab4\" data-toggle=\"tab\">Financing</a></li>\n                <li><a href=\"#tab5\" data-toggle=\"tab\">Gifting</a></li>\n            </ul>\n\n            <div class=\"tab-content\">\n\n                "
     + "\n                <section class=\"tab-pane active short-desc\" id=\"tab1\">\n                    ";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.cleanup),stack1 ? stack1.call(depth0, ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.shortDescription), options) : helperMissing.call(depth0, "cleanup", ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.shortDescription), options)))
@@ -157,7 +188,7 @@ function program3(depth0,data) {
   buffer += "\n        </ol>\n        <!-- Carousel nav -->\n        <a class=\"carousel-control left\" href=\"#prod-carousel\" data-slide=\"prev\"></a>\n        <a class=\"carousel-control right\" href=\"#prod-carousel\" data-slide=\"next\"></a>\n    </div>\n\n    <h2>About</h2>\n    <div class=\"clearfix\">\n        <p class=\"short-desc\">";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.cleanup),stack1 ? stack1.call(depth0, ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.shortDescription), options) : helperMissing.call(depth0, "cleanup", ((stack1 = depth0.genericContent),stack1 == null || stack1 === false ? stack1 : stack1.shortDescription), options)))
-    + "</p>\n        <div class=\"buying-options\">\n            <form class=\"clearfix\" action=\"/\">\n                <label>\n                    <select class=\"qty\" id=\"qty\">\n                        <option>Qty</option>\n                        <option>1</option>\n                        <option>2</option>\n                        <option>3</option>\n                        <option>4</option>\n                        <option>5</option>\n                    </select>\n                </label>\n                <button class=\"add-to-cart\" id=\"add-to-cart\">Add to Cart</button>\n            </form>\n\n            <ul>\n                <li class=\"links find-link\"><a href=\"#\">Find This Product Locally</a></li>\n                <li class=\"links arrival-link\"><a href=\"#\">Calculate Arrival Date</a></li>\n                <li class=\"links share-link\"><a href=\"#\">Share With a Friend</a></li>\n            </ul>\n        </div>\n    </div>\n\n";
+    + "</p>\n        <div class=\"buying-options\">\n            <form class=\"clearfix\" action=\"/\">\n                <label>\n                    <select class=\"qty\" id=\"qty\">\n                        <option>Qty</option>\n                        <option>1</option>\n                        <option>2</option>\n                        <option>3</option>\n                        <option>4</option>\n                        <option>5</option>\n                    </select>\n                </label>\n                <button type=\"button\" class=\"add-to-cart\" id=\"add-to-cart\">Add to Cart</button>\n            </form>\n\n            <ul>\n                <li class=\"links find-link\"><a href=\"#\">Find This Product Locally</a></li>\n                <li class=\"links arrival-link\"><a href=\"#\">Calculate Arrival Date</a></li>\n                <li class=\"links share-link\"><a href=\"#\">Share With a Friend</a></li>\n            </ul>\n        </div>\n    </div>\n\n";
   return buffer;
   });
 templates['prod_similar'] = template(function (Handlebars,depth0,helpers,partials,data) {
@@ -166,7 +197,7 @@ helpers = helpers || Handlebars.helpers; data = data || {};
   
 
 
-  return "<header class=\"clearfix\">\n    <h2>People Who Viewed This Item Also Viewed</h2>\n    <button class=\"see-more\">See More</button>\n</header>";
+  return "<header class=\"clearfix\">\n    <h2>People Who Viewed This Item Also Viewed</h2>\n    <button type=\"button\" class=\"see-more\">See More</button>\n</header>";
   });
 templates['reviews'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [2,'>= 1.0.0-rc.3'];

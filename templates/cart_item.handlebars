@@ -1,0 +1,22 @@
+<div class="clearfix">
+    <img class="image" src="{{imagePostCardURL}}" width="90">
+    <p class="name"><a href="#">{{genericContent.itemName}}</a></p>
+    <p class="status"><span class="in-stock">IN STOCK</span></p>
+</div>
+
+<div class="clearfix">
+    <form class="item-action" action="/">
+        <button type="button" class="save-item btn btn-primary">Save for Later</button>
+        <button type="button" class="remove-item btn">Remove</button>
+    </form>
+
+    <div class="qty-price">
+        <label class="pick-qty">Quantity<br>
+            <input class="item-qty" name="item-qty" type="text" value="{{itemQty}}">
+        </label>
+        <div class="price-block">
+            <span class="list-price">List Price {{sellers.0.baseSuggPrice}}</span>
+            <p class="price">{{sellers.0.currentItemPrice}}</p>
+        </div>
+    </div>
+</div>
