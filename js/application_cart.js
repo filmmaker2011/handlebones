@@ -60,6 +60,7 @@ window.Application = {};
             prodResponse.itemAttributes = response[0].itemAttributes;
             prodResponse.sellers = response[0].sellers;
             prodResponse.imagePostCardURL = response[0].imagePostCardURL;
+            prodResponse.cartItemQty = 0;
             return prodResponse;
         }
     });
@@ -219,7 +220,8 @@ window.Application = {};
     });
 
 /*** Cart Classes ***/
-    Application.CartItemModel = Application.Product.extend();
+    Application.CartItemModel = Application.Product.extend({
+    });
 
     /* Cart Item Collection */
     Application.CartItems = Backbone.Collection.extend({
@@ -241,6 +243,7 @@ window.Application = {};
             this.render();
             this.collection.on('reset', this.render, this);
             this.collection.on('add', this.render, this);
+            this.collection.on('remove', this.render, this);
         },
 
         addView: function(model) {
@@ -257,11 +260,26 @@ window.Application = {};
         render: function(){
             this.$el.html('');
             this.collection.each(this.addView, this);
-    //TBD        this.$el.find('item-count').text(this.collection.length);
+            this.$el.prepend('<h3><img class="triangle" src="" alt=""><a href="/"><span class="item-count">' + this.sumItemQty() + ' Items</span> for Purchase</a></h3>');
+            console.log('subtotal = $', this.subTotal());
             return this;
+        },
+        sumItemQty: function(){
+            return _.reduce(this.collection.pluck("cartItemQty"), function(memo, num){ return memo + parseInt(num); }, 0);
+        },
+        subTotal: function(){
+            return _.reduce(this.collection.pluck("sellers.0.currentItemPrice"), function(memo, num){ return memo + parseInt(num); }, 0);
         }
     });
 
+    Application.SavedItemsView = Application.CartItemsView.extend({
+       render: function(){
+           this.$el.html('');
+           this.collection.each(this.addView, this);
+           this.$el.prepend('<h3><img class="triangle" src="" alt=""><a href="/"><span class="item-count">' + this.sumItemQty() + ' Saved Items</span></a></h3>');
+           return this;
+       }
+    });
 
 /*** Code to run at "DOM ready" ***/
 $(function() {
@@ -295,14 +313,14 @@ $(function() {
         loadTV,
         product,
         productRating,
+        qtyToAdd = 0,
 
         reviewsView,
         reviews,
         loadReviews;
 
     /*** Cart ***/
-    var addedItem,
-        cartItems  = new Application.CartItems(),
+    var cartItems  = new Application.CartItems(),
         savedItems = new Application.CartItems(),
         cartItemsView,
         savedItemsView;
@@ -348,37 +366,101 @@ $(function() {
         });
     });
 
-    /* On Product Panel, click 'Add to Cart': add this product to cart */
-    $('#page-content').on('click', '#add-to-cart', function(){
-        console.log('# cartItems before adding: ', cartItems.length);
-        addedItem = tv.clone();
-        cartItems.add(addedItem);
-        console.log('# cartItems after adding: ', cartItems.length);
-        console.log('cartItemsView lives?', cartItemsView);
-        if (!cartItemsView) {
-            cartItemsView = new Application.CartItemsView({ collection: cartItems, className: 'order-items' });
-            //savedItemsView = new Application.CartItemsView({ collection: savedItems, className: 'saved-items' });
-            $('#order').append(cartItemsView.el);
-            //$('#saved').append(savedItemsView.el);
-        }
-    });
-
-    /* On Product Panel, click close link: panel and backdrop disappear */
-    $('.close-panel').click(function(e){
-        e.preventDefault();
-        $('.panel-backdrop').fadeOut('slow', function(){
-            $("#age-selector").remove();
-            tvIntroView.remove();
-            tvDetailsView.remove();
-            reviewsView.remove();
+    /* On Product Panel */
+        // select a quantity to be added to cart
+        $('#page-content').on('change', '.buying-options .qty', function(e){
+            qtyToAdd = e.currentTarget.value;
+            console.log('qtyToAdd = ', qtyToAdd);
         });
-    });
+
+        // click 'Add to Cart': add this product to cart */
+        $('#page-content').on('click', '#add-to-cart', function(){
+            console.log('# cartItems before adding: ', cartItems.length);
+            var thisItem = tv.clone();
+            thisItem.set({ cartItemQty: qtyToAdd});                // Use quantity the user selected on Product Panel
+            cartItems.unshift(thisItem);
+            cartItems.trigger('add');
+            console.log('# cartItems after adding: ', cartItems.length);
+            if (!cartItemsView) {
+                cartItemsView = new Application.CartItemsView({ collection: cartItems, className: 'order-items' });
+                $('#order').append(cartItemsView.el);
+            }
+        });
+
+        // click close link: panel and backdrop disappear
+        $('.close-panel').click(function(e){
+            e.preventDefault();
+            $('.panel-backdrop').fadeOut('slow', function(){
+                $("#age-selector").remove();
+                tvIntroView.remove();
+                tvDetailsView.remove();
+                reviewsView.remove();
+            });
+        });
 
     /* On Top Nav, click cart link: backdrop and cart opens */
     $('#nav-buttons').on('click', '.open-cart', function(e){
         e.preventDefault();
         $('.cart-backdrop').fadeIn('slow');
     });
+
+    /* On Cart */
+        // click a Cart item's Save for Later button
+       $('#page-content').on('click', '.save-item', function(e){
+            var temp_id = $(e.currentTarget).attr('data-id'),
+            thisItem = cartItems.get({ id: temp_id} );
+            console.log( 'Got the id: ', temp_id );
+            console.log( 'Found a match: ', thisItem );
+
+            console.log('# savedItems before saving: ', savedItems.length);
+            savedItems.unshift( thisItem );
+            savedItems.trigger('add');
+            console.log('# savedItems after adding: ', savedItems.length);
+
+            if (!savedItemsView) {
+                savedItemsView = new Application.SavedItemsView({ collection: savedItems, className: 'saved-items' });
+                $('#saved').append(savedItemsView.el);
+            }
+           console.log('# cartItems before removing: ', cartItems.length);
+           cartItems.remove(temp_id);
+           console.log('# cartItems after removing: ', cartItems.length);
+
+       });
+
+        // click a Saved item's Move to Cart button
+        $('#page-content').on('click', '.move-item', function(e){
+            var temp_id = $(e.currentTarget).attr('data-id'),
+                thisItem = savedItems.get({ id: temp_id} );
+            console.log( 'Got the id: ', temp_id );
+            console.log( 'Found a match: ', thisItem );
+
+            console.log('# cartItems before moving: ', cartItems.length);
+            cartItems.unshift( thisItem );
+            cartItems.trigger('add');
+            console.log('# cartItems after moving: ', cartItems.length);
+
+            console.log('# savedItems before removing: ', savedItems.length);
+            savedItems.remove(temp_id);
+            console.log('# savedItems after removing: ', savedItems.length);
+
+        });
+        // click a Cart item's Remove button
+        $('#page-content').on('click', '#order .remove-item', function(e){
+            var temp_id = $(e.currentTarget).attr('data-id'),
+                thisItem = cartItems.get({ id: temp_id} );
+            console.log('# cartItems before removing: ', cartItems.length);
+            cartItems.remove(temp_id);
+            console.log('# cartItems after removing: ', cartItems.length);
+        });
+
+        // click a Saved item's Remove button
+        $('#page-content').on('click', '#saved .remove-item', function(e){
+            var temp_id = $(e.currentTarget).attr('data-id'),
+                thisItem = savedItems.get({ id: temp_id} );
+            console.log('# savedItems before removing: ', savedItems.length);
+            savedItems.remove(temp_id);
+            console.log('# savedItems after removing: ', savedItems.length);
+        });
 
     /* On Cart, click close-cart link: cart and backdrop disappear */
     $('.close-cart').click(function(e){

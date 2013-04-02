@@ -671,7 +671,7 @@
         text-align: center;
     }
     .price-block {
-        padding-left: 30px;
+        padding-left: 20px;
     }
     .price-block .list-price {
         font-size: 13px;
@@ -679,6 +679,7 @@
         color: #666;
     }
     .price-block .price {
+        width: 150px;
         margin: 0;
         font: 42px/34px 'cartogothic_stdbold', Helvetica, sans-serif;
         color: #333;
