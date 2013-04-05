@@ -6,17 +6,23 @@
 
 <div class="clearfix">
     <form class="item-action" action="/">
+        {{#if isInCart}}
         <button type="button" class="save-item btn btn-primary" data-id="{{id}}">Save for Later</button>
+        {{else}}
+        <button type="button" class="move-item btn btn-primary" data-id="{{id}}">Move to Cart</button>
+        {{/if}}
         <button type="button" class="remove-item btn" data-id="{{id}}">Remove</button>
     </form>
 
     <div class="qty-price">
+        {{#if isInCart}}
         <label class="pick-qty">Quantity<br>
             <input class="item-qty" name="item-qty" type="text" value="{{cartItemQty}}">
         </label>
+        {{/if}}
         <div class="price-block">
-            <span class="list-price">List Price {{sellers.0.baseSuggPrice}}</span>
-            <p class="price">{{sellers.0.currentItemPrice}}</p>
+            <span class="list-price">List Price {{baseSuggPrice}}</span>
+            <p class="price">{{currentItemPrice}}</p>
         </div>
     </div>
 </div>

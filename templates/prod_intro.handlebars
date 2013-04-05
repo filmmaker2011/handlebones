@@ -3,7 +3,7 @@
         <div class="item-rating rating" title="{{rating}} stars"><div class="stars" style="width:{{getStarsWidth rating}}px;">{{rating}}</div></div>
         <p class="item-review-links"><a href="#rr-section">25 Reviews</a> | <a href="#">Write a Review</a> | <a href="#">Ask a Question</a></p>
     </div>
-    <p class="item-price">{{sellers.0.currentItemPrice}}</p>
+    <p class="item-price">{{currentItemPrice}}</p>
 
     <div id="prod-carousel" class="carousel slide">
 
@@ -30,7 +30,7 @@
             <form class="clearfix" action="/">
                 <label>
                     <select class="qty" id="qty">
-                        <option>Qty</option>
+                        <option value="1">Qty</option>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>

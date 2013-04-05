@@ -523,12 +523,16 @@
     }
     .cart-backdrop{
         z-index: 200;
+/*        display: block;*/
     }
     .panel,
     .cart-panel {
         width: 750px;
     }
-    .close-cart,
+/*  .cart-panel{
+        display: block;
+    }*/
+.close-cart,
     .close-panel {
         float: right;
         width: 28px;

@@ -1,5 +1,15 @@
 window.Application = {};
 
+/*** Base View Class ***/
+    Application.View = Backbone.View.extend({
+        render: function() {
+            var context = this.model ? this.model.attributes : {},
+                output = this.options.template(context);
+            this.$el.html(output);
+            return this;
+        }
+    });
+
 /*** TV Finder Classes ***/
 
     /* TV Finder Collection */
@@ -35,15 +45,7 @@ window.Application = {};
     });
 
     /* TV Finder Model View */
-    Application.FinderModelView = Backbone.View.extend({
-
-        render: function() {
-            var context = this.model ? this.model.attributes : {},
-                output = this.options.template(context);
-            this.$el.html(output);
-            return this;
-        }
-    });
+    Application.FinderModelView = Application.View.extend();
 
 /*** Product Classes ***/
 
@@ -67,46 +69,18 @@ window.Application = {};
     });
 
     /* Product Model Views */
-    Application.ProdIntroView = Backbone.View.extend({
+    Application.ProdIntroView = Application.View.extend({
         className: 'product',
-
-        events: {
-            'change .qty':          'setOrderQty',
-            'click #add-to-cart':   'addItemToCart'
-        },
 
         initialize: function(){
             this.model.on('reset', this.render, this);              // fetch() triggers a reset
-        },
-
-        render: function() {
-            var context = this.model ? this.model.attributes : {},
-                output = this.options.template(context);
-            this.$el.html(output);
-            return this;
-        },
-
-        setOrderQty: function(e) {
-            this.qtyToAdd = e.currentTarget.value;
-            console.log('qtyToAdd = ', this.qtyToAdd);
-        },
-
-        addItemToCart: function(){
-            console.log('# cartItems before adding: ', this.qtyToAdd);
         }
     });
-
-    Application.ProdDetailsView = Backbone.View.extend({
+    Application.ProdDetailsView = Application.View.extend({
         className: 'details',
 
         initialize: function(){
             this.model.on('reset', this.render, this);              // fetch() triggers a reset
-        },
-        render: function() {
-            var context = this.model ? this.model.attributes : {},
-                output = this.options.template(context);
-            this.$el.html(output);
-            return this;
         }
     });
 
@@ -221,37 +195,117 @@ window.Application = {};
     });
 
     /* Review Model View */
-    Application.ModelView = Backbone.View.extend({
+    Application.ModelView = Application.View.extend({
         initialize: function(){
             /* Create new attribute 'reviewDate' to sort by review date */
             var reviewDateObj = new Date(this.model.get('date'));
             this.model.set('reviewDate', reviewDateObj.getTime());      // date in milliseconds
-        },
-        render: function() {
-            var context = this.model ? this.model.attributes : {},
-                output = this.options.template(context);
-            this.$el.html(output);
-            return this;
         }
     });
 
 /*** Cart Classes ***/
-    Application.CartItemModel = Application.Product.extend({
 
-    });
+    // temporary model
+        tempModel = [
+            {imagePostCardURL: '', id: '123', isInCart: 1, cartItemQty: '5', baseSuggPrice: '250.00', currentItemPrice: '189.00' }
+        ];
+        Application.CartItemModel = Backbone.Model.extend({
+            defaults: {
+                cartItemQty: '1'
+            }
+        });
 
     /* Cart Item Collection */
-    Application.CartItems = Backbone.Collection.extend({
+    Application.CartCollection = Backbone.Collection.extend({
         model: Application.CartItemModel
     });
 
-    Application.CartItemModelView = Backbone.View.extend({
+    Application.orderCollection = new Application.CartCollection(tempModel);
+    console.log( 'orderCollection: ', Application.orderCollection.toJSON() );
+
+    Application.savedCollection = new Application.CartCollection(tempModel);
+    console.log( 'savedCollection: ', Application.savedCollection.toJSON() );
+
+    Application.CartView = Backbone.View.extend({
+       // el: '#cart_panel',
+
+        initialize: function() {
+            console.log('Im in CartView');
+            this.render();
+        },
+
+        addChildView: function(view) {
+            view.render();
+            this.$el.append(view.el);
+            return this;
+        },
+
         render: function() {
+            this.$el.empty();
+
+            this.cartHeaderView = new Application.CartHeaderView({ collection: Application.orderCollection, template: Handlebars.templates['cart_header'] });
+            this.addChildView(this.cartHeaderView);
+
+            this.orderSectionView = new Application.OrderSectionView({ collection: Application.orderCollection, template: Handlebars.templates['cart_section_header'] });
+            this.addChildView(this.orderSectionView);
+
+            this.savedSectionView = new Application.SavedSectionView({  collection: Application.savedCollection, template: Handlebars.templates['saved_section_header'] });
+            this.addChildView(this.savedSectionView);
+
+            this.cartFooterView = Application.CartFooterView({ collection: Application.orderCollection, template: Handlebars.templates['cart_footer'] });
+            this.addChildView(this.cartFooterView);
+
+            $('#cart_panel').attach(this.el);
+        }
+    });
+
+    Application.CartHeaderView = Backbone.View.extend({
+        tagName:    'header',
+        id:         'cart-header',
+
+        initialize: function() {
+            this.collection.on('reset', this.render, this);
+            this.collection.on('add', this.render, this);
+            this.collection.on('remove', this.render, this);
+        },
+
+        render: function() {
+            this.$el.html('');
             var context = this.model ? this.model.attributes : {},
                 output = this.options.template(context);
             this.$el.html(output);
             return this;
         }
+    });
+
+    Application.OrderSectionView = Backbone.View.extend({
+        className:  'item-group',
+        tagName:    'section',
+        id:         'order',
+
+        initialize: function() {
+            this.collection.on('reset', this.render, this);
+            this.collection.on('add', this.render, this);
+            this.collection.on('remove', this.render, this);
+        },
+
+        sumItemQty: function(){
+            return _.reduce(this.collection.pluck("cartItemQty"), function(memo, qty){ return memo + parseInt(qty); }, 0);
+        },
+
+        render: function(){
+            this.$el.html('');
+            var context = this.sumItemQty(),
+                output = this.options.template({itemCount: context});
+            this.$el.html(output);
+            return this;
+        }
+    });
+
+    Application.SavedSectionView = Application.OrderSectionView.extend({
+        className:  'item-group',
+        tagName:    'section',
+        id:         'saved'
     });
 
     /* Cart Item Collection view */
@@ -292,21 +346,30 @@ window.Application = {};
         }
     });
 
-    Application.CartSectionView = Backbone.View.extend({
+    Application.CartFooterView = Backbone.View.extend({
+        className:  'clearfix',
+        tagName:    'header',
+        id:         'cart-header',
+
         initialize: function() {
             this.collection.on('reset', this.render, this);
             this.collection.on('add', this.render, this);
             this.collection.on('remove', this.render, this);
         },
 
-        sumItemQty: function(){
-            return _.reduce(this.collection.pluck("cartItemQty"), function(memo, qty){ return memo + parseInt(qty); }, 0);
-        },
+        render: function() {
+            var context = this.model ? this.model.attributes : {},
+                output = this.options.template(context);
+            this.$el.html(output);
+            return this;
+        }
+    });
 
-        render: function(){
-            this.$el.html('');
-            var context = this.sumItemQty(),
-                output = this.options.template({itemCount: context});
+
+    Application.CartItemModelView = Backbone.View.extend({
+        render: function() {
+            var context = this.model ? this.model.attributes : {},
+                output = this.options.template(context);
             this.$el.html(output);
             return this;
         }
@@ -351,16 +414,17 @@ $(function() {
         reviews,
         loadReviews;
 
-    /*** Cart ***/
-    var cartItems  = new Application.CartItems(),
+    /*** Cart
+   var cartItems  = new Application.CartItems(),
         cartSectionView = new Application.CartSectionView({collection: cartItems, template: Handlebars.templates['cart_section_header'] }),
-        cartItemsView,
+       cartItemsView,
         savedItems = new Application.CartItems(),
         savedSectionView = new Application.CartSectionView({collection: savedItems, template: Handlebars.templates['saved_section_header'] }),
         savedItemsView;
+     ***/
+  //  var newCart = new Application.CartView();
 
-
-    /* On TVFinder page, click on a product link: show product panel and panel backdrop */
+    // On TVFinder page, click on a product link: show product panel and panel backdrop
     $('#search-results').on('click', '.url', function(e){
         e.preventDefault();
         product = $(e.currentTarget).attr('href');      // URL of the product link
@@ -400,7 +464,7 @@ $(function() {
         });
     });
 
-    /* On Product Panel */
+    // On Product Panel
         // select a quantity to be added to cart
         $('#page-content').on('change', '.buying-options .qty', function(e){
             qtyToAdd = e.currentTarget.value;
@@ -434,27 +498,34 @@ $(function() {
             });
         });
 
-    /* On Top Nav, click cart link: backdrop and cart opens */
+    // On Top Nav, click cart link: backdrop and cart opens
     $('#nav-buttons').on('click', '.open-cart', function(e){
         e.preventDefault();
         $('.cart-backdrop').fadeIn('slow');
     });
 
-    /* On Cart */
+    /* On Cart
         // click a Cart item's Save for Later button
        $('#page-content').on('click', '.save-item', function(e){
             var temp_id = $(e.currentTarget).attr('data-id'),
             thisItem = cartItems.get({ id: temp_id} );
             thisItem.set({ isInCart: false });                  // This is a 'saved' item (not 'on the cart')
+            console.log( 'Got the id: ', temp_id );
+            console.log( 'Found a match: ', thisItem );
+
+            console.log('# savedItems before saving: ', savedItems.length);
             savedItems.unshift( thisItem );
             savedItems.trigger('add');
+            console.log('# savedItems after adding: ', savedItems.length);
 
             if (!savedItemsView) {
                 $('#saved').append(savedSectionView.el);
                 savedItemsView = new Application.CartItemsView({ collection: savedItems, className: 'saved-items' });
                 $('#saved').append(savedItemsView.el);
             }
+           console.log('# cartItems before removing: ', cartItems.length);
            cartItems.remove(temp_id);
+           console.log('# cartItems after removing: ', cartItems.length);
 
        });
 
@@ -462,29 +533,39 @@ $(function() {
         $('#page-content').on('click', '.move-item', function(e){
             var temp_id = $(e.currentTarget).attr('data-id'),
                 thisItem = savedItems.get({ id: temp_id} );
-
             thisItem.set({ isInCart: true });
+            console.log( 'Got the id: ', temp_id );
+            console.log( 'Found a match: ', thisItem );
+
+            console.log('# cartItems before moving: ', cartItems.length);
             cartItems.unshift( thisItem );
             cartItems.trigger('add');
+            console.log('# cartItems after moving: ', cartItems.length);
 
+            console.log('# savedItems before removing: ', savedItems.length);
             savedItems.remove(temp_id);
-        });
+            console.log('# savedItems after removing: ', savedItems.length);
 
+        });
         // click a Cart item's Remove button
         $('#page-content').on('click', '#order .remove-item', function(e){
             var temp_id = $(e.currentTarget).attr('data-id'),
                 thisItem = cartItems.get({ id: temp_id} );
+            console.log('# cartItems before removing: ', cartItems.length);
             cartItems.remove(temp_id);
+            console.log('# cartItems after removing: ', cartItems.length);
         });
 
         // click a Saved item's Remove button
         $('#page-content').on('click', '#saved .remove-item', function(e){
             var temp_id = $(e.currentTarget).attr('data-id'),
                 thisItem = savedItems.get({ id: temp_id} );
+            console.log('# savedItems before removing: ', savedItems.length);
             savedItems.remove(temp_id);
+            console.log('# savedItems after removing: ', savedItems.length);
         });
 
-    /* On Cart, click close-cart link: cart and backdrop disappear */
+    // On Cart, click close-cart link: cart and backdrop disappear
     $('.close-cart').click(function(e){
         e.preventDefault();
         $('.cart-backdrop').fadeOut('slow');
@@ -495,5 +576,6 @@ $(function() {
         $('#review-carousel').delay(100).carousel(0);
         $('#review-carousel .item:first-child').addClass('active');
     });
+    */
 });
 
