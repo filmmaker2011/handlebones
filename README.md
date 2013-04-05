@@ -1,5 +1,5 @@
 #Release Notes
-Last Updated: 3/27/2013
+Last Updated: 4/5/2013
 
 ##Clone It & Use It:
 1. git clone https://github.com/filmmaker2011/handlebones.git
@@ -7,6 +7,24 @@ Last Updated: 3/27/2013
 
 - cd handlebones
 - python -m SimpleHTTPServer
+
+##Assignment 3 - Cart
+
+_Cart: [http://localhost:8000/index_p.html](http://localhost:8000/cart.html)_
+
+_What's done:_
+- Cart is integrated with TV Finder and Product Panel
+- On Product panel, you can add to cart
+- On the cart, you can Save for Later, Move to Cart, and Remove items
+- Totals of Items for Purchase and Saved Items
+- If you close the cart, you can reopen it and still see your Purchase items & Saved items
+
+_Not done:_
+- Updating the '0 item in your cart' in header when you add items to the Cart
+- Total items in cart & sort of cart items
+- Updating a Purchase item quantity when you type in a different quantity
+- Subtotal at bottom of cart
+- Order confirmation page
 
 ##Assignment 2 - Product Page:
 
