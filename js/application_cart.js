@@ -1,5 +1,15 @@
 window.Application = {};
 
+/*** Base View Class ***/
+Application.View = Backbone.View.extend({
+    render: function() {
+        var context = this.model ? this.model.attributes : {},
+            output = this.options.template(context);
+        this.$el.html(output);
+        return this;
+    }
+});
+
 /*** TV Finder Classes ***/
 
     /* TV Finder Collection */
@@ -35,15 +45,7 @@ window.Application = {};
     });
 
     /* TV Finder Model View */
-    Application.FinderModelView = Backbone.View.extend({
-
-        render: function() {
-            var context = this.model ? this.model.attributes : {},
-                output = this.options.template(context);
-            this.$el.html(output);
-            return this;
-        }
-    });
+    Application.FinderModelView = Application.View;
 
 /*** Product Classes ***/
 
@@ -67,46 +69,9 @@ window.Application = {};
     });
 
     /* Product Model Views */
-    Application.ProdIntroView = Backbone.View.extend({
-        className: 'product',
-
-        events: {
-            'change .qty':          'setOrderQty',
-            'click #add-to-cart':   'addItemToCart'
-        },
-
+    Application.ProdModelView = Application.View.extend({
         initialize: function(){
             this.model.on('reset', this.render, this);              // fetch() triggers a reset
-        },
-
-        render: function() {
-            var context = this.model ? this.model.attributes : {},
-                output = this.options.template(context);
-            this.$el.html(output);
-            return this;
-        },
-
-        setOrderQty: function(e) {
-            this.qtyToAdd = e.currentTarget.value;
-            console.log('qtyToAdd = ', this.qtyToAdd);
-        },
-
-        addItemToCart: function(){
-            console.log('# cartItems before adding: ', this.qtyToAdd);
-        }
-    });
-
-    Application.ProdDetailsView = Backbone.View.extend({
-        className: 'details',
-
-        initialize: function(){
-            this.model.on('reset', this.render, this);              // fetch() triggers a reset
-        },
-        render: function() {
-            var context = this.model ? this.model.attributes : {},
-                output = this.options.template(context);
-            this.$el.html(output);
-            return this;
         }
     });
 
@@ -221,23 +186,20 @@ window.Application = {};
     });
 
     /* Review Model View */
-    Application.ModelView = Backbone.View.extend({
+    Application.ModelView = Application.View.extend({
         initialize: function(){
             /* Create new attribute 'reviewDate' to sort by review date */
             var reviewDateObj = new Date(this.model.get('date'));
             this.model.set('reviewDate', reviewDateObj.getTime());      // date in milliseconds
-        },
-        render: function() {
-            var context = this.model ? this.model.attributes : {},
-                output = this.options.template(context);
-            this.$el.html(output);
-            return this;
         }
     });
 
 /*** Cart Classes ***/
     Application.CartItemModel = Application.Product.extend({
-
+        defaults: {
+            cartItemQty: 0,
+            isInCart: false
+        }
     });
 
     /* Cart Item Collection */
@@ -245,14 +207,7 @@ window.Application = {};
         model: Application.CartItemModel
     });
 
-    Application.CartItemModelView = Backbone.View.extend({
-        render: function() {
-            var context = this.model ? this.model.attributes : {},
-                output = this.options.template(context);
-            this.$el.html(output);
-            return this;
-        }
-    });
+    Application.CartItemModelView = Application.View;
 
     /* Cart Item Collection view */
     Application.CartItemsView = Backbone.View.extend({
@@ -370,11 +325,13 @@ $(function() {
         loadTV = tv.fetch();
         loadTV.done(function(){
             tv.set({rating: productRating});                                    // * Set rating at top of Product Panel
-            tvIntroView = new Application.ProdIntroView({
+            tvIntroView = new Application.ProdModelView({
+                className: 'product',
                 model: tv,
                 template: Handlebars.templates['prod_intro']
             });
-            tvDetailsView = new Application.ProdDetailsView({
+            tvDetailsView = new Application.ProdModelView({
+                className: 'details',
                 model: tv,
                 template: Handlebars.templates['prod_details']
             });

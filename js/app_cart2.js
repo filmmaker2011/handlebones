@@ -45,7 +45,7 @@ window.Application = {};
     });
 
     /* TV Finder Model View */
-    Application.FinderModelView = Application.View.extend();
+    Application.FinderModelView = Application.View;
 
 /*** Product Classes ***/
 
@@ -227,11 +227,11 @@ window.Application = {};
     console.log( 'savedCollection: ', Application.savedCollection.toJSON() );
 
     Application.CartView = Backbone.View.extend({
-       // el: '#cart_panel',
+        className:  'cart-panel',
+        id:         'cart-panel',
 
         initialize: function() {
             console.log('Im in CartView');
-            this.render();
         },
 
         addChildView: function(view) {
@@ -255,7 +255,7 @@ window.Application = {};
             this.cartFooterView = Application.CartFooterView({ collection: Application.orderCollection, template: Handlebars.templates['cart_footer'] });
             this.addChildView(this.cartFooterView);
 
-            $('#cart_panel').attach(this.el);
+            return this;
         }
     });
 
@@ -271,6 +271,7 @@ window.Application = {};
 
         render: function() {
             this.$el.html('');
+            //  this.constructor.__super__.render.apply(this, arguments);
             var context = this.model ? this.model.attributes : {},
                 output = this.options.template(context);
             this.$el.html(output);
@@ -358,6 +359,7 @@ window.Application = {};
         },
 
         render: function() {
+            this.$el.html('');
             var context = this.model ? this.model.attributes : {},
                 output = this.options.template(context);
             this.$el.html(output);
@@ -422,7 +424,11 @@ $(function() {
         savedSectionView = new Application.CartSectionView({collection: savedItems, template: Handlebars.templates['saved_section_header'] }),
         savedItemsView;
      ***/
-  //  var newCart = new Application.CartView();
+    console.log('Before newCart instantiated');
+    var newCart = new Application.CartView();
+    console.log('After newCart instantiated');
+  //  $('.cart-backdrop').attach(newCart.el);
+
 
     // On TVFinder page, click on a product link: show product panel and panel backdrop
     $('#search-results').on('click', '.url', function(e){
