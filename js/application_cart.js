@@ -76,6 +76,7 @@ Application.View = Backbone.View.extend({
         }
     });
 
+
 /*** Review Classes ***/
 
     /* Reviews Collection */
@@ -95,8 +96,12 @@ Application.View = Backbone.View.extend({
             this.listenTo(this.collection, 'reset', this.render);
         },
 
+        events: {
+
+        },
+
         addView: function(reviewModel) {
-            var modelView = new Application.ModelView({
+            var modelView = new Application.ReviewModelView({
                 model: reviewModel,
                 template: Handlebars.templates['reviews'],
                 tagName: 'article',
@@ -187,7 +192,7 @@ Application.View = Backbone.View.extend({
     });
 
     /* Review Model View */
-    Application.ModelView = Application.View.extend({
+    Application.ReviewModelView = Application.View.extend({
         initialize: function(){
             /* Create new attribute 'reviewDate' to sort by review date */
             var reviewDateObj = new Date(this.model.get('date'));

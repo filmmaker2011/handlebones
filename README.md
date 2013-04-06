@@ -10,7 +10,7 @@ Last Updated: 4/5/2013
 
 ##Assignment 3 - Cart
 
-_Cart: [http://localhost:8000/index_p.html](http://localhost:8000/cart.html)_
+_Cart: [http://localhost:8000/cart.html](http://localhost:8000/cart.html)_
 
 _What's done:_
 - Cart is integrated with TV Finder and Product Panel
