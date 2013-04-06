@@ -23,7 +23,7 @@ Application.View = Backbone.View.extend({
         initialize: function() {
             this.collection.originalModels = _.clone(this.collection.models);
             this.render();
-            this.listenTo(this.collection, 'reset', this.render);
+            this.collection.on('reset', this.render, this);
         },
 
         addView: function(model) {
@@ -72,7 +72,7 @@ Application.View = Backbone.View.extend({
     /* Product Model Views */
     Application.ProdModelView = Application.View.extend({
         initialize: function(){
-            this.listenTo(this.model, 'reset', this.render);              // fetch() triggers a reset
+            this.model.on('reset', this.render, this);              // fetch() triggers a reset
         }
     });
 
@@ -92,7 +92,7 @@ Application.View = Backbone.View.extend({
             $("#age-label select").attr('id', 'age-selector');
 
             this.on("change:filterAge", this.filterByAge, this);
-            this.listenTo(this.collection, 'reset', this.render);
+            this.collection.on('reset', this.render, this);
         },
 
         addView: function(reviewModel) {
@@ -214,9 +214,9 @@ Application.View = Backbone.View.extend({
     Application.CartItemsView = Backbone.View.extend({
         initialize: function() {
             this.render();
-            this.listenTo(this.collection, 'reset', this.render);
-            this.listenTo(this.collection, 'add', this.render);
-            this.listenTo(this.collection, 'remove', this.render);
+            this.collection.on('reset', this.render, this);
+            this.collection.on('add', this.render, this);
+            this.collection.on('remove', this.render, this);
         },
 
         addView: function(model) {
@@ -250,9 +250,9 @@ Application.View = Backbone.View.extend({
 
     Application.CartSectionView = Backbone.View.extend({
         initialize: function() {
-            this.listenTo(this.collection, 'reset', this.render);
-            this.listenTo(this.collection, 'add', this.render);
-            this.listenTo(this.collection, 'remove', this.render);
+            this.collection.on('reset', this.render, this);
+            this.collection.on('add', this.render, this);
+            this.collection.on('remove', this.render, this);
         },
 
         sumItemQty: function(){
