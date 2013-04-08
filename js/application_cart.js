@@ -27,28 +27,6 @@ Application.View = Backbone.View.extend({
             this.listenTo(this.collection, 'reset', this.updateMatches);
         },
 
-        setFilter: function (e) {
-            this.filter = e.currentTarget.value;
-            this.selector = e.currentTarget.id;
-            console.log('selector id:', this.selector);
-            this.trigger("change:filter", this.selector);
-        },
-
-        filterResults: function (selector) {
-            console.log('in filterResults, selector: ', selector);
-            if (this.filter === "All") {
-                this.collection.reset(this.collection.originalModels);
-            } else {
-                //  this.collection.reset(this.collection.originalModels, {silent: true});
-                var filter = this.filter,
-                    filtered = _.filter(this.collection.models, function (item) {
-                        return item.get(selector) === filter;
-                    });
-
-                this.collection.reset(filtered);
-            }
-        },
-
         render: function(){
             this.$el.html('');
             var context = {},
@@ -60,6 +38,28 @@ Application.View = Backbone.View.extend({
 
         updateMatches: function() {
             this.$el.find('.matches').text(this.collection.length + ' MATCHES');
+        },
+
+        setFilter: function (e) {
+            this.filter = e.currentTarget.value;
+            this.selector = e.currentTarget.id;
+            this.trigger("change:filter", this.selector);
+        },
+
+        filterResults: function (selector) {
+            console.log('in filterResults, selector: ', selector);
+            if (this.filter === "All") {
+                this.collection.reset(this.collection.originalModels);
+            } else {
+                this.collection.reset(this.collection.originalModels, {silent: true});
+                var filter = this.filter,
+                    filtered = _.filter(this.collection.models, function (item) {
+                        return item.get(selector) === filter;
+                    });
+
+                this.collection.reset(filtered);
+                console.log('The filtered collection length = ', this.collection.length);
+            }
         }
     });
 
@@ -74,13 +74,8 @@ Application.View = Backbone.View.extend({
             'click #clear-filters': 'resetCollection'
         },
 
-        resetCollection: function() {
-            this.collection.reset(this.collection.originalModels);
-        },
-
         finderSort: function() {
             var sortVal = $('#sort-on').val();
-             //   model = this.collection.model;
             this.collection.comparator = function(model) {
                 switch(sortVal) {
                     case 'pricehigh':
@@ -105,6 +100,10 @@ Application.View = Backbone.View.extend({
             this.collection.trigger('nowSorted');
         },
 
+        resetCollection: function() {
+            this.collection.reset(this.collection.originalModels);
+        },
+
         // Render TV Size Slider
         showSizeSlider: function() {
             $("#size-slider").slider({
@@ -124,7 +123,6 @@ Application.View = Backbone.View.extend({
     /* TV Finder Collection View */
     Application.FinderResultsView = Backbone.View.extend({
         initialize: function() {
-         //   this.collection.originalModels = _.clone(this.collection.models);
             this.render();
             this.listenTo(this.collection, 'reset', this.render);
             this.listenTo(this.collection, 'nowSorted', this.render);
@@ -144,7 +142,6 @@ Application.View = Backbone.View.extend({
         render: function(){
             this.$el.html('');
             this.collection.each(this.addView, this);
-/*            $('#matches').text(this.collection.length + ' MATCHES');  */
             return this;
         }
     });
@@ -188,43 +185,24 @@ Application.View = Backbone.View.extend({
         url: 'data/ratingsReviews.json'
     });
 
-    /* Reviews Collection View */
-    Application.ReviewsView = Backbone.View.extend({
-        initialize: function() {
-            this.collection.originalModels = _.clone(this.collection.models);
-            this.render();
-            $("#age-label").append(this.createSelect());    // create age filter
-            $("#age-label select").attr('id', 'age');
-            this.listenTo(this, 'change:filter', this.filterResults);
-            this.listenTo(this.collection, 'reset', this.render);
-        },
+    /* Reviews Filter View */
+    Application.ReviewsFilterView = Application.FilterView.extend({
+        el: '#review-controls',
 
         events: {
             'change #gender': 'setFilter',
             'change #age': 'setFilter',
-            'change #rating': 'setFilter'
+            'change #rating': 'setFilter',
+            'change #sort': 'reSort'
         },
 
-        addView: function(reviewModel) {
-            var modelView = new Application.ReviewModelView({
-                model: reviewModel,
-                template: Handlebars.templates['reviews'],
-                tagName: 'article',
-                className: 'item review'
-            });
-            this.$el.append(modelView.render().el);
-            return this;
+        updateMatches: function() {
+            this.$el.find('#total-reviews').text('(' + this.collection.length + ' Total)');
         },
 
-        render: function(){
-            this.$el.html('');
-            this.collection.each(this.addView, this);
-            $('#total-reviews').text('(' + this.collection.length + ' Total)');
-            return this;
-        },
-
-        /* Sort Reviews */
+        // Sort Reviews
         reSort: function(sortVal){
+            var sortVal = $('#sort').val();
             this.collection.comparator = function(reviewModel) {
                 switch(sortVal) {
                     case 'helpful':
@@ -250,15 +228,15 @@ Application.View = Backbone.View.extend({
                 }
             };
             this.collection.sort();
-            this.render();
+            this.collection.trigger('nowSorted');
         },
 
-        /* Get age values from models */
+        // Get age values from models
         getAges: function () {
             return _.uniq(this.collection.pluck("age").sort());     // JavaScript's sort() puts them in order
         },
 
-        /* Create Age Filter <select> element based on age values in the models */
+        // Create Age Filter <select> element based on age values in the models
         createSelect: function () {
             var select = $("<select/>", {
                 html: "<option value='All'>All Ages</option>"
@@ -271,29 +249,40 @@ Application.View = Backbone.View.extend({
                 }).appendTo(select);
             });
             return select;
+        }
+    });
+
+    /* Reviews Collection View */
+    Application.ReviewsView = Backbone.View.extend({
+        el: '#carousel-inner',
+
+        initialize: function() {
+            this.listenTo(this.collection, 'reset', this.render);
+            this.listenTo(this.collection, 'nowSorted', this.render);
         },
 
-        /* Set filterAge property and a fire change event */
-        setFilter: function (e) {
-            this.filterAge = e.currentTarget.value;
-            this.selector = e.currentTarget.id;
-            this.trigger("change:filter", this.selector);
+        addView: function(reviewModel) {
+            var modelView = new Application.ReviewModelView({
+                model: reviewModel,
+                template: Handlebars.templates['reviews'],
+                tagName: 'article',
+                className: 'item review'
+            });
+            this.$el.append(modelView.render().el);
+            return this;
         },
 
-        /* Filter by Age */
-        filterResults: function (selector) {
-            var loadViews;
-            if (this.filterAge === "All") {
-                loadViews = this.collection.reset(this.collection.originalModels);
-            } else {
-                loadViews = this.collection.reset(this.collection.originalModels, {silent: true});
-                var filterAge = this.filterAge,
-                    filtered = _.filter(this.collection.models, function (item) {
-                        return item.get(selector) == filterAge;
-                    });
+        render: function(){
+            this.$el.html('');
+            this.collection.each(this.addView, this);
+         //   $('#total-reviews').text('(' + this.collection.length + ' Total)');
+            this.setupCarousel();
+            return this;
+        },
 
-                this.collection.reset(filtered);
-            }
+        setupCarousel: function() {
+            $('#review-carousel').carousel({ interval: false });
+            $('#review-carousel .item:first-child').addClass('active');
         }
     });
 
@@ -406,6 +395,7 @@ $(function() {
         productRating,
         qtyToAdd = 0,
 
+        reviewsFilterView,
         reviewsView,
         reviews,
         loadReviews;
@@ -422,7 +412,6 @@ $(function() {
     /* On TVFinder page, click on a product link: show product panel and panel backdrop */
     $('#search-results').on('click', '.url', function(e){
         e.preventDefault();
-        console.log($(e.currentTarget).attr('href'));
         product = $(e.currentTarget).attr('href');      // URL of the product link
         productRating = finderResults.where({url: product})[0].get('rating');  // Get rating from TV Finder (to put on Product Panel) *
         product = product.match(/\d{8}$/);              // ID of the product
@@ -448,15 +437,12 @@ $(function() {
             reviews = new Application.Reviews();
             loadReviews = reviews.fetch();
             loadReviews.done(function(){
-                reviewsView = new Application.ReviewsView({ collection: reviews, className: 'carousel-inner' });
-                $('#review-carousel').append(reviewsView.el);
-                $('#review-carousel').carousel({ interval: false });
-                $('#review-carousel .item:first-child').addClass('active');
-                $('#age-label select').on('change', function(e){
-                    reviewsView.setFilter(e);
-                    $('#review-carousel').carousel({ interval: false });
-                    $('#review-carousel .item:first-child').addClass('active');
-                });
+                reviewsFilterView = new Application.ReviewsFilterView({ collection: reviews, template: Handlebars.templates['reviews_filters'] });
+                reviewsFilterView.render();
+                $("#age-label").append(reviewsFilterView.createSelect());    // create age filter
+                $("#age-label select").attr('id', 'age');
+                reviewsView = new Application.ReviewsView({ collection: reviews });
+                reviewsView.render();
             });
             $('.panel-backdrop').fadeIn('slow');
         });
@@ -550,12 +536,6 @@ $(function() {
     $('.close-cart').click(function(e){
         e.preventDefault();
         $('.cart-backdrop').fadeOut('slow');
-    });
-
-    $('#sort').on('change', function(){
-        reviewsView.reSort($('#sort').val());
-        $('#review-carousel').delay(100).carousel(0);
-        $('#review-carousel .item:first-child').addClass('active');
     });
 });
 

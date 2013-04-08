@@ -1,31 +1,37 @@
-<label>
-    <select id="gender">
-        <option value="All">Men &amp; Women</option>
-        <option value="Male">Men</option>
-        <option value="Female">Women</option>
-    </select>
-</label>
+<header class="clearfix">
+    <h2 class="rr-heading">Ratings &amp; Reviews <a id="total-reviews" href="#"></a></h2>
+    <button type="button" class="write-review chevron" id="write-review" name="write-review">Write a Review </button>
+</header>
+<form class="filters clearfix" id="review-filters" action="/">
+    <label>
+        <select id="gender">
+            <option value="All">Men &amp; Women</option>
+            <option value="Male">Men</option>
+            <option value="Female">Women</option>
+        </select>
+    </label>
 
-<label id="age-label"></label>
+    <label id="age-label"></label>
 
-<label>
-    <select id="rating">
-        <option value="All">All Ratings</option>
-        <option value="5">5 star</option>
-        <option value="4">4 star</option>
-        <option value="3">3 star</option>
-        <option value="2"2 star</option>
-        <option value="1">1 star</option>
-    </select>
-</label>
+    <label>
+        <select id="rating">
+            <option value="All">All Ratings</option>
+            <option value="5">5 star</option>
+            <option value="4">4 star</option>
+            <option value="3">3 star</option>
+            <option value="2">2 star</option>
+            <option value="1">1 star</option>
+        </select>
+    </label>
 
-<label>
-    <select id="sort">
-        <option>Sort by...</option>
-        <option value="helpful">Most Helpful</option>
-        <option value="newest">Newest to Oldest</option>
-        <option value="oldest">Oldest to Newest</option>
-        <option value="high">Rating High to Low</option>
-        <option value="low">Rating Low to High</option>
-    </select>
-</label>
+    <label>
+        <select id="sort">
+            <option>Sort by...</option>
+            <option value="helpful">Most Helpful</option>
+            <option value="newest">Newest to Oldest</option>
+            <option value="oldest">Oldest to Newest</option>
+            <option value="high">Rating High to Low</option>
+            <option value="low">Rating Low to High</option>
+        </select>
+    </label>
+</form>

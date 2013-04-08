@@ -39,14 +39,14 @@ _What's done:_
 - Image carousel: Handlebars helpers generate position indicator dots and calculate with of indicator widget (for CSS centering).
 - Product Details tabs (based on Bootstrap.js code).
 - Product description: a Handlebars helper (cleanup) removes the HTML tags from the text.
-- Reviews: filter by age, sort (ascending & descending).
+- Reviews: filter by Age, sort (ascending & descending).
 - Reviews: a Handlebars helper calculates the width of rating stars widgets
 - Web fonts are used. Logos use actual text.
+- 4/8 Update, Reviews: added Gender & Rating filters
 
 _Not done:_
 - Views for 'People who viewed this also viewed'.
 - Web storage.
-- Reviews: gender and ratings filters.
 
 ##Assignment 1 - TV Finder:
 
