@@ -99,6 +99,14 @@ helpers = helpers || Handlebars.helpers; data = data || {};
     + " Items</span> for Purchase</a></h3>";
   return buffer;
   });
+templates['finder_filters'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+helpers = helpers || Handlebars.helpers; data = data || {};
+  
+
+
+  return "    <fieldset class=\"clearfix\">\n        <legend><b class=\"bold\">TV</b>Finder</legend>\n\n        <div class=\"size-slider\">\n            <lable for='size'>Size</lable>\n            <input type=\"text\" id=\"size\" style=\"border: 0; color: #f6931f; font-weight: bold;\" />\n            <div id=\"size-slider\"></div>\n        </div>\n\n        <div class=\"options clearfix\">\n            <label for=\"type\">Type<br>\n                <select id=\"type\" name=\"type\">\n                    <option>All</option>\n                    <option>LCD</option>\n                    <option>LED</option>\n                    <option>LED-LCD</option>\n                    <option>Plasma</option>\n                </select>\n            </label>\n\n            <label for=\"brand\">Brand<br>\n                <select id=\"brand\" name=\"brand\">\n                    <option>All</option>\n                    <option>LG</option>\n                    <option>RCA</option>\n                    <option>Samsung</option>\n                    <option>Sony</option>\n                    <option>Vizio</option>\n                </select>\n            </label>\n\n            <label for=\"sort-on\">Sort<br>\n                <select id=\"sort-on\">\n                    <option>All</option>\n                    <option value=\"price\">Price</option>\n                    <option value=\"rating\">Rating</option>\n                </select>\n            </label>\n        </div>\n    </fieldset>\n    <hr class=\"filters\">\n\n    <p class=\"result-msg\">\n        <span class=\"matches\" id=\"matches\">8 MATCHES</span>FOR TELEVISIONS FITTING THAT CRITERIA\n    </p>\n    <button type=\"reset\" class=\"clear-filters\" id=\"clear-filters\" name=\"reset\">Clear Filters</button>\n";
+  });
 templates['index'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [2,'>= 1.0.0-rc.3'];
 helpers = helpers || Handlebars.helpers; data = data || {};
@@ -383,6 +391,14 @@ helpers = helpers || Handlebars.helpers; data = data || {};
   buffer += escapeExpression(stack2)
     + "</span></li>\n    </ul>\n</footer>\n";
   return buffer;
+  });
+templates['reviews_filters'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+helpers = helpers || Handlebars.helpers; data = data || {};
+  
+
+
+  return "<label>\n    <select id=\"gender\">\n        <option value=\"All\">Men &amp; Women</option>\n        <option value=\"Male\">Men</option>\n        <option value=\"Female\">Women</option>\n    </select>\n</label>\n\n<label id=\"age-label\"></label>\n\n<label>\n    <select id=\"rating\">\n        <option value=\"All\">All Ratings</option>\n        <option value=\"5\">5 star</option>\n        <option value=\"4\">4 star</option>\n        <option value=\"3\">3 star</option>\n        <option value=\"2\"2 star</option>\n        <option value=\"1\">1 star</option>\n    </select>\n</label>\n\n<label>\n    <select id=\"sort\">\n        <option>Sort by...</option>\n        <option value=\"helpful\">Most Helpful</option>\n        <option value=\"newest\">Newest to Oldest</option>\n        <option value=\"oldest\">Oldest to Newest</option>\n        <option value=\"high\">Rating High to Low</option>\n        <option value=\"low\">Rating Low to High</option>\n    </select>\n</label>";
   });
 templates['saved_section_header'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [2,'>= 1.0.0-rc.3'];

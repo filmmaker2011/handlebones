@@ -18,12 +18,116 @@ Application.View = Backbone.View.extend({
         url: 'data/televisions.json'
     });
 
+    /* Filter View (extended by FinderFilterView & ReviewFilterView) */
+    Application.FilterView = Backbone.View.extend({
+        initialize: function() {
+            console.log('Im in FilterView');
+            this.collection.originalModels = _.clone(this.collection.models);
+            this.listenTo(this, 'change:filter', this.filterResults);
+            this.listenTo(this.collection, 'reset', this.updateMatches);
+        },
+
+        setFilter: function (e) {
+            this.filter = e.currentTarget.value;
+            this.selector = e.currentTarget.id;
+            console.log('selector id:', this.selector);
+            this.trigger("change:filter", this.selector);
+        },
+
+        filterResults: function (selector) {
+            console.log('in filterResults, selector: ', selector);
+            if (this.filter === "All") {
+                this.collection.reset(this.collection.originalModels);
+            } else {
+                //  this.collection.reset(this.collection.originalModels, {silent: true});
+                var filter = this.filter,
+                    filtered = _.filter(this.collection.models, function (item) {
+                        return item.get(selector) === filter;
+                    });
+
+                this.collection.reset(filtered);
+            }
+        },
+
+        render: function(){
+            this.$el.html('');
+            var context = {},
+                output = this.options.template(context);
+            this.$el.html(output);
+            this.updateMatches();
+            return this;
+        },
+
+        updateMatches: function() {
+            this.$el.find('.matches').text(this.collection.length + ' MATCHES');
+        }
+    });
+
+    /* TV Finder Filters View */
+    Application.FinderFilterView = Application.FilterView.extend({
+        el: '#finder-filters',
+
+        events: {
+            'change #type': 'setFilter',
+            'change #brand': 'setFilter',
+            'change #sort-on': 'finderSort',
+            'click #clear-filters': 'resetCollection'
+        },
+
+        resetCollection: function() {
+            this.collection.reset(this.collection.originalModels);
+        },
+
+        finderSort: function() {
+            var sortVal = $('#sort-on').val();
+             //   model = this.collection.model;
+            this.collection.comparator = function(model) {
+                switch(sortVal) {
+                    case 'pricehigh':
+                        // Price High to Low
+                        return -model.get('price');
+                        break;
+                    case 'price':
+                        // Price Low to High
+                        return model.get('price');
+                        break;
+                    case 'rating':
+                        // Rating High to Low
+                        return -model.get('rating');
+                        break;
+                    case 'ratinglow':
+                        // Rating Low to High
+                        return model.get('rating');
+                        break;
+                }
+            };
+            this.collection.sort();
+            this.collection.trigger('nowSorted');
+        },
+
+        // Render TV Size Slider
+        showSizeSlider: function() {
+            $("#size-slider").slider({
+                range: true,
+                min: 0,
+                max: 77,
+                values: [ 25, 50 ],
+                slide: function( event, ui ) {
+                    $( '#size' ).val( ui.values[ 0 ] + '" - ' + ui.values[ 1 ] + '"' );
+                }
+            });
+            $( '#size' ).val( $( '#size-slider' ).slider( 'values', 0 ) +
+                '" - ' + $( '#size-slider' ).slider( 'values', 1 ) + '"' );
+        }
+    });
+
     /* TV Finder Collection View */
     Application.FinderResultsView = Backbone.View.extend({
         initialize: function() {
-            this.collection.originalModels = _.clone(this.collection.models);
+         //   this.collection.originalModels = _.clone(this.collection.models);
             this.render();
             this.listenTo(this.collection, 'reset', this.render);
+            this.listenTo(this.collection, 'nowSorted', this.render);
         },
 
         addView: function(model) {
@@ -40,7 +144,7 @@ Application.View = Backbone.View.extend({
         render: function(){
             this.$el.html('');
             this.collection.each(this.addView, this);
-            $('#matches').text(this.collection.length + ' MATCHES');
+/*            $('#matches').text(this.collection.length + ' MATCHES');  */
             return this;
         }
     });
@@ -90,14 +194,15 @@ Application.View = Backbone.View.extend({
             this.collection.originalModels = _.clone(this.collection.models);
             this.render();
             $("#age-label").append(this.createSelect());    // create age filter
-            $("#age-label select").attr('id', 'age-selector');
-
-            this.on("change:filterAge", this.filterByAge, this);
+            $("#age-label select").attr('id', 'age');
+            this.listenTo(this, 'change:filter', this.filterResults);
             this.listenTo(this.collection, 'reset', this.render);
         },
 
         events: {
-
+            'change #gender': 'setFilter',
+            'change #age': 'setFilter',
+            'change #rating': 'setFilter'
         },
 
         addView: function(reviewModel) {
@@ -156,7 +261,7 @@ Application.View = Backbone.View.extend({
         /* Create Age Filter <select> element based on age values in the models */
         createSelect: function () {
             var select = $("<select/>", {
-                html: "<option value='all'>All Ages</option>"
+                html: "<option value='All'>All Ages</option>"
             });
 
             _.each(this.getAges(), function (item) {
@@ -171,19 +276,20 @@ Application.View = Backbone.View.extend({
         /* Set filterAge property and a fire change event */
         setFilter: function (e) {
             this.filterAge = e.currentTarget.value;
-            this.trigger("change:filterAge");
+            this.selector = e.currentTarget.id;
+            this.trigger("change:filter", this.selector);
         },
 
         /* Filter by Age */
-        filterByAge: function () {
+        filterResults: function (selector) {
             var loadViews;
-            if (this.filterAge === "all") {
+            if (this.filterAge === "All") {
                 loadViews = this.collection.reset(this.collection.originalModels);
             } else {
                 loadViews = this.collection.reset(this.collection.originalModels, {silent: true});
                 var filterAge = this.filterAge,
                     filtered = _.filter(this.collection.models, function (item) {
-                        return item.get("age") == filterAge;
+                        return item.get(selector) == filterAge;
                     });
 
                 this.collection.reset(filtered);
@@ -276,25 +382,17 @@ Application.View = Backbone.View.extend({
 
 /*** Code to run at "DOM ready" ***/
 $(function() {
-    /** Render TV Size Slider ***/
-    $( "#size-slider" ).slider({
-        range: true,
-        min: 0,
-        max: 77,
-        values: [ 25, 50 ],
-        slide: function( event, ui ) {
-            $( '#size' ).val( ui.values[ 0 ] + '" - ' + ui.values[ 1 ] + '"' );
-        }
-    });
-    $( '#size' ).val( $( '#size-slider' ).slider( 'values', 0 ) +
-        '" - ' + $( '#size-slider' ).slider( 'values', 1 ) + '"' );
 
     /*** TV Finder ***/
-    var finderResultsView,
+    var finderFilterView,
+        finderResultsView,
         finderResults = new Application.FinderResults(),
         loadFinderResults = finderResults.fetch();
 
     loadFinderResults.done(function(){
+        finderFilterView = new Application.FinderFilterView({ collection: finderResults, template: Handlebars.templates['finder_filters'] });
+        finderFilterView.render();
+        finderFilterView.showSizeSlider();
         finderResultsView = new Application.FinderResultsView({ collection: finderResults});
         $('#search-results').append(finderResultsView.el);
     });
@@ -324,8 +422,9 @@ $(function() {
     /* On TVFinder page, click on a product link: show product panel and panel backdrop */
     $('#search-results').on('click', '.url', function(e){
         e.preventDefault();
+        console.log($(e.currentTarget).attr('href'));
         product = $(e.currentTarget).attr('href');      // URL of the product link
-        productRating = finderResults.findWhere({url: product}).get('rating');  // Get rating from TV Finder (to put on Product Panel) *
+        productRating = finderResults.where({url: product})[0].get('rating');  // Get rating from TV Finder (to put on Product Panel) *
         product = product.match(/\d{8}$/);              // ID of the product
         tv = new Application.Product( {id: product} );
         loadTV = tv.fetch();
@@ -390,7 +489,7 @@ $(function() {
         $('.close-panel').click(function(e){
             e.preventDefault();
             $('.panel-backdrop').fadeOut('slow', function(){
-                $("#age-selector").remove();
+                $("#age").remove();
                 tvIntroView.remove();
                 tvDetailsView.remove();
                 reviewsView.remove();

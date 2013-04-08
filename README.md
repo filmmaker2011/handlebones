@@ -1,5 +1,5 @@
 #Release Notes
-Last Updated: 4/5/2013
+Last Updated: 4/7/2013
 
 ##Clone It & Use It:
 1. git clone https://github.com/filmmaker2011/handlebones.git
@@ -55,6 +55,9 @@ _URL: [http://localhost:8000/](http://localhost:8000/)_
 _What's done:_
 - Layout was widened to proper width.
 - It now displays all 100 products.
+- 4/7 Update: Type filter & Brand filter
+- 4/7 Update: Sort by Price or Rating
+- 4/7 Update: Clear Filters button
 
 _Not done:_
-- Filtering of product results.
+- TV size filter (slider).

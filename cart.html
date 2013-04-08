@@ -6,7 +6,7 @@
     <script src="lib/jquery-1.9.1.min.js"></script>
     <script src="lib/underscore.js"></script>
     <script src="lib/handlebars-1.0.rc.1.min.js"></script>
-    <script src="lib/backbone-min.js"></script>
+    <script src="lib/backbone.js"></script>
     <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
     <script src="lib/bootstrap.min.js"></script>
     <script src="lib/jquery.autoellipsis-1.0.10.min.js"></script>
@@ -44,61 +44,17 @@
               </ul>
           </nav>
 
-          <section class="controls">
+          <section class="controls" id="finder-controls">
               <hgroup>
                   <h1>Get More, For Less</h1>
                   <h2>Find the perfect Television with our new <a href="">TVFinder<sup>TM</sup></a></h2>
               </hgroup>
               <img class="sample-products" src="img/three-tvs.jpg" alt="sample TVs">
 
-              <form class="filters" action="/">
-                  <fieldset class="clearfix">
-                      <legend><b class="bold">TV</b>Finder</legend>
+             <form class="filters" id="finder-filters" action="/">
 
-                      <div class="size-slider">
-                          <lable for='size'>Size</lable>
-                          <input type="text" id="size" style="border: 0; color: #f6931f; font-weight: bold;" />
-                          <div id="size-slider"></div>
-                      </div>
+            </form>
 
-                      <div class="options clearfix">
-                          <label for="display-type">Type<br>
-                              <select id="display-type" name="display-type">
-                                  <option>All</option>
-                                  <option>LCD</option>
-                                  <option>LED</option>
-                                  <option>LED-LCD</option>
-                                  <option>Plasma</option>
-                              </select>
-                          </label>
-
-                          <label for="brand">Brand<br>
-                              <select id="brand" name="brand">
-                                  <option>All</option>
-                                  <option>LG</option>
-                                  <option>RCA</option>
-                                  <option>Samsung</option>
-                                  <option>Sony</option>
-                                  <option>Vizio</option>
-                              </select>
-                          </label>
-
-                          <label for="sort-on">Sort<br>
-                              <select id="sort-on">
-                                  <option>All</option>
-                                  <option>Price</option>
-                                  <option>Rating</option>
-                              </select>
-                          </label>
-                      </div>
-                  </fieldset>
-                  <hr class="filters">
-
-                  <p class="result-msg">
-                      <span class="matches" id="matches">8 MATCHES</span>FOR TELEVISIONS FITTING THAT CRITERIA
-                  </p>
-                  <button type="reset" class="clear-filters" id="clear-filters" name="reset">Clear Filters</button>
-              </form>
           </section>
 
           <section class="search-results clearfix" id="search-results">
@@ -108,7 +64,7 @@
           <div class="panel-backdrop">
               <div class="page panel">
                   <section class="prod-intro" id="prod-intro">
-                      <a class="close-panel" href="#"></a>
+                      <a class="close-panel" href="#"><img src="img/s05-close-panel.png" width="28" height="28" alt=""></a>
 
                   </section>
 
@@ -127,12 +83,12 @@
                               <h2 class="rr-heading">Ratings &amp; Reviews <a id="total-reviews" href="#"></a></h2>
                               <button type="button" class="write-review chevron" id="write-review" name="write-review">Write a Review </button>
                           </header>
-                          <form class="filters clearfix" action="/">
+                          <form class="filters clearfix" id="review-filters" action="/">
                               <label>
                                   <select id="gender">
-                                      <option value="0">Men &amp; Women</option>
-                                      <option value="1">Men</option>
-                                      <option value="2">Women</option>
+                                      <option value="All">Men &amp; Women</option>
+                                      <option value="Male">Men</option>
+                                      <option value="Female">Women</option>
                                   </select>
                               </label>
 
@@ -140,12 +96,12 @@
 
                               <label>
                                   <select id="rating">
-                                      <option>All Ratings</option>
-                                      <option>5 star</option>
-                                      <option>4 star</option>
-                                      <option>3 star</option>
-                                      <option>2 star</option>
-                                      <option>1 star</option>
+                                      <option value="All">All Ratings</option>
+                                      <option value="5">5 star</option>
+                                      <option value="4">4 star</option>
+                                      <option value="3">3 star</option>
+                                      <option value="2"2 star</option>
+                                      <option value="1">1 star</option>
                                   </select>
                               </label>
 
@@ -159,6 +115,7 @@
                                       <option value="low">Rating Low to High</option>
                                   </select>
                               </label>
+
                           </form>
                       </div>
 
@@ -176,7 +133,7 @@
           <div class="cart-backdrop">
               <div class="cart-panel page">
                   <header>
-                      <a class="close-cart" href="#"></a>
+                      <a class="close-cart" href="#"><img src="img/s05-close-panel.png" width="28" height="28" alt=""></a>
                       <h2><span>?</span> Items in Your Cart</h2>
                       <form class="sort-cart" action="/">
                           <select>

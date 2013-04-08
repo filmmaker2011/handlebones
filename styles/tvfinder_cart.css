@@ -468,6 +468,7 @@
     }
     .descrip li {
         display: inline-block;
+        width: 190px;
     }
     .product .price {
         margin: 5px 0 0;

@@ -1,0 +1,46 @@
+    <fieldset class="clearfix">
+        <legend><b class="bold">TV</b>Finder</legend>
+
+        <div class="size-slider">
+            <lable for='size'>Size</lable>
+            <input type="text" id="size" style="border: 0; color: #f6931f; font-weight: bold;" />
+            <div id="size-slider"></div>
+        </div>
+
+        <div class="options clearfix">
+            <label for="type">Type<br>
+                <select id="type" name="type">
+                    <option>All</option>
+                    <option>LCD</option>
+                    <option>LED</option>
+                    <option>LED-LCD</option>
+                    <option>Plasma</option>
+                </select>
+            </label>
+
+            <label for="brand">Brand<br>
+                <select id="brand" name="brand">
+                    <option>All</option>
+                    <option>LG</option>
+                    <option>RCA</option>
+                    <option>Samsung</option>
+                    <option>Sony</option>
+                    <option>Vizio</option>
+                </select>
+            </label>
+
+            <label for="sort-on">Sort<br>
+                <select id="sort-on">
+                    <option>All</option>
+                    <option value="price">Price</option>
+                    <option value="rating">Rating</option>
+                </select>
+            </label>
+        </div>
+    </fieldset>
+    <hr class="filters">
+
+    <p class="result-msg">
+        <span class="matches" id="matches">8 MATCHES</span>FOR TELEVISIONS FITTING THAT CRITERIA
+    </p>
+    <button type="reset" class="clear-filters" id="clear-filters" name="reset">Clear Filters</button>
