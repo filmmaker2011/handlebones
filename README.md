@@ -58,7 +58,7 @@ _What's done:_
 - 4/7 Update: Type filter & Brand filter
 - 4/7 Update: Sort by Price or Rating
 - 4/7 Update: Clear Filters button
-- 4/9 Update: TV size filter (slider)
+- 4/9 Update: TV size filter (slider). Note: the filters chain off of each other.
 
 _Not done:_
 - N.A.
