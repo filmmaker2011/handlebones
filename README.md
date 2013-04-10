@@ -1,5 +1,5 @@
 #Release Notes
-Last Updated: 4/7/2013
+Last Updated: 4/9/2013
 
 ##Clone It & Use It:
 1. git clone https://github.com/filmmaker2011/handlebones.git
@@ -18,9 +18,9 @@ _What's done:_
 - On the cart, you can Save for Later, Move to Cart, and Remove items
 - Totals of Items for Purchase and Saved Items
 - If you close the cart, you can reopen it and still see your Purchase items & Saved items
+- 4/9 Update: cart item quantity in header now updates when you add items to the Cart
 
 _Not done:_
-- Updating the '0 item in your cart' in header when you add items to the Cart
 - Total items in cart & sort of cart items
 - Updating a Purchase item quantity when you type in a different quantity
 - Subtotal at bottom of cart
@@ -58,6 +58,7 @@ _What's done:_
 - 4/7 Update: Type filter & Brand filter
 - 4/7 Update: Sort by Price or Rating
 - 4/7 Update: Clear Filters button
+- 4/9 Update: TV size filter (slider)
 
 _Not done:_
-- TV size filter (slider).
+- N.A.

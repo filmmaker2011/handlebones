@@ -329,8 +329,8 @@
     }
     .size-slider {
         width: 315px;
-        height: 59px;
-        padding: 0 30px 25px;
+        height: 50px;
+        padding: 30px 30px 0px;
         font-size: 15px;
         font-weight: bold;
     }
@@ -346,7 +346,52 @@
         -moz-border-image:
             -moz-linear-gradient(bottom, #DDD, #FFF) 1 100%;
     }
-
+    .size-slider .size-label {
+        position: relative;
+        top: -18px;
+        font-size: 17px;
+        color: #333;
+    }
+    .size-slider .ui-slider-handle {
+        position: relative;
+    }
+    .ui-slider-handle .bubble {
+        position: absolute;
+        width: 58px;
+        height: 36px;
+        top: -54px;
+        left: -21px;
+        font: 22px/1.7em 'cartogothic_stdbold', Helvetica, sans-serif;
+        text-align: center;
+        border: 1px solid #DCDCDC;
+        border-radius: 5px;
+        box-shadow: 0px 1px 2px 0px #D0D0D0;
+        background-color: #FFF;
+    }
+.ui-slider-handle .bubble i {
+    position: relative;
+    left: -3px;
+}
+.ui-slider-handle .bubble:before,
+.ui-slider-handle .bubble:after {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 2;
+    width: 0;
+    height: 0;
+    left: 20px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+}
+.ui-slider-handle .bubble:before {
+    border-top: 10px solid #DCDCDC;
+    top: 36px;
+}
+.ui-slider-handle .bubble:after {
+    border-top: 10px solid #FFF;
+    top: 34px;
+}
     /* Over-ride jQuery Slider styles */
 
     .size-slider .ui-corner-all {
@@ -355,9 +400,9 @@
     .size-slider .ui-slider-horizontal {
         margin-top: 7px;
         border-style: none;
-        background-image: -webkit-linear-gradient(top, rgb(165,165,165), rgb(246, 246, 246));
-        background-image: -moz-linear-gradient(top, rgb(165,165,165), rgb(246, 246, 246));
-        background-image: -ms-linear-gradient(top,  rgb(165,165,165), rgb(246, 246, 246));
+        background-image: -webkit-linear-gradient(top, rgb(165,165,165), rgb(230, 230, 230));
+        background-image: -moz-linear-gradient(top, rgb(165,165,165), rgb(230, 230, 230));
+        background-image: -ms-linear-gradient(top,  rgb(165,165,165), rgb(230, 230, 230));
     }
     .size-slider .ui-slider-range {
             background-image: -webkit-linear-gradient(top, rgb(255, 196, 98), rgb(225, 175, 68));

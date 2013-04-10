@@ -214,32 +214,7 @@
     .buying-options .add-to-cart {
         width: 185px;
         font-size: 22px;
-        color: #ffffff;
         padding: 15px 3%;
-        background: -moz-linear-gradient(
-            top,
-            #fcb543 0%,
-            #ea9000);
-        background: -webkit-gradient(
-            linear, left top, left bottom,
-            from(#fcb543),
-            to(#ea9000));
-        -moz-border-radius: 5px;
-        -webkit-border-radius: 5px;
-        border-radius: 5px;
-        border: 1px solid #f09630;
-        -moz-box-shadow:
-            0px 0px 0px rgba(000,000,000,0),
-            inset 0px 1px 0px rgba(253,208,141,1);
-        -webkit-box-shadow:
-            0px 0px 0px rgba(000,000,000,0),
-            inset 0px 1px 0px rgba(253,208,141,1);
-        box-shadow:
-            0px 0px 0px rgba(000,000,000,0),
-            inset 0px 1px 0px rgba(253,208,141,1);
-        text-shadow:
-            0px -1px 0px rgba(194,118,4,1),
-            0px 1px 0px rgba(255,255,255,0.2);
     }
     .buying-options .find-link,
     .buying-options .share-link{

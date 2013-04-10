@@ -14,3 +14,8 @@ Handlebars.registerHelper('getIndicatorWidth', function(imageArray) {
 Handlebars.registerHelper('getStarsWidth', function(ratingCategory) {
     return Math.round(ratingCategory * 20);     // Each rating star is 20 pixels wide
 });
+
+/* If a number is = 1, set its associated noun to singular; else add an 's' */
+Handlebars.registerHelper('pluralize', function(myNumber) {
+    return myNumber == 1 ? '' : 's';
+});

@@ -21,7 +21,6 @@ Application.View = Backbone.View.extend({
     /* Filter View (extended by FinderFilterView & ReviewFilterView) */
     Application.FilterView = Backbone.View.extend({
         initialize: function() {
-            console.log('Im in FilterView');
             this.collection.originalModels = _.clone(this.collection.models);
             this.listenTo(this, 'change:filter', this.filterResults);
             this.listenTo(this.collection, 'reset', this.updateMatches);
@@ -40,26 +39,60 @@ Application.View = Backbone.View.extend({
             this.$el.find('.matches').text(this.collection.length + ' MATCHES');
         },
 
+        findMinValue: function(values) {
+            return _.min(values);
+        },
+
+        findMaxValue: function(values) {
+            return _.max(values);
+        },
+
+        /* Prepare to filter original collection */
         setFilter: function (e) {
             this.filter = e.currentTarget.value;
             this.selector = e.currentTarget.id;
-            this.trigger("change:filter", this.selector);
+            this.clearOtherSelects(this.selector);
+            this.trigger("change:filter", this.selector, false);
         },
 
-        filterResults: function (selector) {
-            console.log('in filterResults, selector: ', selector);
+        /* Prepare to filter the collection after it's already been filtered */
+        setSubFilter: function(e) {
+            this.filter = e.currentTarget.value;
+            this.selector = e.currentTarget.id;
+            this.trigger("change:filter", this.selector, true);
+        },
+
+        filterResults: function (selector, subsetFilter) {
+            console.log('in filterResults, selector: ', selector, subsetFilter);
             if (this.filter === "All") {
                 this.collection.reset(this.collection.originalModels);
             } else {
-                this.collection.reset(this.collection.originalModels, {silent: true});
+                if( !subsetFilter ) {
+                    this.collection.reset(this.collection.originalModels, {silent: true});  // We'll filter the original collection (not a subset of it)
+                }
                 var filter = this.filter,
                     filtered = _.filter(this.collection.models, function (item) {
                         return item.get(selector) === filter;
                     });
 
                 this.collection.reset(filtered);
-                console.log('The filtered collection length = ', this.collection.length);
             }
+        },
+
+        clearOtherSelects: function(thisSelectElem) {
+            this.$el.find('select').each(function(){
+                if ( ($(this).val() !== 'All') && ($(this).attr('id') !== thisSelectElem) ) {
+                    $(this).val('All');
+                }
+            });
+        },
+
+        clearAllSelects: function() {
+            this.$el.find('select').each(function(){
+                if ( ($(this).val() !== 'All') ){
+                    $(this).val('All');
+                }
+            });
         }
     });
 
@@ -68,10 +101,10 @@ Application.View = Backbone.View.extend({
         el: '#finder-filters',
 
         events: {
-            'change #type': 'setFilter',
-            'change #brand': 'setFilter',
+            'change #type': 'setSubFilter',
+            'change #brand': 'setSubFilter',
             'change #sort-on': 'finderSort',
-            'click #clear-filters': 'resetCollection'
+            'click #clear-filters': 'clearAllFilters'
         },
 
         finderSort: function() {
@@ -100,23 +133,50 @@ Application.View = Backbone.View.extend({
             this.collection.trigger('nowSorted');
         },
 
-        resetCollection: function() {
-            this.collection.reset(this.collection.originalModels);
+        clearAllFilters: function() {
+            this.collection.reset(this.collection.originalModels, arguments);       // Optional argument for {silent: true}
+            this.clearAllSelects();
+            $tvSizeSlider = $("#size-slider");
+            $tvSizeSlider.slider('option', 'values', [this.minSize, this.maxSize]); // Reset TV size slider
+            $('.bubble-text').each(function(i){
+                $(this).text($tvSizeSlider.slider('values', i));
+            });
         },
 
         // Render TV Size Slider
         showSizeSlider: function() {
-            $("#size-slider").slider({
+            var thisView = this,
+                $tvSizeSlider = $("#size-slider"),
+                allSizes = _.uniq(this.collection.pluck("size").sort());
+                this.minSize = this.findMinValue(allSizes);
+                this.maxSize = this.findMaxValue(allSizes);
+
+            $tvSizeSlider.slider({
                 range: true,
-                min: 0,
-                max: 77,
-                values: [ 25, 50 ],
+                min: this.minSize,
+                max: this.maxSize,
+                values: [ this.minSize, this.maxSize ],
                 slide: function( event, ui ) {
-                    $( '#size' ).val( ui.values[ 0 ] + '" - ' + ui.values[ 1 ] + '"' );
+                    $(ui.handle).find('.bubble-text').text(ui.value);
+                },
+                create: function( event, ui ) {
+                    $(this).slider().find('a').each(function(i){
+                        $(this).append('<div class="bubble"><span class="bubble-text">' + $tvSizeSlider.slider("values", i) + '</span><i>&quot;</i></div>');
+                    })
+                },
+                stop: function( event, ui ) {
+                    thisView.clearAllSelects({ silent: true });
+                    var filtered = _.filter(thisView.collection.models, function (item) {
+                        return ( (item.get('size') >= ui.values[0]) && (item.get('size') <= ui.values[1]) );
+                    });
+                    thisView.collection.reset(filtered);
                 }
             });
-            $( '#size' ).val( $( '#size-slider' ).slider( 'values', 0 ) +
-                '" - ' + $( '#size-slider' ).slider( 'values', 1 ) + '"' );
+            $('#size-slider').on('slidecreate', function( event, ui ) {
+                $('.bubble-text').each(function(i) {
+                    $(this).text(ui.values[i]);
+                })
+            });
         }
     });
 
@@ -201,7 +261,9 @@ Application.View = Backbone.View.extend({
         },
 
         // Sort Reviews
-        reSort: function(sortVal){
+        reSort: function(e){
+            this.clearOtherSelects(e.currentTarget.id);             // Clear all select filters except this ones
+            this.collection.reset(this.collection.originalModels);  // Start with original collection data
             var sortVal = $('#sort').val();
             this.collection.comparator = function(reviewModel) {
                 switch(sortVal) {
@@ -368,17 +430,42 @@ Application.View = Backbone.View.extend({
         }
     });
 
+/*** Global Header (used on TV Finder & Confirm Order pages) ***/
+Application.GlobalHeaderView = Application.CartSectionView.extend({
+    el: '.page-header',
+
+    events: {
+        'click .open-cart': 'showCart'
+    },
+
+    render: function(){
+        this.$el.html('');
+        var context = this.sumItemQty(),
+            output = this.options.template({itemCount: context});
+        this.$el.html(output);
+        this.$el.find('.open-cart').effect('highlight', {}, 3000);
+        return this;
+    },
+
+    showCart: function(e) {
+        e.preventDefault();
+        $('.cart-backdrop').fadeIn('slow');
+    }
+});
 
 /*** Code to run at "DOM ready" ***/
 $(function() {
 
     /*** TV Finder ***/
-    var finderFilterView,
+    var cartItems  = new Application.CartItems(),
+        globalHeaderView = new Application.GlobalHeaderView({collection: cartItems, template: Handlebars.templates['global_header']}),
+        finderFilterView,
         finderResultsView,
         finderResults = new Application.FinderResults(),
         loadFinderResults = finderResults.fetch();
 
     loadFinderResults.done(function(){
+        globalHeaderView.render();
         finderFilterView = new Application.FinderFilterView({ collection: finderResults, template: Handlebars.templates['finder_filters'] });
         finderFilterView.render();
         finderFilterView.showSizeSlider();
@@ -401,8 +488,7 @@ $(function() {
         loadReviews;
 
     /*** Cart ***/
-    var cartItems  = new Application.CartItems(),
-        cartSectionView = new Application.CartSectionView({collection: cartItems, template: Handlebars.templates['cart_section_header'] }),
+    var cartSectionView = new Application.CartSectionView({collection: cartItems, template: Handlebars.templates['cart_section_header'] }),
         cartItemsView,
         savedItems = new Application.CartItems(),
         savedSectionView = new Application.CartSectionView({collection: savedItems, template: Handlebars.templates['saved_section_header'] }),
@@ -481,12 +567,6 @@ $(function() {
                 reviewsView.remove();
             });
         });
-
-    /* On Top Nav, click cart link: backdrop and cart opens */
-    $('#nav-buttons').on('click', '.open-cart', function(e){
-        e.preventDefault();
-        $('.cart-backdrop').fadeIn('slow');
-    });
 
     /* On Cart */
         // click a Cart item's Save for Later button
